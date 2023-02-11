@@ -1,5 +1,5 @@
 import profile
-from .forms import UserRegistrForm
+from .forms import UserRegistrForm, UserAddedRequest 
 from multiprocessing import AuthenticationError
 #from tkinter import Menu
 from unicodedata import category
