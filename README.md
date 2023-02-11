@@ -1,1 +1,1 @@
-# Solien
+Solien the system for creating and managing mini databases
