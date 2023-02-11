@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Единый вход в систему Sol</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css">
+    <link rel='stylesheet' href="https://colorlib.com/etc/lf/Login_v6/index.html">
+    <link href="https://www.oracle.com/asset/web/css/redwood-base.css" rel="stylesheet">
+    <link href="https://www.oracle.com/asset/web/css/redwood-styles.css" rel="stylesheet">
+    <link href="/mysite/main/static/main/css/style.css" type="text/css" rel="stylesheet">
+</head>
+<div class="container">
+    <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+      <p class="col-md-4 mb-0 text-muted">© 2022 Sol inc</p>
+      <ul class="nav col-md-4 justify-content-end">
+        <li class="nav-item"><a href="{% url 'login' %} " class="nav-link px-2 text-muted">Re-login</a></li>
+      </ul>
+    </footer>
+  </div>
+  <center><span class="login100-form-title p-b-70">Welcome</span></center>
+  <span class="login100-form-avatar">
+    <img src="" alt="">
+    </span>
+<center>
+    <div class="login-form"></div>
+      <form action="/main/login" method="post">
+        <p>
+        <label for="id_username">Login:</label>
+        <input type="text" name="username" autofocus="" autocapitalize="none" autocomplete="username" maxlength="150" required="" id="id_username">
+      </p>
+      <p>
+        <label for="id_password">Password:</label>
+        <input type="password" name="password" autocomplete="current-password" required="" id="id_password">     
+      </p>
+      {% csrf_token %}
+      <input type="hidden" name="next" value="{{ next }}" />
+        <p><input type="submit" value="enter"></p>  
+      </form></center>
+  <style>
+    fieldset{
+        background-color: #f1f1f1;
+        border: none;
+        border-radius: 2px;
+        margin-bottom: 12px;
+        overflow: hidden;
+        padding: 0 .625em;
+    }
+
+    label{
+        cursor: pointer;
+        display: inline-block;
+        padding: 3px 6px;
+        text-align: right;
+        width: 100px;
+        vertical-align: top;
+    }
+
+    input{
+        font-size: inherit;
+    }
+
+    
+a{
+color: rgb(136, 136, 136);
+}
+a:hover{
+text-decoration: none;
+}
+.container{
+width: 1000px;
+height: 125px;
+background-color: rgb(255, 255, 255);
+margin: 0px auto 0 auto;
+text-align: auto;
+}
+</style>
+
+</div>
+</main>
+</form>
+</div>
+<footer class="py-5">
+  <footer class="py-5">
+    <footer class="py-5">
+      <footer class="py-5">
+        <footer class="py-5">
+          <footer class="py-5">
+            <footer class="py-5">
+              <h3></h3>
+            </footer>
+          </footer>
+        </footer>
+      </footer>
+    </footer>
+  </footer>
+<div class="container">
+    <div class="row">
+      <div class="col-2">
+        <h5>Section</h5>
+        <ul class="nav flex-column">
+          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Home</a></li>
+          <li class="nav-item mb-2"><a href="{% url 'features' %}" class="nav-link p-0 text-muted">Features</a></li>
+          <li class="nav-item mb-2"><a href="{% url 'FAQs' %}" class="nav-link p-0 text-muted">FAQs</a></li>
+          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">About</a></li>
+        </ul>
+      </div>
+
+      <div class="col-4 offset-1">
+        <form>
+          <h5>Subscribe to our newsletter</h5>
+          <p>Monthly digest of whats new and exciting from us.</p>
+          <div class="d-flex w-100 gap-2">
+            <label for="newsletter1" class="visually-hidden"></label>
+            <input id="newsletter1" type="text" class="d2" placeholder="Email address: ">
+            <button class="button"  type="button">ok</button>
+            <style>
+              .button {padding: 1px 20px;}
+              .d4 {background: #cecece;}
+.d2 form {
+  background: #f0f0f0;
+  border-bottom: 4px solid #979797;
+}
+.d2 input, .d2 button {
+  border: none;
+  outline: none;
+  background: transparent;
+}
+.d2 input {
+  width: 100%;
+  height: 20px;
+  padding-left: 15px;
+}
+            </style>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="d-flex justify-content-between py-4 my-4 border-top ">
+      <p>© 2022 Company, Inc. All rights reserved.</p>
+    </div>
+  </footer>
+</div>
+</main>
+</form>
+</body>
+</html> 

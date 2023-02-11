@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css">
+    <link href="https://www.oracle.com/asset/web/css/redwood-base.css" rel="stylesheet">
+    <link href="https://www.oracle.com/asset/web/css/redwood-styles.css" rel="stylesheet">
+    <link rel="preload" href="https://www.oracle.com/asset/web/fonts/oraclesansvf.woff2" as="font" crossorigin="anonymous">
+    <link rel="stylesheet" href="chrome-extension://hnmpcagpplmpfojmgmnngilcnanddlhb/browser-polyfill.min.js.map"
+</head>
+<div class="container">
+  <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+    <p class="col-md-4 mb-0 text-muted">© 2022 Sol inc</p>
+    <ul class="nav col-md-4 justify-content-end">
+      <li class="nav-item"><a href="{% url 'sol' %}" class="nav-link px-2 text-muted">Sol</a></li>
+      <li class="nav-item"><a href="" class="nav-link px-2 text-muted">My account</a></li>
+      <li class="nav-item"><a href="" class="nav-link px-2 text-muted">Settings</a></li>
+      <li class="nav-item"><a href="{% url 'login' %}" class="nav-link px-2 text-muted">Re-login</a></li>
+    </ul>
+  </footer>
+</div>
+<body>
+  <span class="user">
+  {% if request.user.is_authenticated %}
+  {{ request.user.first_name }}
+  <a href="{% url "logout" %}"></a>
+  {% else %}
+  <a href="{% url "login" %}">Log-in</a>
+  {% endif %}
+  </span>
+  </div>
+</body>
+<center><h3>SOL GLOBAL SEARCH</h3></center>
+<div class="d4">
+  
+  <form>
+  <input type="text" placeholder="ID, LOGIN">
+  <button type="submit"></button>
+  </form>
+</div>
+<style>
+  body {
+  background: #cecece;
+}
+* {box-sizing: border-box;}
+body{margin: 0;}
+div {padding: 30px 0}
+form {
+  position: relative;
+  width: 1000px;
+  margin: 0 auto;
+}
+.d4 {background: #cecece;}
+.d4 form {
+  background: #f0f0f0;
+  border-bottom: 4px solid #979797;
+}
+.d4 input, .d4 button {
+  border: none;
+  outline: none;
+  background: transparent;
+}
+.d4 input {
+  width: 100%;
+  height: 42px;
+  padding-left: 15px;
+}
+.d4 button {
+  height: 42px;
+  width: 42px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  cursor: pointer;
+}
+.d4 button:before {
+  content: "\f178";
+  font-family: FontAwesome;
+  font-size: 20px;
+  color: #000000;
+}
+</style>
+<span class="login100-form-avatar">
+  <img src="" alt="">
+  </span>
+
+<h4>SECTIONS</h4>
+
+<div class="rc105w1 rw-scrim-neutral-40bg">
+  <div class="rc105w2 rc105w2-drawer rc105w2-6up rc105w2-12set rc105w2-3set rc105w2-tallbttn" data-guid="0" data-row="2"> <a href="#erp" data-lbl="cloud-apps:erp" role="button" aria-expanded="false" class=""> <span>BASE 1</span> </a>
+                
+    <div class="rc105w3" data-parent="0" role="region" aria-labelledby="enterpriseresourceplanning(erp)_0" tabindex="-1" data-open="" style="height: 0px;"><a href="#close" class="icn-close" aria-label="close expanded panel" title="Close" tabindex="-1" aria-hidden="true"></a>
+            <h3 id="enterpriseresourceplanning(erp)_0">BASE 1</h3>
+            <p>Oracle Fusion Cloud ERP solutions, built with AI technologies, will future-proof your business to keep pace with change.</p>
+            <div class="rc105w4">
+                <div class="rc105w5">
+            
+                </div>
+            </div>
+        <button class="rc105exit" aria-hidden="true"></button></div></div>
+        <div class="rc105w2 rc105w2-drawer rc105w2-6up rc105w2-12set rc105w2-3set rc105w2-tallbttn" data-guid="0" data-row="2"> <a href="#erp" data-lbl="cloud-apps:erp" role="button" aria-expanded="false" class=""> <span>BASE 2</span> </a>
+                
+          <div class="rc105w3" data-parent="0" role="region" aria-labelledby="enterpriseresourceplanning(erp)_0" tabindex="-1" data-open="" style="height: 0px;"><a href="#close" class="icn-close" aria-label="close expanded panel" title="Close" tabindex="-1" aria-hidden="true"></a>
+                  <h3 id="enterpriseresourceplanning(erp)_0">BASE 2</h3>
+                  <p>Oracle Fusion Cloud ERP solutions, built with AI technologies, will future-proof your business to keep pace with change.</p>
+                  <div class="rc105w4">
+                      <div class="rc105w5">
+                   
+                      </div>
+                  </div>
+              <button class="rc105exit" aria-hidden="true"></button></div></div>
+              <div class="rc105w2 rc105w2-drawer rc105w2-6up rc105w2-12set rc105w2-3set rc105w2-tallbttn" data-guid="0" data-row="2"> <a href="#erp" data-lbl="cloud-apps:erp" role="button" aria-expanded="false" class=""> <span>BASE 3</span> </a>
+                
+                <div class="rc105w3" data-parent="0" role="region" aria-labelledby="enterpriseresourceplanning(erp)_0" tabindex="-1" data-open="" style="height: 0px;"><a href="#close" class="icn-close" aria-label="close expanded panel" title="Close" tabindex="-1" aria-hidden="true"></a>
+                        <h3 id="enterpriseresourceplanning(erp)_0">BASE 3</h3>
+                        <p>Oracle Fusion Cloud ERP solutions, built with AI technologies, will future-proof your business to keep pace with change.</p>
+                        <div class="rc105w4">
+                            <div class="rc105w5">
+                            
+                            </div>
+                        </div>
+                    <button class="rc105exit" aria-hidden="true"></button></div></div>
+                    <div class="rc105w2 rc105w2-drawer rc105w2-6up rc105w2-12set rc105w2-3set rc105w2-tallbttn" data-guid="0" data-row="2"> <a href="#erp" data-lbl="cloud-apps:erp" role="button" aria-expanded="false" class="d4"> <span>BASE 4</span> </a>
+                
+                      <div class="rc105w3" data-parent="0" role="region" aria-labelledby="enterpriseresourceplanning(erp)_0" tabindex="-1" data-open="" style="height: 0px;"><a href="#close" class="icn-close" aria-label="close expanded panel" title="Close" tabindex="-1" aria-hidden="true"></a>
+                              <h3 id="enterpriseresourceplanning(erp)_0">BASE 4)</h3>
+                              <p>Oracle Fusion Cloud ERP solutions, built with AI technologies, will future-proof your business to keep pace with change.</p>
+                              <div class="rc105w4">
+                                  <div class="rc105w5">
+                                   
+                                  </div>
+                              </div>
+                          <button class="rc105exit" aria-hidden="true"></button></div></div>
+                          <div class="rc105w2 rc105w2-drawer rc105w2-6up rc105w2-12set rc105w2-3set rc105w2-tallbttn" data-guid="0" data-row="2"> <a href="#erp" data-lbl="cloud-apps:erp" role="button" aria-expanded="false" class="d4"> <span>BASE 5</span> </a>
+                
+                            <div class="rc105w3" data-parent="0" role="region" aria-labelledby="enterpriseresourceplanning(erp)_0" tabindex="-1" data-open="" style="height: 0px;"><a href="#close" class="icn-close" aria-label="close expanded panel" title="Close" tabindex="-1" aria-hidden="true"></a>
+                                    <h3 id="enterpriseresourceplanning(erp)_0">BASE 4)</h3>
+                                    <p>Oracle Fusion Cloud ERP solutions, built with AI technologies, will future-proof your business to keep pace with change.</p>
+                                    <div class="rc105w4">
+                                        <div class="rc105w5">
+                                         
+                                        </div>
+                                    </div>
+                                <button class="rc105exit" aria-hidden="true"></button></div></div>
+                                <div class="rc105w2 rc105w2-drawer rc105w2-6up rc105w2-12set rc105w2-3set rc105w2-tallbttn" data-guid="0" data-row="2"> <a href="#erp" data-lbl="cloud-apps:erp" role="button" aria-expanded="false" class="d4"> <span>BASE 6</span> </a>
+                
+                                  <div class="rc105w3" data-parent="0" role="region" aria-labelledby="enterpriseresourceplanning(erp)_0" tabindex="-1" data-open="" style="height: 0px;"><a href="#close" class="icn-close" aria-label="close expanded panel" title="Close" tabindex="-1" aria-hidden="true"></a>
+                                          <h3 id="enterpriseresourceplanning(erp)_0">BASE 4)</h3>
+                                          <p>Oracle Fusion Cloud ERP solutions, built with AI technologies, will future-proof your business to keep pace with change.</p>
+                                          <div class="rc105w4">
+                                              <div class="rc105w5">
+                                               
+                                              </div>
+                                          </div>
+                                      <button class="rc105exit" aria-hidden="true"></button></div></div>
+                    
+<div class="rc105w2 extra"></div><div class="rc105w2 extra"></div><div class="rc105w2 extra"></div><div class="rc105w2 extra"></div><div class="rc105w2 extra"></div><div class="rc105w2 extra"></div><div class="rc105w2 extra"></div><div class="rc105w2 extra"></div><div class="rc105w2 extra"></div><div class="rc105w2 extra"></div><div class="rc105w2 extra"></div><div class="rc105w2 extra"></div><div class="rc105w2 extra"></div><div class="rc105w2 extra"></div><div class="rc105w2 extra"></div><div class="rc105w2 extra"></div><div class="rc105w2 extra"></div></div>
+</form>
+</div>
+</main>
+</form>
+</body>
+</html>

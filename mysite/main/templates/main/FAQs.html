@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQs</title>
+</head>
+<div class="container">
+    <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+      <p class="col-md-4 mb-0 text-muted">© 2022 Sol inc</p>
+      <ul class="nav col-md-4 justify-content-end">
+        <li class="nav-item"><a href="{% url 'login' %} " class="nav-link px-2 text-muted">Back to login</a></li>
+        <li class="nav-item"><a href="{% url 'features' %}" class="nav-link px-2 text-muted">Features</a></li>
+        <li class="nav-item"><a href="{% url 'FAQs' %}" class="nav-link px-2 text-muted">FAQs</a></li>
+        <li class="nav-item"><a href="{% url 'sol' %}" class="nav-link px-2 text-muted">Sol</a></li>
+      </ul>
+    </footer>
+  </div>
+<body>
+    <div class="cc01w1 cwidth"><!-- CC01v0 -->
+        <style type="text/css">h2 {
+    text-align: left !important; 
+    font-size: 3.0rem !important;
+    color:#069 !important;
+    font-weight: bold !important;
+    margin-top:50px !important;
+    margin-bottom:20px !important;
+    }
+    
+    h4 {
+    text-align: left !important; 
+    font-size: 1.5rem !important;
+    color:#069 !important;
+    font-weight: bold !important;
+    margin-top:20px !important;
+    }
+    
+    p {
+    font-family: Arial, Helvetica, sans-serif !important;
+    font-size: 1.5rem !important;
+    color: #494b4d !important;
+    margin-left:40px !important;
+    display: list-item !important;
+    list-style-type: disc !important;
+    list-style-position: outside !important;
+    margin-bottom:20px !important;
+    }
+    
+    .bullet {
+    font-family: Arial, Helvetica, sans-serif !important;
+    font-size: 1.0rem !important;
+    color: #494b4d !important;
+    margin-left: 10px !important;
+    margin-bottom:30px !important;
+    margin-top: 20px !important;;
+    list-style-type: none !important;
+    }
+    
+    
+    .nobullet {
+    font-family: Arial, Helvetica, sans-serif !important;
+    font-size: 1.3rem !important;
+    color: #494b4d !important;
+    margin-left:40px !important;
+    margin-bottom:30px !important;
+    margin-top:-20px !important;;
+    list-style-type: none !important;
+    }
+        </style>
+        <div><a name="GENERAL-BOOKMARK"></a></div>
+        <h2>GENERAL</h2>
+        <h4>What is the Oracle Autonomous Database?</h4>
+        <p class="bullet">Oracle Autonomous Database is the world’s first autonomous data management in the cloud to deliver automated patching, upgrades, and tuning—including performing all routine database maintenance tasks while the system is running - without human intervention. This new autonomous database cloud is self-driving, self-securing, and self-repairing, which helps to eliminate manual database management and human errors.
+        </p>
+        <p class="nobullet">The Oracle Autonomous Database is fully elastic: You simply specify the number of OCPUs and the storage capacity in TB's for the database. At any time, you may scale up or down the OCPUs or the storage capacity.
+        </p>
+        <p class="nobullet"><a href="https://docs.oracle.com/en/cloud/paas/autonomous-data-warehouse-cloud/user/autonomous-add-resources.html#GUID-DA72422A-5A70-42FA-A363-AB269600D4B0" target="_blank">Click here for more information.</a>
+        </p>
+        <h4>What is the difference between a Dedicated Infrastructure vs. Shared Infrastructure deployment?</h4>
+        <p class="bullet">Dedicated deployment is a deployment choice that enables you to provision autonomous databases into their own dedicated Exadata cloud infrastructure, instead of a shared infrastructure with other tenants. Autonomous Database on Dedicated Infrastructure is also available in customer's data centers with Exadata Cloud at Customer.
+        </p>
+        <p class="nobullet">With Shared Infrastructure deployment, which is the simplest configuration, you share the resources of an Exadata cloud infrastructure. You can quickly get started with no minimum commitment, enjoying quick database provisioning and independent scalability of compute and storage.
+        </p>
+        <p class="nobullet">All deployment options (Shared, Dedicated in Oracle Cloud and Dedicated Cloud@Customer) are available with Autonomous Transaction Processing and Autonomous Data Warehouse. Oracle Autonomous Data Warehouse provides a fully-managed database that is tuned and optimized for data warehouse workloads. Autonomous Transaction Processing enables businesses to safely run a complex mix of high-performance transactions, reporting, batch, and machine learning along with simpler and faster application development.
+        </p>
+        <h4>How do I connect to the Oracle Autonomous Database?</h4>
+        <p class="bullet">ADB is built upon the Oracle Database, therefore, applications and tools that support Oracle Database also support ADB. These tools and applications connect to the service using standard database connectivity such as SQL*Net or JDBC. <a href="https://docs.oracle.com/en/cloud/paas/atp-cloud/atpug/connect-data-warehouse.html#GUID-94719269-9218-4FAF-870E-6F0783E209FD" target="_blank">Click here for more information.</a>
+        </p>
+        <h4>Are there any limitations on databases features or function in Oracle Autonomous Database?</h4>
+        <p class="bullet">Not all features present in Oracle Database Enterprise Edition are available in ADB; for example, database features designed for administration are not available. Please see Appendix B in both the <a href="https://docs.oracle.com/en/cloud/paas/autonomous-data-warehouse-cloud/user/experienced-database-users.html#GUID-58EE6599-6DB4-4F8E-816D-0422377857E5" target="_blank">Autonomous Data Warehouse documentation</a> and <a href="https://docs.oracle.com/en/cloud/paas/atp-cloud/atpug//experienced-database-users.html#GUID-58EE6599-6DB4-4F8E-816D-0422377857E5" target="_blank">Autonomous Transaction Processing documentation</a> for the complete list.
+        </p>
+        <h4>Where is Oracle Autonomous Database available?</h4>
+        <p class="bullet">The full list of data centers is shown here: <a href="https://www.oracle.com/cloud/data-regions.html" target="blank">Oracle Cloud Data Regions for Platform and Infrastructure Services</a>.
+        </p>
+        <h4>What Machine Learning capabilities come with Autonomous Databases?</h4>
+        <p class="bullet">Autonomous Databases comes with over 30 machine learning algorithms implemented as SQL functions that leverage the strengths of the Oracle Autonomous Database. <a href="https://www.oracle.com/database/technologies/datawarehouse-bigdata/machine-learning.html" target="_blank">Oracle Machine Learning</a> algorithms perform all processing inside the Autonomous Database and can mine data tables and views, star schema data including transactional data, aggregations, unstructured data i.e. CLOB data type (using Oracle Text to extract tokens) and spatial data. <a href="https://www.oracle.com/database/technologies/datawarehouse-bigdata/oml4sql.html" target="_blank">Oracle Machine Learning</a> for SQL functions take full advantage of database parallelism for model build and model apply and honor all data and user privileges and security schemes. Data scientists can collaborate to build, evaluate and deploy machine learning models using Zeppelin based <a href="https://www.oracle.com/database/technologies/datawarehouse-bigdata/oml-notebook.html" target="_blank">Oracle Machine Learning Notebooks</a>. <a href="https://www-sites.oracle.com/database/technologies/datawarehouse-bigdata/machine-learning.html" target="_blank">Oracle Machine Learning</a> models can be included in SQL queries, BI dashboards and embedded in real-time applications. See Oracle Machine Learning for more information.
+        </p>
+        <h4>What Analytics are supported in the Autonomous Database?</h4>
+        <p class="bullet">In addition to the Oracle Machine Learning algorithms, the Autonomous Database provides an extensive library of <a href="https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/Analytic-Functions.html#GUID-527832F7-63C0-4445-8C16-307FA5084056" target="_blank">analytic</a> and <a href="/database/technologies/bi-datawarehousing.html" target="_blank">statistical SQL functions</a>. Additionally, insights and predictions discovered in the Autonomous Database can be further investigated, analyzed and included in <a href="https://www.oracle.com/solutions/business-analytics/analytics-cloud.html" target="_blank">Oracle Analytics Cloud</a> dashboards and other BI tools and Applications.
+        </p>
+        <div><a name="PandL-BOOKMARK"></a></div>
+        <h2>PRICING AND LICENSING</h2>
+        <h4>What is the price of Oracle Autonomous Database?</h4>
+        <p class="bullet">Pricing details can be found on the <a href="https://www.oracle.com/database/adw-cloud-pricing.html" target="">Autonomous Data Warehouse</a> or <a href="https://www.oracle.com/database/atp-cloud-pricing.html" target="_blank">Autonomous Transaction Processing</a> page of oracle.com.
+        </p>
+        <h4>What are the provisioning options for Oracle Autonomous Database?</h4>
+        <p class="bullet">You can provision a License-included version of ADB, or you can provision a Bring-Your-Own-License (BYOL) instance. If you wish to use BYOL, then you must apply current database licenses to your ADB service. The BYOL requirements are described on <a href="https://cloud.oracle.com/en_US/datawarehouse/pricing">ADB's pricing page</a> Note: For BYOL, it is possible to seamlessly transition from 16 or fewer OCPUs to greater than 16 OCPUs. The only requirement is that the your BYOL must include RAC when scaling beyond 16 OCPUs. <a href="https://cloud.oracle.com/en_US/datawarehouse/pricing">Click here for more information.</a>
+        </p>
+        <h4>For BYOL, is it possible to seamlessly transition from 16 or fewer OCPUs to the greater than 16 OCPUs?</h4>
+        <p class="bullet">Yes. The only requirement is that your BYOL must include RAC when scaling beyond 16 OCPUs. <a href="https://www.oracle.com/database/adw-cloud-pricing.html">Click here for more information.</a>
+        </p>
+        <h4>Where can I get more information licensing requirements for Oracle Autonomous Database?</h4>
+        <p class="bullet">&nbsp;This <a href="http://www.oracle.com/us/corporate/contracts/paas-iaas-universal-credits-3940775.pdf" target="_blank">document</a> describes the licensing requirements for ADB.
+        </p>
+        <h4>What is the minimum compute requirement for Oracle Autonomous Database?</h4>
+        <p class="bullet">One OCPU is required to do any work, but the compute portion of the service instance can be turned off and billing for compute will be halted. Billing for storage continues as long as the service instance exists.
+        </p>
+        <h4>What is the minimum Storage requirement for Oracle Autonomous Database?</h4>
+        <p class="bullet">One TB.</p>
+        <h4>Does Oracle Autonomous Database support per-second billing?</h4>
+        <p class="bullet">Yes, ADB does support per-second billing although certain restrictions apply. There is more information <a href="https://docs.cloud.oracle.com/en-us/iaas/Content/Database/Concepts/adboverview.htm#persecondbilling" target="_blank">available here</a>
+        </p>
+        <h4>Do customers need Exadata licenses to benefit from BYOL?</h4>
+        <p class="bullet">The only things needed for BYOL are: Multitenant and when using more than 16 OCPUs, RAC is required.
+        </p>
+        <h4>Can a customer run Oracle Autonomous Database without the 'Oracle Autonomous Database - Exadata Storage' line-item?</h4>
+        <p class="bullet">No, you cannot use any other storage than Exadata.</p>
+        <p class="nobullet">However, for Autonomous Database Dedicated Infrastructure deployments, ‘Oracle Cloud Infrastructure – Database Exadata Infrastructure’ which includes Exadata storage should be selected instead of ‘Oracle Autonomous Database - Exadata Storage’.
+        </p>
+        <h4>Can I get a subscription to Block and Object Storage to be associated to Autonomous Database and not use Oracle Autonomous Database - Exadata Storage?</h4>
+        <p class="bullet">No, you cannot use any other storage than Exadata.</p>
+        <h4>Do you need to precisely calculate the amount of storage required for a database?</h4>
+        <p class="bullet">No, you must specify the initial storage required for your database but ADB is elastic, so it is possible to grow or shrink your database as needed.
+        </p>
+        <h4>Does ADB offer trial licenses?</h4>
+        <p class="bullet">Yes. ADB offers 30-day free trials. There is a sign-up process on oracle.com. For more information <a href="https://www.oracle.com/cloud/free/" target="_bank">click here</a>.
+        </p>
+        <h4>Does ADB offer a completely free service?</h4>
+        <p class="bullet">Yes. ADB offers a free service on Shared Exadata Infrastructure. There is a sign-up process on oracle.com. For more information <a href="https://www.oracle.com/cloud/free/" target="_blank">click here</a>.
+        </p>
+        <div><a name="SECURITY-BOOKMARK"></a></div>
+        <h2>SECURITY</h2>
+        <h4>Can customers add new roles with privileges and assign those roles to a user and/or group of users?</h4>
+        <p class="bullet">You can create users, roles, etc. as before. However, note that certain commands are blacklisted, and the list of these commands is provided in the documentation for each service <a href="https://docs.oracle.com/en/cloud/paas/autonomous-data-warehouse-cloud/user/experienced-database-users.html#GUID-791E7112-07F7-46F0-BD81-777C8FAD83A0">ADW</a> and <a href="https://docs.oracle.com/en/cloud/paas/atp-cloud/atpug/experienced-database-users.html#GUID-791E7112-07F7-46F0-BD81-777C8FAD83A0">ATP</a>.
+        </p>
+        <h4>Can a customer manage his or her own encryption keys?</h4>
+        <p class="bullet">Yes, Autonomous Database allows customer manages the encryption keys. More information is provided in the documentation, <a href="https://docs.oracle.com/en/cloud/paas/autonomous-database/adbsa/autonomous-encrypt-set-rotate-keys.html#GUID-0795135D-B057-4DBC-92C9-368AF4C82D0A" target="_blank">click here</a>.
+        </p>
+        <h4>Is there a plan for any 3rd party companies to assess the service for vulnerabilities?</h4>
+        <p class="bullet">As part of our overall security approval process, Oracle uses an external company to perform penetration testing.
+        </p>
+        <h4>How does Oracle Autonomous Database provide data security?</h4>
+        <p class="bullet">Oracle Autonomous Database protects against both external attacks and malicious internal users:</p>
+        <p class="nobullet">All data is encrypted at rest using transparent data encryption. Network connections from clients to ADB are also encrypted using the client credentials wallet. Using client credential wallets includes both server and client-side authentication and provides the highest level of security.
+        </p>
+        <p class="nobullet">Oracle automatically applies all security updates to ensure data is not vulnerable.</p>
+        <p class="nobullet">Customers are not given OS logons or SYSDBA privileges to prevent phishing attacking.</p>
+        <p class="nobullet">Additional in-database features such as Database Vault, Virtual Private Database and Data Redaction are also available.
+        </p>
+        <h4>Is Data Redaction available with Oracle Autonomous Database?</h4>
+        <p class="bullet">Yes, data redaction is part of ADB.</p>
+        <h4>Is it possible to leverage Database Vault with Oracle Autonomous Database?</h4>
+        <p class="bullet">Yes, the current version of ADB includes Database Vault. This can be combined with other PaaS offerings such Data Safe which is free to use with ADB to create a comprehensive security layer within ADB. <a href="https://www.oracle.com/database/technologies/security/data-safe.html">Click here for more information</a>
+        </p>
+        <h4>If a customer wants to decommission their Oracle Autonomous Database instance will all data on disks, archive, backup etc. be safely removed?</h4>
+        <p class="bullet">The database instance will be dropped the moment the service is terminated. However, the database is restorable for up to 60 days, as legally required and documented in the Cloud Hosting and Delivery Policies. After that, the data is gone and cannot be recovered. <a href="/corporate/contracts/cloud-services/">Click here for more information</a>.
+        </p>
+        <h4>Is it possible to setup access control lists (ACLs) in Oracle Autonomous Database?</h4>
+        <p class="bullet">Yes. it is now possible to specify an access control list that blocks all IP addresses that are not in the list from accessing the database. Once an access control list is set then that specific Autonomous Database only accepts connections from addresses in the access control list and rejects all other client connections. By default, when there is no network access control list specified the database is accessible from any IP address. <a href="https://blogs.oracle.com/datawarehousing/how-to-make-your-autonomous-database-even-more-secure-using-network-acls-v2">Click here more information</a>
+        </p>
+        <h4>Is it possible to control the list of database instances within a wallet?</h4>
+        <p class="bullet">Yes. On the Database Connection form, it is now possible to select type of wallet that will be generated:
+        </p>
+        <div style=" margin-left:55px;">
+            <p class="nobullet"><strong>Instance Wallet</strong> - provides a database-specific wallet with access to a single database only.
+            </p>
+            <p class="nobullet"><strong>Regional Wallet</strong> - contains connection details for all ADBs within a given tenant-region.
+            </p>
+        </div>
+        <p class="nobullet">Note that the instance (database-specific) wallet is the recommended option for applications where the connection is to only one system. <a href="https://docs.oracle.com/en/cloud/paas/autonomous-data-warehouse-cloud/user/connect-download-wallet.html#GUID-B06202D2-0597-41AA-9481-3B174F75D4B1">Click here more information</a>.
+        </p>
+        <p class="nobullet"><em>(Shared Infrastructure only)</em></p>
+        <h4>Is it possible to invalidate a wallet?</h4>
+        <p class="bullet">Yes. This new wallet rotation feature makes it easy for customers to invalidate existing client certification keys for a specific ADW/ATP instance or for all Autonomous Database instances within a region. <a href="https://docs.oracle.com/en/cloud/paas/autonomous-data-warehouse-cloud/user/wallet-rotate.html#GUID-F0995A6A-78BD-4C9D-9A34-B970BD152CAD">Click here more information</a>.
+        </p>
+        <p class="nobullet"><em>(Shared Infrastructure only)</em></p>
+        <h4>Can I store data covered by HIPAA in Oracle Autonomous Database?</h4>
+        <p class="bullet">Autonomous Database demonstrates its HIPAA fitness through an additional attestation prepared in accordance with AICPA SSAE 18, AT-C sections 205 and 315. For more information visit the following page on cloud.oracle.com - <a href="https://www.oracle.com/cloud/compliance/">Oracle Cloud Compliance and Security</a>.
+        </p>
+        <h4>Can I store data covered by SOC requirements in Oracle Autonomous Database?</h4>
+        <p class="bullet">Yes. Autonomous Database has achieved SOC 1 and SOC 2 compliance. SOC was created because of the rise of cloud computing and outsourcing of functions to service organizations. Liability concerns caused a demand in assurance of confidentiality and privacy of information processed in the cloud. For more information, <a href="https://blogs.oracle.com/cloud-infrastructure/iso-27001-certificate-soc-1-2-3-attestations-for-oracle-cloud-infrastructure">click here</a>.
+        </p>
+        <h4>Does Oracle Autonomous Database have ISO27001 certification?</h4>
+        <p class="bullet">Yes. Autonomous Database has achieved ISO27001 compliance. For more information visit the following page on cloud.oracle.com - <a href="https://www.oracle.com/cloud/compliance/">Oracle Cloud Compliance and Security</a>.
+        </p>
+        <h4>Does Oracle Autonomous Database have ISO27017 certification?</h4>
+        <p class="bullet">Yes. Autonomous Database has achieved ISO27017 compliance. For more information visit the following page on cloud.oracle.com - <a href="https://www.oracle.com/cloud/compliance/">Oracle Cloud Compliance and Security</a>.
+        </p>
+        <h4>Does Oracle Autonomous Database have ISO27018 certification?</h4>
+        <p class="bullet">Yes. Autonomous Database has achieved ISO27018 compliance. For more information visit the following page on cloud.oracle.com - <a href="https://www.oracle.com/cloud/compliance/">Oracle Cloud Compliance and Security</a>.
+        </p>
+        <h4>Is it possible to management password complexity on Oracle Autonomous Database?</h4>
+        <p class="bullet">Yes. For more information <a href="https://docs.oracle.com/en/cloud/paas/autonomous-data-warehouse-cloud/user/manage-user-profiles.html#GUID-81E6B578-C942-4755-A693-33773350B0DA">click here</a>.
+        </p>
+        <div><a name="ARCHITECTURE-BOOKMARK"></a></div>
+        <h2>ARCHITECTURE</h2>
+        <h4>Does Oracle Autonomous Database support database links?</h4>
+        <p class="bullet">Yes, database links are fully supported in ADB.</p>
+        <p class="nobullet">For Shared Infrastructure ADB deployments the target database must be configured to use TCP/IP with SSL (TCPS) authentication. ADB on Dedicated Infrastructure supports both regular TCP (non-wallet) and TCPS (wallet based) SQL*Net connections. Inbound database link connections to ADB Dedicated can be TCP or TCPS, however, outbound database link connections from ADB Dedicated can only be TCP based.
+        </p>
+        <p class="nobullet">More information is available in the documentation for <a href="https://docs.oracle.com/en/cloud/paas/atp-cloud/atpug/database-links.html#GUID-28F06977-300F-4599-AD97-2DEF67EF5FEA">ATP</a> and <a href="https://docs.oracle.com/en/cloud/paas/autonomous-data-warehouse-cloud/user/database-links.html#GUID-28F06977-300F-4599-AD97-2DEF67EF5FEA">ADW</a>.
+        </p>
+        <h4>Does Oracle Autonomous Database support access to non-Oracle Databases?</h4>
+        <p class="bullet">Yes. Autonomous Database supports connections that are enabled via Oracle Database Gateway. Database Gateways are designed for accessing non-Oracle Databases such as DB2, Teradata, SQL Server etc. More information is available in the documentation for <a href="https://docs.oracle.com/en/cloud/paas/atp-cloud/atpug/database-links-other-databases.html#GUID-E4F35EEE-3147-4822-A9EB-A341D87E4ECF">ATP</a> and <a href="https://docs.oracle.com/en/cloud/paas/autonomous-data-warehouse-cloud/user/database-links-other-databases.html#GUID-E4F35EEE-3147-4822-A9EB-A341D87E4ECF">ADW</a>.
+        </p>
+        <h4>Does Oracle Autonomous Database support database directory objects?</h4>
+        <p class="bullet">Yes, directory objects are supported within ADB. This makes it even easier to migrate existing applications to ADB.
+        </p>
+        <p class="nobullet">More information is available in the documentation for <a href="https://docs.oracle.com/en/cloud/paas/atp-cloud/atpug/database-links.html#GUID-28F06977-300F-4599-AD97-2DEF67EF5FEA">ATP</a> and <a href="https://docs.oracle.com/en/cloud/paas/autonomous-data-warehouse-cloud/user/database-links.html#GUID-28F06977-300F-4599-AD97-2DEF67EF5FEA">ADW</a>.
+        </p>
+        <h4>Does Oracle Autonomous Database support Oracle Graph features?</h4>
+        <p class="bullet">Yes. Autonomous Database has enabled a core set of functionality for property graphs.</p>
+        <h4>Does Oracle Autonomous Database support Oracle Spatial features?</h4>
+        <p class="bullet">Yes. Autonomous Database has enabled the core set of spatial functionality including the native spatial type, index, and associated core analysis operators and functions.
+        </p>
+        <h4>Does Oracle Autonomous Database support Oracle Text features?</h4>
+        <p class="bullet">Yes. Autonomous Database supports Oracle Text. This means it’s possible to use standard SQL to index, search, and analyze text and documents stored in the Oracle Autonomous Database.
+        </p>
+        <h4>Does Oracle Autonomous Database include Application Express?</h4>
+        <p class="bullet">Yes. Autonomous Database does include Oracle Application Express (APEX).</p>
+        <h4>Does Oracle Autonomous Database include SQL Developer Web?</h4>
+        <p class="bullet">Yes. Oracle SQL Developer Web is included with Oracle Autonomous Database.</p>
+        <h4>Does Oracle Autonomous Database include support for Oracle Rest Data Services?</h4>
+        <p class="bullet">Yes. Oracle Rest Data Services (ORDS) is supported by Autonomous Database.</p>
+        <h4>Does Oracle Autonomous Database support SODA</h4>
+        <p class="bullet">Yes, Autonomous Database supports Simple Oracle Document Access (SODA) for REST.</p>
+        <p class="nobullet">More information is available in the documentation for <a href="https://docs.oracle.com/en/cloud/paas/atp-cloud/atpug/ords-autonomous-database.html#GUID-4E7EEA3E-BF34-4E46-B960-F80C831800D1">ATP</a> and <a href="https://docs.oracle.com/en/cloud/paas/autonomous-data-warehouse-cloud/user/ords-autonomous-database.html#GUID-4E7EEA3E-BF34-4E46-B960-F80C831800D1">ADW</a>.
+        </p>
+        <h4>Does Oracle Autonomous Database support partitioned external tables?</h4>
+        <p class="bullet">Yes, Autonomous Database supports partitioned external tables. This provides ability to query multiple data files in the Object Store as a single external table where the Object Store files can be represented as multiple logical partitions.
+        </p>
+        <p class="nobullet"><em>(Shared Infrastructure only)</em></p>
+        <h4>Does Oracle Autonomous Database support hybrid partitioned tables?</h4>
+        <p class="bullet">Yes, Autonomous Database supports hybrid partitioned tables. This provides ability for a query to access both internal data and multiple data files in the Object Store as single logical table.
+        </p>
+        <p class="nobullet"><em>(Shared Infrastructure)</em></p>
+        <h4>Are there any predefined patterns for deploying Oracle Autonomous Database?</h4>
+        <p class="bullet">Yes. The Oracle Architecture Center contains reference architectures, solution playbooks to help you design and implement IT topologies for specific business scenarios. For more information visit the <a href="https://docs.oracle.com/en/solutions/" target="_blank">Oracle Architecture Center</a> for more information.
+        </p>
+        <h4>Is there a PL/SQL SDK for working with Oracle Cloud Infrastructure resources?</h4>
+        <p class="bullet">Yes. Oracle Cloud Infrastructure SDK for PL/SQL enables you to write code to interact with Oracle Cloud Infrastructure resources, including Autonomous Database. The latest version of the SDK is pre-installed by Oracle for all Autonomous Databases using shared Exadata infrastructure. <a href="https://blogs.oracle.com/datawarehousing/autonomous-database-adds-plsql-oci-native-sdk" target="_blank">Click here</a> for more information.
+        </p>
+        <p class="nobullet"><em>(Shared Infrastructure)</em></p>
+        <div><a name="AVAILABILITY-BOOKMARK"></a></div>
+        <h2>AVAILABILITY</h2>
+        <h4>What is the current availability SLA for Oracle Autonomous Database?</h4>
+        <p class="bullet">The current SLA for ADB is 99.95% availability during any calendar month. For customers that need higher levels of availability, Autonomous Data Guard provides failover protection.
+        </p>
+        <h4>Does Oracle Autonomous Database have a standby feature?</h4>
+        <p class="bullet">Yes. The Autonomous Data Guard feature enables a standby instance in the background which provides automated failover protection. For more information <a href="https://docs.oracle.com/en/cloud/paas/autonomous-data-warehouse-cloud/user/autonomous-data-guard.html#GUID-2AFA2C06-BBD9-496E-94B9-B3C54EC567D1" target="_blank">see here</a> for ADW and <a href="https://docs.oracle.com/en/cloud/paas/atp-cloud/atpug/autonomous-data-guard.html#GUID-2AFA2C06-BBD9-496E-94B9-B3C54EC567D1" target="_blank">see here</a> for ATP.
+        </p>
+        <p class="nobullet">The pillar document provides more information about the specific definitions of key terms relating to the "Service Commitment", <a href="https://www.oracle.com/a/ocom/docs/paas-iaas-pub-cld-srvs-pillar-2021-4021422.pdf" target="_blank">see here</a> (PDF).
+        </p>
+        <h4>Does the backup process continue to run even if you shut down the database, for example to reduce costs?</h4>
+        <p class="bullet">A full back up will still happen. However, once the service has been stopped there is no need to do incremental backups because the database is not active.
+        </p>
+        <h4>What is the process to restore an Oracle Autonomous Database instance?</h4>
+        <p class="bullet">The restore process is very simple - select a specific point in time to restore via the management console.
+        </p>
+        <h4>Can a customer restore an Oracle Autonomous Database backup into another Database Cloud deployment?</h4>
+        <p class="bullet">No, you cannot restore an ADB backup into another cloud service. You can export an ADB database to an object store and then import into another service.
+        </p>
+        <h4>Can a customer use an Oracle Autonomous Database backup to restore a database to another/new Oracle Autonomous Database instance?</h4>
+        <p class="bullet">No, ADB backups can only be used to restore and recover to the same database. However, customers have the ability to clone a database and can choose to clone either the full database or only the database metadata.
+        </p>
+        <h4>Can a clone be refreshed when new data is available?</h4>
+        <p class="bullet">Yes. A refreshable clone can be easily updated with changes from the source database. A refreshable clone allows the following:
+        </p>
+        <ul class="cta-list" style="font-family:Arial, Helvetica, sans-serif;font-size:1em; margin-left:175px;">
+            <li>- Maintain one or more copies of the source database for use as read-only databases. A clone database is available when needed, and when the data needs to be updated, simply refresh the clone from its source database.
+            </li>
+            <li>- Share copies of a production database with multiple business units. For example, one business unit might use the source database for ongoing transactions and another business unit could at the same time use the refreshable clone database for read-only operations.
+            </li>
+        </ul>
+        &nbsp;
+        <h4>Oracle Autonomous Database provides a manual backup option on the cloud console that takes a backup to the object store. What can I use this back up for? Can I restore it to my own database server?</h4>
+        <p class="bullet">No, the manual backup, which you must move to your object store bucket, can only be used by ADB. You can use the manual backup functionality for cases like backing up before a large data load.
+        </p>
+        <p class="nobullet">Note, if you initiate a restore operation ADB may decide to use your object store backup rather than one of its automatic backups – if it will be faster to restore.
+        </p>
+        <h4>What happens if you cannot access Oracle Autonomous Database, i.e. the whole service is down?</h4>
+        <p class="bullet">Oracle is responsible for the service availability. Therefore, if the whole service goes down it’s Oracles responsibility to get the service back online ASAP.
+        </p>
+        <h4>Is it possible to clone production databases for development/test/QA environments?</h4>
+        <p class="bullet">Yes, ADB provides the ability to clone a database and you can choose to clone either the full database or only the database metadata.
+        </p>
+        <h4>Can the dev/test/QA cloned instances be masked?</h4>
+        <p class="bullet">Yes it is possible to use Oracle Data Safe data masking capabilities with cloned instances of ADB. For more information <a href="https://www.oracle.com/database/technologies/security/data-safe.html" target="_blank">click here</a>.
+        </p>
+        <h4>What audit reports will be available to the customer?</h4>
+        <p class="bullet">Oracle Data Safe provides a large selection of audit reports For more information <a href="https://www.oracle.com/database/technologies/security/data-safe.html" target="_blank">click here</a>.
+        </p>
+        <div><a name="CONNECTING-BOOKMARK"></a></div>
+        <h2>CONNECTING TO ORACLE AUTONOMOUS DATABASE</h2>
+        <h4>Does ADB support VPN and/or FastConnect?</h4>
+        <p class="bullet">You can connect your on-premises network to ADB using FastConnect Public Peering and private endpoints
+        </p>
+        <p class="nobullet">Using Private connectivity to Autonomous Database Dedicated Infrastructure deployment is supported.</p>
+        <h4>Will clients need to upgrade their drivers?</h4>
+        <p class="bullet">Third party drivers must support Oracle Wallets and certificates. With ADB on Dedicated Infrastructure, both regular TCP and TCPS (Oracle Wallets and Certificate) connections are supported. Details on connecting to ATP with via OCI, ODBC and JDBC can be found in the <a href="https://docs.oracle.com/en/cloud/paas/atp-cloud/atpug/connect-preparing.html#GUID-3667EC68-930E-4566-95B3-DFA24203A8FF">documentation</a>. Details on connecting to ADW with via OCI, ODBC and JDBC can be found in the <a href="https://docs.oracle.com/en/cloud/paas/autonomous-data-warehouse-cloud/user/connect-preparing.html#GUID-3667EC68-930E-4566-95B3-DFA24203A8FF">documentation</a>.
+        </p>
+        <h4>Are private Endpoints supported?</h4>
+        <p class="bullet">Yes, Private Endpoints are supported with ADB.</p>
+        <h4>Where should application servers be provisioned in order to avoid network latency?</h4>
+        <p class="bullet">Application servers should be provisioned in the same Oracle Cloud Infrastructure Region.</p>
+        <div><a name="LOADING-BOOKMARK"></a></div>
+        <h2>LOADING DATA</h2>
+        <h4>Is Oracle Data Integration via Oracle Cloud Marketplace supported with Oracle Autonomous Database?</h4>
+        <p class="bullet">Yes, Oracle data integration tools are configured to work with ADB.</p>
+        <h4>What are the options for loading data into Oracle Autonomous Database?</h4>
+        <p class="bullet">There are multiple ways to load data into ADB:</p>
+        <p class="nobullet">ADB is integrated with multiple object storage services for data loading. You can upload your source files to one of these object-stores and use the PL/SQL API DBMS_CLOUD to load data into your database. ADB supports Oracle Cloud Infrastructure Object Storage, Oracle Cloud Infrastructure Object Storage Classic, AWS S3, and Azure Blob Storage for loading data. This is the recommended method for loading large data sets. SQL Developer also provides a data loading wizard that can load data from these object stores.
+        </p>
+        <p class="nobullet">You can use Data Pump Import to load data from dump files. Data Pump Import is integrated with Oracle Cloud Infrastructure Object Storage, Oracle Cloud Infrastructure Object Storage Classic, AWS S3, Microsoft Azure Blob Storage. You can upload your dump files to one of these object-stores and import from those dump files.
+        </p>
+        <p class="nobullet">You can also use client-side tools like SQL*Loader, or your in-house scripts to load data from files residing on your client machines.
+        </p>
+        <p class="nobullet">Another option is to use Oracle tools and cloud services like GoldenGate, ODI, GoldenGate Cloud Service, and Oracle BI Data Sync.
+        </p>
+        <p class="nobullet">Any 3rd party ETL tool that can connect to ADB using the security credentials wallet can also be used to load data.
+        </p>
+        <h4>Do customers need to upload data files to the Oracle Object Store for data loading?</h4>
+        <p class="bullet">For large data sets, uploading the source files to Oracle Object Storage and loading from the Object Store will most likely be faster than other options.
+        </p>
+        <p class="nobullet">But you can use the other data loading options too depending on your use-case and requirements. <a href="https://docs.oracle.com/en/cloud/paas/atp-cloud/atpug/load-data.html#GUID-07900054-CB65-490A-AF3C-39EF45505802">Click here for more information</a>.
+        </p>
+        <h4>Is GoldenGate on-premises and GoldenGate Cloud Service supported with ADB?</h4>
+        <p class="bullet">Yes, GoldenGate supports ADB as both a target and source system.</p>
+        <p class="nobullet">Please see the GoldenGate <a href="https://docs.oracle.com/en/middleware/goldengate/core/19.1/oracle-db/using-ogg-autonomous-databases.html#GUID-660E754E-B9A6-48DD-AA66-0D6B66A022CD">documentation</a> for more information about configuring GoldenGate with ADB.
+        </p>
+        <h4>Do I need to gather optimizer statistics after data loading?</h4>
+        <p class="bullet">ADB gathers optimizer statistics automatically if you are using the PL/SQL API DBMS_CLOUD, or if the tools and scripts you use to load data are using direct path loads. If you are using conventional DML operations to load data, then you will need to gather optimizer statistics yourself or let the nightly statistics gathering job gather statistics for objects that have stale statistics.
+        </p>
+        <p class="nobullet">See the FAQ for both Autonomous Data Warehouse and Autonomous Transaction Processing for more details.
+        </p>
+        <h4>Does the data loading process support Avro files?</h4>
+        <p class="bullet">Yes. Autonomous Database can now read Avro files and parse the schema within the file to create the columns with the appropriate Oracle Database data types. Avro files may include complex types – like arrays, structs, maps and more; ADW supports avro files that contain Oracle data types. <a href="https://blogs.oracle.com/datawarehousing/oracle-autonomous-databases-accessing-apache-avro-files">Click here for more information</a>.
+        </p>
+        <h4>Does the data loading process support Parquet files?</h4>
+        <p class="bullet">Yes. Autonomous Database can now read Parquet files and parse the schema within the file to create the columns with the appropriate Oracle Database data types. <a href="https://blogs.oracle.com/datawarehousing/oracle-autonomous-data-warehouse-access-parquet-files-in-object-stores">Click here for more information</a>.
+        </p>
+        <h4>Does the data loading process support ORC files?</h4>
+        <p class="bullet">Yes. Autonomous Database can now read ORC files and parse the schema within the file to create the columns with the appropriate Oracle Database data types.
+        </p>
+        <h4>Does the data loading process support pre-authenticated URLs?</h4>
+        <p class="bullet">Yes. If source files reside on the Oracle Cloud Infrastructure Object Storage it is possible to use Oracle Cloud Infrastructure pre-authenticated URIs. When a pre-authenticated request is created, a unique URL is generated. This unique URL can then be provided to users, partners, or third parties to access the Object Storage resource target identified in the pre-authenticated request.
+        </p>
+        <h4>Can I connect ADB to data stored on Hadoop?</h4>
+        <p class="bullet">Yes. Autonomous Database can now query data in Big Data Service's Hadoop clusters. Big Data Service includes the Cloud SQL Query Server - which is an Oracle-based SQL on Hadoop query execution engine. For more information see the following <a href="https://blogs.oracle.com/datawarehousing/analyze-data-in-hadoop-with-autonomous-database" target="_blank">blog post</a>.
+        </p>
+        <div><a name="SCHEMA-BOOKMARK"></a></div>
+        <h2>SCHEMA DESIGN AND QUERYING</h2>
+        <h4>Which data models does ADB support? Is there a recommended data modelling technique for ADB?</h4>
+        <p class="bullet">ADB supports all the usual schema models such star schema, snowflake and 3NF. The same basic design concepts still apply when designing data warehouse/data mart schemas and schemas to support OLTP applications. The main difference between ADB and a non-autonomous Oracle Database is that you do not need to specify the physical properties of tables (e.g., partitioning, indexes, compression, storage details etc).
+        </p>
+        <h4>Does ADB come with any predefined data models?</h4>
+        <p class="bullet">There are no predefined data models in the ADB. You create your own schema, tables and other database objects as needed.
+        </p>
+        <p class="nobullet">You can use SQL Data Modeler to design a new logical model and physical model, then generate the required DDL script(s) to implement your model in ADB. <a href="https://docs.oracle.com/en/cloud/paas/autonomous-data-warehouse-cloud/user/manage-service.html#GUID-69906542-4DF6-4759-ABC1-1817D77BDB02">Click here for more information.</a>
+        </p>
+        <h4>What is the algorithm for the automatic tuning?</h4>
+        <p class="bullet">The precise details of how autonomous capabilities are implemented inside ADB are considered proprietary and internal.
+        </p>
+        <h4>Can a customer create primary and foreign key constraints on tables in Oracle Autonomous Database?</h4>
+        <p class="bullet">Yes, you can create any constraint just like you do in a regular Oracle Database.</p>
+        <h4>Can a customer create secondary indexes, partitioned tables, or materialized views?</h4>
+        <p class="bullet">Yes, you can create secondary indexes, partitioned tables, or materialized views in ADB.</p>
+        <p class="nobullet">For specific guidance on when this should be done, please see the specific FAQ sections for Autonomous Data Warehousing and Autonomous Transaction Processing.
+        </p>
+        <h4>Does ADB automatically create indexes?</h4>
+        <p class="bullet">Yes, where the database version is 19c which is required for Auto-Indexing. Note that auto-indexing is not on by default.
+        </p>
+        <h4>Does ADB have full PL/SQL support?</h4>
+        <p class="bullet">Yes, customers can utilize nearly all the PL/SQL capabilities. The small set of limitations is listed in the appendices of the ATP and ADW documentation.
+        </p>
+        <div><a name="MANAGING-BOOKMARK"></a></div>
+        <h2>MANAGING AND MONITORING</h2>
+        <h4>Is there an option to delay or reschedule patches?</h4>
+        <p class="bullet">For Shared Infrastructure deployments - No. Oracle patches ADB in maintenance windows. Currently, users cannot change the patching schedule. The date-time for the next scheduled maintenance is shown on the OCI console page for each instance.
+        </p>
+        <p class="nobullet">With Dedicated Infrastructure deployments, you have the option to change the maintenance windows to control when the Exadata environments and the databases are updated.
+        </p>
+        <h4>If a quarterly patch has an adverse effect, who will notice (does Oracle monitor)? Will rollback be offered?</h4>
+        <p class="bullet">You cannot rollback patches yourself. Only Oracle operations can rollback a patch. Oracle operations will monitor patching and rollback if a patch cannot be applied successfully according to basic sanity tests. However, there is always a chance that the adverse effect is only observable from the application. In that case, you will have to notify Oracle via a Service Request(SR).
+        </p>
+        <h4>Does Oracle Autonomous Database have auto-scaling?</h4>
+        <p class="bullet">Yes, ADB does have auto-scaling and this enabled by default when you create a new instance. You can select auto scaling during provisioning or later using the Scale Up/Down button on the Oracle Cloud Infrastructure console. <a href="https://docs.oracle.com/en/cloud/paas/autonomous-data-warehouse-cloud/user/start-stop-grow.html#GUID-DA72422A-5A70-42FA-A363-AB269600D4B0">Click here for more information</a>
+        </p>
+        <h4>Can I access the database server's operating system?</h4>
+        <p class="bullet">No. ADB does not allow access to the operating system.</p>
+        <h4>How can I monitor database performance in Oracle Autonomous Database?</h4>
+        <p class="bullet">ADB provides the following monitoring consoles:</p>
+        <div style=" margin-left:55px;">
+            <p class="nobullet"><strong>Oracle Management Cloud</strong> - supports monitoring Autonomous Databases via its Oracle Database Management console. This provides both monitoring and alerting for your Autonomous Database instances. The Performance Hub page provides both high-level and detailed performance metrics for your Autonomous Database instances. Use of Oracle Management Cloud is included as part of your Autonomous Data Warehouse and Autonomous Transaction Processing services. <a href="https://docs.oracle.com/en/cloud/paas/management-cloud/mcdbm/introduction-oracle-database-management.html">Click here for more information</a>.
+            </p>
+            <p class="nobullet"><strong>Performance Hub</strong> - provides real-time view of performance data directly on the OCI ADB console.
+            </p>
+            <p class="nobullet">Performance Hub contains the following:</p>
+            <ul class="cta-list" style="font-family:Arial, Helvetica, sans-serif;font-size:1em; margin-left:175px;">
+                <li>- Time Range field and time slider</li>
+                <li>- Active Session History (ASH) Analytics tab</li>
+                <li>- SQL Monitor tab</li>
+            </ul>
+            &nbsp;
+            <p class="nobullet">These features provides a simple one-click way to access the same information as found in EM Express, Oracle Management Cloud (OMC), and SQL Developer Web. The most likely target audience for this new feature will be cloud DBAs who manage a range of ADB instances within a single tenant and need a simple and fast way to monitor the performance of individual ADB instances directly from within the OCI Console. <a href="https://cloudmarketplace.oracle.com/marketplace/en_US/listing/59419903">Click here for more information</a>.
+            </p>
+            <p class="nobullet"><strong>ADB Service Console</strong> - is a web-based service console for each database. Using this console, you can look at performance metrics like CPU storage utilization and monitor database activity. This console also provides real-time SQL monitoring for current and past SQL statements. <a href="https://docs.oracle.com/en/cloud/paas/autonomous-data-warehouse-cloud/user/manage-service.html#GUID-759EFFFA-9FAC-4439-B47F-281E470E01DE">Click here for more information</a>.
+            </p>
+        </div>
+        <h4>Can I turn off Oracle Autonomous Database CPUs to save money?</h4>
+        <p class="bullet">Yes. You can do this by stopping the service from the cloud console or from the command line using the OCI APIs. This operation closes your ADB database, keeps your data in place, and stops charging for CPUs.
+        </p>
+        <h4>How long does it take to restart an instance after it has been stopped?</h4>
+        <p class="bullet">Starting an ADB instance is basically opening up your database. It is completed in seconds.</p>
+        <h4>Can I create and set my own resource manager plan for workload management?</h4>
+        <p class="bullet">No. ADB provides a simple resource manager plan out of the box.</p>
+        <h4>Can I modify the resource profiles for existing consumer groups (HIGH, MEDIUM, LOW, etc.)?</h4>
+        <p class="bullet">Yes. Autonomous Database allows customers to change the CPU/IO shares for the consumer groups within their ADB instance (high, medium, low, tp, tpurgent).
+        </p>
+        <p class="nobullet">This allows for use cases where, for example, a workload running in the LOW resource group requires a greater share of CPU/IO resources.
+        </p>
+        <h4>Can I modify the concurrency settings for any of the existing consumer groups (HIGH, MEDIUM, LOW, etc.)?</h4>
+        <p class="bullet">Yes. If your application requires a customized concurrency limit not available with the predefined services, you can modify the concurrency limit for the MEDIUM service from the Autonomous Database Service Console or using PL/SQL procedures. 
+        </p>
+        <p class="nobullet">
+        For example, when you run single-user benchmarks/POCs, you can set the concurrency limit of the MEDIUM service to 1 in order to obtain the highest DOP. For more information click here.
+        </p>
+        <p class="nobullet">
+        More information is available <a href="https://docs.oracle.com/en/cloud/paas/autonomous-database/adbsa/service--concurrency-limit-change.html#GUID-1E9CA2DC-241E-44A6-95AE-614F49D8872F" target="_blank">here</a>.
+        </p>
+        <h4>Can I assign specific database users to specific database services (HIGH, MEDIUM, LOW, etc.) and prevent them from using other database services?</h4>
+        <p class="bullet">No. Any user can connect to any database service of their choice - <em>providing they have a valid database username with the associated password</em>.
+        </p>
+        <h4>Can I use Oracle Management Cloud to monitor my autonomous database instances?</h4>
+        <p class="bullet">Yes. Licenses to use the Database Monitoring features of Oracle Management Cloud are in included in your subscription to Autonomous Data Warehouse and Autonomous Transaction Processing.
+        </p>
+        <div><a name="MIGRATION-BOOKMARK"></a></div>
+        <h2>MIGRATION</h2>
+        <h4>How can I migrate my existing Oracle Database to Oracle Autonomous Database?</h4>
+        <p class="bullet">Since an ADB database has some restrictions on the object types and Oracle Database Options you need to use a logical migration method rather than a physical one.
+        </p>
+        <p class="nobullet">The main migration tool for migrating to ADB is Data Pump. You can export your schemas and import them into ADB using Data Pump. To sync up the additional/incremental changes on the source database during the export/import process you can use GoldenGate or GoldenGate Cloud Service to replicate those changes to ADB.
+        </p>
+        <p class="nobullet">In the current release you cannot use physical migration methods like backup/restore, Data Guard, database clones, and transportable tablespaces to move your existing database to ADB.
+        </p>
+        <h4>Can I import an existing Oracle Database schema into Oracle Autonomous Database?</h4>
+        <p class="bullet">Yes. You can use Data Pump to export the source schema, move the dump files to the object store, and use Data Pump Import to load them into your ADB database.
+        </p>
+        <h4>Can I move my on-premises Oracle Database to Oracle Autonomous Database using RMAN backup and restore?</h4>
+        <p class="bullet">No, RMAN restore into ADB is not supported. You need to use one of the supported migration methods outlined above.
+        </p>
+        <h4>Can I use original export import methods (exp/imp) to migrate to Oracle Autonomous Database?</h4>
+        <p class="bullet">No, the original export/import methods are not supported in ADB. You need to use one of the supported migration methods outlined above or in the documentation.
+        </p>
+        <h4>How can I export my data from Oracle Autonomous Database?</h4>
+        <p class="bullet">You can use Data Pump export utility to unload data from ADB. For smaller data sets you can also use any SQL client tool to spool your data to a text file.
+        </p>
+        <h4>Does Autonomous Database support XML?</h4>
+        <p class="bullet">Yes. Oracle XML DB features are now supported in Autonomous Database. To ensure the security and the performance of Autonomous Data Warehouse and Autonomous Transaction Processing, some Oracle XML DB features are restricted so refer to the documentation for a complete list of supported features.
+        </p>
+        <h4>Does Autonomous Database offer a pre-migration schema check tool?</h4>
+        <p class="bullet">Yes. Oracle Autonomous Database Schema Advisor is a light-weight utility that analyzes the on-premise or cloud Oracle Database schemas for the suitability of migration to the Autonomous Database. The Advisor discovers the schema objects and performs deep analysis to highlight is any differences exist when the object gets created on Oracle Autonomous Data Warehouse or Oracle Autonomous Transaction Processing database.
+        </p>
+        <p class="nobullet">The Advisor will run on pre-existing Schema and generates a report that highlights:</p>
+        <ul class="cta-list" style="font-family:Arial, Helvetica, sans-serif;font-size:1.8em; margin-left:55px; line-height: 1.55;">
+            <li>- The counts of discovered objects and a summary of migration status.</li>
+            <li>- Objects that cannot be migrated to the Autonomous Database due to the restrictions and lockdowns imposed by the Autonomous Database on certain data types, Database options and SQL statements/clauses.
+            </li>
+            <li>- The Objects that will migrate with modifications that are automatically done during the import process or upon the execution of object creation DDL.
+            </li>
+            <li>- Informational section containing certain best practice recommendations and guidance</li>
+        </ul>
+        &nbsp;
+        <p class="nobullet">For more information <a href="https://support.oracle.com/epmos/faces/DocumentDisplay?_afrLoop=205490352472554&amp;parent=EXTERNAL_SEARCH&amp;sourceId=BULLETIN&amp;id=2462677.1" target="_blank">click here</a>.
+        </p>
+        <div><a name="PERFORMANCE-BOOKMARK"></a></div>
+        <h2>PERFORMANCE</h2>
+        <h4>Does Oracle Autonomous Database automatically create indexes when needed?</h4>
+        <p class="bullet">If your ADB instance is using Database 19c then Automatic Indexing is available, however, it is not turned on by default.
+        </p>
+        <h4>Does Oracle Autonomous Database automatically create materialized views when needed?</h4>
+        <p class="bullet">No, in the current release ADB does not create materialized views automatically.</p>
+        <h4>Can I specify the amount of memory I want for my database?</h4>
+        <p class="bullet">No, ADB configures the database memory (SGA and PGA) based on the number of CPUs you provision. Memory scales linearly with the number of CPUs.
+        </p>
+        <h4>What is the IO throughput in Oracle Autonomous Database?</h4>
+        <p class="bullet">IO throughput depends on the number of CPUs you provision and scales linearly with the number of CPUs. Scaling the service is quick and easy in ADB, if you need more IO throughput you can add more CPUs online in a few seconds.
+        </p>
+        <h4>How does Oracle Autonomous Database isolate different customers for performance and how does it make sure a customer's workload does not impact others?</h4>
+        <p class="bullet">ADB uses Database Resource Manager and IO Resource Manager to isolate resources for all databases. CPUs, memory, and IO resources are not over-provisioned in ADB, this makes sure every customer gets their assigned amount of resources at all times.
+        </p>
+        <h4>Does Oracle Autonomous Database open a database on multiple nodes or a single node? Does it depend on the number of CPUs?</h4>
+        <p class="bullet">ADB may decide to open a database on a single node or multiple nodes. ADB does not expose these details because it is not necessary to know about this level of detail.
+        </p>
+        <h4>Where are the parallel processes running for a parallel query, on a single node or multiple nodes?</h4>
+        <p class="bullet">ADB decides where to run a query and where to spawn the parallel processes, it may be on a single node or multiple nodes. Customers do not need to know about these implementation details since ADB controls this automatically.
+        </p>
+        <h4>It is possible to change the CPU/IO shares for the consumer groups?</h4>
+        <p class="bullet">Yes it is possible to change the CPU/IO shares for the consumer groups within their ADB instance (high, medium, low, tp, tpurgent). This allows for use cases where, for example, a workload running in the LOW resource group requires a greater share of CPU/IO resources than HIGH and MEDIUM.
+        </p>
+        <p class="nobullet">The 'Set Resource Management Rules' pop-up form on the administration section of the service console has been extended to allow the modification of CPU/IO shares across the different resource groups. It is also possible to change the resource shares within a script, application call and/or via a SQL prompt using the <span lang="EN-US" style="font-family:courier">cs_resource_manager package</span>.
+        </p>
+        <p class="nobullet">For more information <a href="https://docs.oracle.com/en/cloud/paas/autonomous-data-warehouse-cloud/user/manage-service.html#GUID-8FEE49FF-CDEE-4433-B812-0AAABA8DEC7F">click here</a>.
+        </p>
+        <h4>Is it possible to control the predefined degree of parallelism (DOP) used by Autonomuos Database?</h4>
+        <p class="bullet">Yes. In cases where selecting one of the default services does not meet your application’s performance needs, you can use the MEDIUM service and modify the concurrency limit. For example, when you run single-user benchmarks/POCs, you can set the concurrency limit of the MEDIUM service to 1 in order to obtain the highest DOP. For more information <a href="https://docs.oracle.com/en/cloud/paas/autonomous-database/adbsa/service--concurrency-limit-change.html#GUID-2491F508-1348-422B-8E28-8CDFB1B666A0">click here</a>.
+        </p>
+    </div>
+    
+</body>
+</html>

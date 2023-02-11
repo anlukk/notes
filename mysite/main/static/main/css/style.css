@@ -1,0 +1,15 @@
+a{
+    color: #fff;
+
+}
+a:hover{
+    text-decoration: none;
+}
+.container{
+    width: 450px;
+    height: 500px;
+    background-color: #fff;
+    margin: 250px auto 0 auto;
+    text-align: center;
+}
+
