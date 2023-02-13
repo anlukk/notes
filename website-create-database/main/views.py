@@ -1,7 +1,6 @@
 import profile
 from .forms import UserRegistrForm, UserAddedRequest 
 from multiprocessing import AuthenticationError
-#from tkinter import Menu
 from unicodedata import category
 from django.shortcuts import render
 from django.http import HttpResponse
@@ -37,7 +36,6 @@ class DataMixin:
     def get_user_context(self, **kwargs):
         context = kwargs
         cats = category.objects.all()
-      # Menu['menu'] = Menu 
         context['cats'] = cats
         if 'cat_selected' not in context:
             context['cat_selected'] = 0
@@ -68,10 +66,10 @@ def user_login(request):
 #    form_class = AuthenticationForm
 #    template_name = 'main/login.html'
 #
- #   def get_context_data(self, *, object_list=None, **kwargs):
-  #      context = super().get_context_data(**kwargs)
-   #     c_def = self.get_user_context(title="Log-in")
-    #    return dict(list(context.items()) + list(c_def.items())) 
+#    def get_context_data(self, *, object_list=None, **kwargs):
+#        context = super().get_context_data(**kwargs)
+#        c_def = self.get_user_context(title="Log-in")
+#        return dict(list(context.items()) + list(c_def.items())) 
 
 #not rigister
 def register(request):

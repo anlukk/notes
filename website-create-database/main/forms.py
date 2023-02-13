@@ -31,8 +31,8 @@ class ProfileEditForm(forms.ModelForm):
         model = Profiles
         fields = ("date_of_birth",) 
 
-class UserAddedRequest(forms.ModelForm):
+
+class UserAddedForm(forms.ModelForm):
     '''User added mine request for create mini data based. Its database must burn in new window. '''
-    class Meta:
-        new_window = User  #change that 
+    ...
 
