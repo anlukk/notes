@@ -1,1 +1,2 @@
-Solien the system for creating and managing mini databases
+Solien microservice in the form of tables, notes, etc. 
+It also seems possible soon to manage mini-databases for training :)
