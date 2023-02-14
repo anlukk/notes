@@ -1,2 +1,2 @@
-Solien microservice in the form of tables, notes, etc. 
-It also seems possible soon to manage mini-databases for training :)
+\Solien microservice for creating tables, notes, etc. 
+\It also seems possible to create mini databases for training soon :)
