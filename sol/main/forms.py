@@ -32,7 +32,7 @@ class ProfileEditForm(forms.ModelForm):
         fields = ("date_of_birth",) 
 
 
-class UserAddedForm(forms.ModelForm):
-    '''User added mine request for create mini data based. Its database must burn in new window. '''
-    ...
+#class UserAddedForm(forms.ModelForm):
+  #  '''User added mine request for create mini data based. Its database must burn in new window. '''
+   # ...
 

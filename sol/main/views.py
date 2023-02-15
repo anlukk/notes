@@ -1,5 +1,5 @@
 import profile
-from .forms import UserRegistrForm, UserAddedRequest 
+from .forms import UserRegistrForm #UserAddedRequest 
 from multiprocessing import AuthenticationError
 from unicodedata import category
 from django.shortcuts import render
