@@ -15,5 +15,5 @@ urlpatterns = [
     path('FAQs', views.FAQs, name='FAQs'),
     path('search', views.search, name='search'),
     path('features', views.features, name='features'),
-    path('editprofile', views.edit, name='editprofile')
+ #  path('editprofile', views.edit, name='editprofile')     #this page is not complete 
 ]
