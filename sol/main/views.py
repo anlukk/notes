@@ -112,9 +112,6 @@ def index(request):
     requests = Task.objects.all()
     return render(request, 'main/index.html', {'title' : 'Main page of site', 'requests': requests })
 
-def features(request):
-    return render(request, 'main/features.html')
-
 
 def FAQs(request):
     return render(request, 'main/FAQs.html')
