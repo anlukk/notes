@@ -29,7 +29,6 @@ add form is not active due to the fact that it creates an already created accoun
 
 @login_required
 def sol(request):
-  # Profiles.objects.create(user=login_required)
     return render(request,'main/sol.html', {'section': 'mian page'})
 
 class DataMixin:
