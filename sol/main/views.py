@@ -28,8 +28,8 @@ add form is not active due to the fact that it creates an already created accoun
 """
 
 @login_required
-def sol(request):
-    return render(request,'main/sol.html', {'section': 'mian page'})
+def control_panel(request):
+    return render(request,'main/control_panel.html', {'section': 'main page'})
 
 class DataMixin:
     def get_user_context(self, **kwargs):
