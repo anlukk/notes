@@ -29,3 +29,7 @@ class Profiles(models.Model):
 
     def __str__(self):
         return 'profile for user {}'.format(self.user.username)
+    
+#class Notes(models.Model):
+  #  block = models.TextField(max_length=10000000)
+   # ...
