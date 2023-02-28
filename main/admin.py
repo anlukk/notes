@@ -1,7 +1,5 @@
 from django.contrib import admin
-from .models import Task
-from django.contrib import admin
-from .models import Profiles
+from .models import Task, Profiles
 
 admin.site.register(Task)
 

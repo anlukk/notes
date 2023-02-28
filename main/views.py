@@ -1,22 +1,13 @@
-import profile
 from .forms import UserRegistrForm #UserAddedRequest 
-from multiprocessing import AuthenticationError
-from unicodedata import category
 from django.shortcuts import render
 from django.http import HttpResponse
 from .forms import LoginForm, UserEditForm, ProfileEditForm
-import socket
 from . models import Task
-from django.contrib.auth.views import LoginView
-from django.contrib.auth.mixins import LoginRequiredMixin
-from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import authenticate, login
 from .forms import LoginForm
 from django.contrib.auth import login as auth_login
 from django.contrib.auth.decorators import login_required
-from .models import Profiles 
-
-
+from .utils import DataMixin
 
 
 """ 
@@ -31,14 +22,6 @@ add form is not active due to the fact that it creates an already created accoun
 def control_panel(request):
     return render(request,'main/control_panel.html', {'section': 'main page'})
 
-class DataMixin:
-    def get_user_context(self, **kwargs):
-        context = kwargs
-        cats = category.objects.all()
-        context['cats'] = cats
-        if 'cat_selected' not in context:
-            context['cat_selected'] = 0
-        return context
 
 def user_login(request):
     if request.method == 'POST':
@@ -61,15 +44,6 @@ def user_login(request):
     return render(request, 'main/login.html', {'form': form})
 
 
-#class LoginUser(DataMixin, LoginView):
-#    form_class = AuthenticationForm
-#    template_name = 'main/login.html'
-#
-#    def get_context_data(self, *, object_list=None, **kwargs):
-#        context = super().get_context_data(**kwargs)
-#        c_def = self.get_user_context(title="Log-in")
-#        return dict(list(context.items()) + list(c_def.items())) 
-
 #not rigister
 def register(request):
     if request.method == 'POST':
@@ -85,7 +59,6 @@ def register(request):
         return render(request, 'main/login.html', {'user_form': user_form})
     
 
-
 @login_required
 def edit(request):
     if request.method == 'POST':
@@ -99,7 +72,6 @@ def edit(request):
         user_form = UserEditForm(instance=request.user)
         profile_form = ProfileEditForm(instance=request.user.profile)
     return render(request, 'main/editprofile.html', {'user_form': user_form, 'profile_form': profile_form})
-
 
 
 @login_required
