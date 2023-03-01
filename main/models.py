@@ -30,6 +30,14 @@ class Profiles(models.Model):
     def __str__(self):
         return 'profile for user {}'.format(self.user.username)
     
-#class Notes(models.Model):
-  #  block = models.TextField(max_length=10000000)
-   # ...
+#class SimpleNote(models.Model):
+  #  """Create new Simple note"""
+   #name = models.CharField(max_length=50)
+   # print_name = models.TextField(name)
+    #text = models.CharField(max_length=10000000)
+    #image = models.ImageField('Your image')
+    #is_printing = models.BooleanField(default=True, 
+                                      #verbose_name='saving')
+
+    #def if_save_note(self, *args, **kwargs):
+    #    ...
