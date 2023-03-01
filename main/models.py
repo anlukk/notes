@@ -31,13 +31,14 @@ class Profiles(models.Model):
         return 'profile for user {}'.format(self.user.username)
     
 #class SimpleNote(models.Model):
-  #  """Create new Simple note"""
-   #name = models.CharField(max_length=50)
-   # print_name = models.TextField(name)
-    #text = models.CharField(max_length=10000000)
-    #image = models.ImageField('Your image')
-    #is_printing = models.BooleanField(default=True, 
-                                      #verbose_name='saving')
+#    """Create new Simple note"""
+#    name = models.CharField(max_length=50)
+#    print_name = models.TextField(name)
+#    text = models.CharField(max_length=10000000)
+#    image = models.ImageField(upload_to="photos/%Y/%m/%d/")
+#    time_create = models.DateTimeField(auto_now_add=True)
+#    time_update = models.DateTimeField(auto_now=True)
+#    is_printing = models.BooleanField(default=True)
 
-    #def if_save_note(self, *args, **kwargs):
-    #    ...
+#    def if_save_note(self, *args, **kwargs):
+#        ...
