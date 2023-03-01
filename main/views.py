@@ -87,6 +87,3 @@ def index(request):
 def FAQs(request):
     return render(request, 'main/FAQs.html')
 
-
-
-

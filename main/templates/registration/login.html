@@ -6,19 +6,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Единый вход в систему Sol</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css">
-    <link rel='stylesheet' href="https://colorlib.com/etc/lf/Login_v6/index.html">
     <link href="https://www.oracle.com/asset/web/css/redwood-base.css" rel="stylesheet">
     <link href="https://www.oracle.com/asset/web/css/redwood-styles.css" rel="stylesheet">
     <link href="/mysite/main/static/main/css/style.css" type="text/css" rel="stylesheet">
 </head>
 <div class="container">
-    <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+  <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
       <p class="col-md-4 mb-0 text-muted">© 2022 Solien inc</p>
       <ul class="nav col-md-4 justify-content-end">
         <li class="nav-item"><a href="{% url 'login' %} " class="nav-link px-2 text-muted">Re-login</a></li>
       </ul>
     </footer>
   </div>
+  <body style="background-image: url(media/backgound-white.jpg)">
+  </body>
   <center><span class="login100-form-title p-b-70">Welcome</span></center>
   <span class="login100-form-avatar">
     <img src="" alt="">
@@ -39,15 +40,6 @@
         <p><input type="submit" value="enter"></p>  
       </form></center>
   <style>
-    fieldset{
-        background-color: #f1f1f1;
-        border: none;
-        border-radius: 2px;
-        margin-bottom: 12px;
-        overflow: hidden;
-        padding: 0 .625em;
-    }
-
     label{
         cursor: pointer;
         display: inline-block;
@@ -56,24 +48,14 @@
         width: 100px;
         vertical-align: top;
     }
-
     input{
         font-size: inherit;
     }
-
-    
 a{
 color: rgb(136, 136, 136);
 }
 a:hover{
 text-decoration: none;
-}
-.container{
-width: 1000px;
-height: 125px;
-background-color: rgb(255, 255, 255);
-margin: 0px auto 0 auto;
-text-align: auto;
 }
 </style>
 </footer>
