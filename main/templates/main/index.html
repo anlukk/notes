@@ -17,10 +17,10 @@
     <p class="col-md-4 mb-0 text-muted">© 2022 Solien inc</p>
     <ul class="nav col-md-4 justify-content-end">
       <li class="nav-item"><a href="{% url 'login' %} " class="nav-link px-2 text-muted">Sign in</a></li>
-      {% block content %}
     </ul>
   </footer>
 </div>
+{% block content %}
 <div><a name="GENERAL-BOOKMARK"></a></div>
 <h2><center>The Solien</center></h2>
 <h4><center>Service for managing notes</center></h4>
@@ -42,16 +42,12 @@
     width: 250px;
     margin: 0 auto;
     display: block;
-    
-
 }
-
 .button:hover {
     background-color: #ffffff; 
     color: rgb(0, 0, 0);
     text-decoration: underline;
 }
-
  </style>
  {% endblock %}
 </div>
