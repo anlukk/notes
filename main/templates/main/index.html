@@ -17,6 +17,7 @@
     <p class="col-md-4 mb-0 text-muted">© 2022 Solien inc</p>
     <ul class="nav col-md-4 justify-content-end">
       <li class="nav-item"><a href="{% url 'login' %} " class="nav-link px-2 text-muted">Sign in</a></li>
+      {% block content %}
     </ul>
   </footer>
 </div>
@@ -52,7 +53,7 @@
 }
 
  </style>
-
+ {% endblock %}
 </div>
 </main>
 </form>

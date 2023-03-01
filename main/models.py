@@ -32,13 +32,21 @@ class Profiles(models.Model):
     
 #class SimpleNote(models.Model):
 #    """Create new Simple note"""
-#    name = models.CharField(max_length=50)
-#    print_name = models.TextField(name)
-#    text = models.CharField(max_length=10000000)
-#    image = models.ImageField(upload_to="photos/%Y/%m/%d/")
-#    time_create = models.DateTimeField(auto_now_add=True)
-#    time_update = models.DateTimeField(auto_now=True)
+#    name = models.CharField(max_length=50, verbose_name='Name note')
+#    text = models.CharField(max_length=10000000, verbose_name='Note')
+#    images = models.FileField(verbose_name='Upload file')
+#    time_create = models.DateTimeField(auto_now_add=True, 
+#                                       verbose_name='Time add in time_create')
+#    time_update = models.DateTimeField(auto_now=True, 
+#                                       verbose_name='Time update in time_create')
 #    is_printing = models.BooleanField(default=True)
-
+#
 #    def if_save_note(self, *args, **kwargs):
 #        ...
+#
+#    def __str__(self):
+#        return self.name
+#    
+#    class Meta:
+#        verbose_name = 'Simple Note'
+#        ordering = ['time_create', 'name']
