@@ -1,41 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Search</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css">
-    <link href="https://www.oracle.com/asset/web/css/redwood-base.css" rel="stylesheet">
-    <link href="https://www.oracle.com/asset/web/css/redwood-styles.css" rel="stylesheet">
-    <link rel="preload" href="https://www.oracle.com/asset/web/fonts/oraclesansvf.woff2" as="font" crossorigin="anonymous">
-    <link rel="stylesheet" href="chrome-extension://hnmpcagpplmpfojmgmnngilcnanddlhb/browser-polyfill.min.js.map"
-</head>
-<div class="container">
-  <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
-    <p class="col-md-4 mb-0 text-muted">© 2022 Solien inc</p>
-    <ul class="nav col-md-4 justify-content-end">
-      <li class="nav-item"><a href="{% url 'control_panel' %}" class="nav-link px-2 text-muted">Control Panel</a></li>
-      <li class="nav-item"><a href="" class="nav-link px-2 text-muted">Settings</a></li>
-      <li class="nav-item"><a href="{% url 'login' %}" class="nav-link px-2 text-muted">Re-login</a></li>
-    </ul>
-  </footer>
-</div>
-<body>
-  <span class="user">
-  {% if request.user.is_authenticated %}
-  {{ request.user.first_name }}
-  <a href="{% url "logout" %}"></a>
-  {% else %}
-  <a href="{% url "login" %}">Log-in</a>
-  {% endif %}
-</span>
-</div>
-</body>
+{% extends "main/control_panel.html"%}
+{% block title %}Log-in{% endblock %}
+{% block content %}
 <center><h3>Search your notes or table</h3></center>
-</form>
-</div>
-</main>
-</form>
-</body>
-</html>
+
+{% endblock %}
