@@ -20,9 +20,24 @@
       </p>
       {% csrf_token %}
       <input type="hidden" name="next" value="{{ next }}" />
-        <p><input type="submit" value="enter"></p>  
+        <p><input class="button" type="submit" value="Join"></p>  
       </form></center>
   <style>
+  .button {
+    font-size: 20px;
+    background-color: #faf9f7;
+    color: rgb(0, 0, 0);
+    border: 2px solid #000000;
+    border-radius: 4px;
+    width: 150px;
+    margin: 0 auto;
+    display: block;
+}
+.button:hover {
+    background-color: #ffffff; 
+    color: rgb(0, 0, 0);
+    text-decoration: underline;
+}
     label{
         cursor: pointer;
         display: inline-block;

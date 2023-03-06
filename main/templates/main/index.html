@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -9,6 +10,7 @@
     <link href="https://www.oracle.com/asset/web/css/redwood-base.css" rel="stylesheet">
     <link href="https://www.oracle.com/asset/web/css/redwood-styles.css" rel="stylesheet">
     <link href="/mysite/main/static/main/css/style.css" type="text/css" rel="stylesheet">
+    <link rel="shortcut icon" href="{% static 'main/images/icons/icon1.ico' %}" type="image/x-icon"/>
 </head>
 <body style="background-image: url(static/main/images/backgound-white.jpg)">
 </body>
@@ -30,14 +32,13 @@
 </footer>
 {% block content %}
 <h3><center>The Solien</center></h3>
-<h4><center>Service for everyone</center></h4>
 <footer class="py-5">
 </footer>
 <h5><center>
   Create and manage your personal notes</center></h5>
 <p class="bullet"> 
 </p>
-<a class="button" href="{% url 'login' %}" ><center>Join</center></a>
+<a class="button" href="{% url 'login' %}" ><center>Sign-in</center></a>
   <style>
   .button {
     font-size: 35px;
