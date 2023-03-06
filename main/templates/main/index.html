@@ -21,17 +21,22 @@
     </ul>
   </footer>
 </div>
-{% block content %}
 <div><a name="GENERAL-BOOKMARK"></a></div>
-<h2><center>The Solien</center></h2>
-<h4><center>Service for managing notes</center></h4>
-<p class="bullet"> 
-</p>
 <footer class="py-5">
   <footer class="py-5">
-    <h4></h4>
+    <footer class="py-5">
+    </footer>
   </footer>
 </footer>
+{% block content %}
+<h3><center>The Solien</center></h3>
+<h4><center>Service for everyone</center></h4>
+<footer class="py-5">
+</footer>
+<h5><center>
+  Create and manage your personal notes</center></h5>
+<p class="bullet"> 
+</p>
 <a class="button" href="{% url 'login' %}" ><center>Join</center></a>
   <style>
   .button {
@@ -50,7 +55,7 @@
     text-decoration: underline;
 }
  </style>
- {% endblock %}
+{% endblock %}
 </div>
 </main>
 </form>
