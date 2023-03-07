@@ -1,5 +1,6 @@
 from django.db import models
 from django.conf import settings
+from django.urls import reverse
 
 
 class Task(models.Model):
@@ -80,8 +81,9 @@ class Profiles(models.Model):
    
 #    is_printing = models.BooleanField(default=True)
 
-#    def if_save_note(self, *args, **kwargs):
-#        ...
+#    def get_absolute_url(self):
+#        return reverse('simple_note', kwargs={'simple_note_id': self.pk})
+#        
 
 #    def __str__(self):
 #        return self.name
@@ -89,5 +91,3 @@ class Profiles(models.Model):
 #    class Meta:
 #        verbose_name = 'Simple Note'
 #        ordering = ['time_create', 'name']
-
-
