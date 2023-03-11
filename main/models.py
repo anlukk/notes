@@ -53,21 +53,27 @@ class Profiles(models.Model):
         return 'profile for user {}'.format(self.user.username)
     
 class SimpleNote(models.Model):
-   """Create new Simple note"""
+   """Simple Note"""
 
    name = models.CharField(
        max_length=50, 
        verbose_name='Name note',
-       )
+   )
    
    text = models.CharField(
-       max_length=10000000, 
+       max_length=10000, 
        verbose_name='Note',
        )
    
-   images = models.FileField(
-       verbose_name='Upload file'
+   file = models.FileField(
+       verbose_name='Upload file',
+       upload_to='uploads/%Y/%m/%d/',
        )
+   
+#    file_path = models.FilePathField(
+#        file,
+#        path='',
+#    ) 
 
    time_create = models.DateTimeField(
        auto_now_add=True, 
@@ -96,6 +102,7 @@ class SimpleNote(models.Model):
    def __str__(self):
        return self.name
    
+
    class Meta:
        verbose_name = 'Simple Note'
        ordering = ['time_create', 'name']
