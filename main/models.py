@@ -52,42 +52,50 @@ class Profiles(models.Model):
     def __str__(self):
         return 'profile for user {}'.format(self.user.username)
     
-# class SimpleNote(models.Model):
-#    """Create new Simple note"""
+class SimpleNote(models.Model):
+   """Create new Simple note"""
 
-#    name = models.CharField(
-#        max_length=50, 
-#        verbose_name='Name note',
-#        )
+   name = models.CharField(
+       max_length=50, 
+       verbose_name='Name note',
+       )
    
-#    text = models.CharField(
-#        max_length=10000000, 
-#        verbose_name='Note',
-#        )
+   text = models.CharField(
+       max_length=10000000, 
+       verbose_name='Note',
+       )
    
-#    images = models.FileField(
-#        verbose_name='Upload file'
-#        )
+   images = models.FileField(
+       verbose_name='Upload file'
+       )
 
-#    time_create = models.DateTimeField(
-#        auto_now_add=True, 
-#        verbose_name='Time add in time_create',
-#        )
+   time_create = models.DateTimeField(
+       auto_now_add=True, 
+       verbose_name='Time add in time_create',
+       )
    
-#    time_update = models.DateTimeField(
-#        auto_now=True, 
-#        verbose_name='Time update in time_create',
-#        )
+   time_update = models.DateTimeField(
+       auto_now=True, 
+       verbose_name='Time update in time_create',
+       )
    
-#    is_printing = models.BooleanField(default=True)
+   slug = models.SlugField(
+       max_length=255,
+       unique=True,
+       db_index=True,
+       verbose_name="URL",
+   )
 
-#    def get_absolute_url(self):
-#        return reverse('simple_note', kwargs={'simple_note_id': self.pk})
-#        
+   is_printing = models.BooleanField(default=True)
 
-#    def __str__(self):
-#        return self.name
+
+   def get_absolute_url(self):
+       return reverse('simple_note', kwargs={'simple_note_slug': self.slug})
+       
+
+   def __str__(self):
+       return self.name
    
-#    class Meta:
-#        verbose_name = 'Simple Note'
-#        ordering = ['time_create', 'name']
+   class Meta:
+       verbose_name = 'Simple Note'
+       ordering = ['time_create', 'name']
