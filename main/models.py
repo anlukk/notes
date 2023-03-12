@@ -57,7 +57,7 @@ class SimpleNote(models.Model):
 
    name = models.CharField(
        max_length=50, 
-       verbose_name='Name note',
+       verbose_name='Note name',
    )
    
    text = models.CharField(
@@ -65,13 +65,7 @@ class SimpleNote(models.Model):
        verbose_name='Note',
        )
    
-#    image = models.ImageField(
-#        upload_to='uploads/%Y/%m/%d/',
-#        null=True,
-#        blank=True,
-#    )
-
-   file = models.FileField(
+   file_note = models.FileField(
        verbose_name='Upload file',
        upload_to='uploads/%Y/%m/%d/',
        max_length=254,
@@ -79,10 +73,11 @@ class SimpleNote(models.Model):
        blank=True,
        )
    
-#    file_path = models.FilePathField(
-#        file,
-#        path='',
-#    ) 
+   file_path = models.FilePathField(
+       path='',
+       null=True,
+       blank=True,
+       ) 
 
    time_create = models.DateTimeField(
        auto_now_add=True, 
@@ -106,10 +101,10 @@ class SimpleNote(models.Model):
 
    def get_absolute_url(self):
        return reverse('simple_note', kwargs={'simple_note_slug': self.slug})
-       
-
+          
+        
    def __str__(self):
-       return self.name
+       return f'{self.name}, {self.text}'
    
 
    class Meta:
