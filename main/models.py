@@ -53,7 +53,7 @@ class Profiles(models.Model):
         return 'profile for user {}'.format(self.user.username)
     
 class SimpleNote(models.Model):
-   """Simple Note"""
+   """Simple Note model """
 
    name = models.CharField(
        max_length=50, 
@@ -65,9 +65,18 @@ class SimpleNote(models.Model):
        verbose_name='Note',
        )
    
+#    image = models.ImageField(
+#        upload_to='uploads/%Y/%m/%d/',
+#        null=True,
+#        blank=True,
+#    )
+
    file = models.FileField(
        verbose_name='Upload file',
        upload_to='uploads/%Y/%m/%d/',
+       max_length=254,
+       null=True,
+       blank=True,
        )
    
 #    file_path = models.FilePathField(
@@ -107,7 +116,7 @@ class SimpleNote(models.Model):
        verbose_name = 'Simple Note'
        ordering = ['time_create', 'name']
 
-class Category(models.Model):   #Change this
+class Category(models.Model):   
 
     name = models.CharField(
         max_length=100, 
@@ -119,7 +128,7 @@ class Category(models.Model):   #Change this
         max_length=255, 
         unique=True, 
         db_index=True, 
-        verbose_name="URL"
+        verbose_name="URL",
         )
 
     def __str__(self):
