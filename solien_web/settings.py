@@ -25,6 +25,7 @@ INSTALLED_APPS = [
     'main',
     'django.contrib.admin',
     'rest_framework',
+    'api',
 ]
 
 MIDDLEWARE = [
@@ -83,6 +84,11 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',
+    ]
+}
 
 
 LANGUAGE_CODE = 'ru'
