@@ -10,8 +10,7 @@ class ProfileAdmin(admin.ModelAdmin):
 
 
 class SimpleNoteAdmin(admin.ModelAdmin):
-    list_display = (
-        'file_path',
+    list_display = [
         'file_note',
         'time_create',
         'time_update',
@@ -19,7 +18,17 @@ class SimpleNoteAdmin(admin.ModelAdmin):
         'name', 
         'text', 
         'slug',
-        )
+    ]
+
+    list_display_links = ('name', 'slug')
+
+    list_editable = ()
+
+class CategoryAdmin(admin.ModelAdmin):
+    list_display = [
+        'name',
+        'slug'
+    ]
 
 admin.site.register(SimpleNote, SimpleNoteAdmin)
 

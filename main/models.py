@@ -73,11 +73,11 @@ class SimpleNote(models.Model):
        blank=True,
        )
    
-   file_path = models.FilePathField(
-       path='',
-       null=True,
-       blank=True,
-       ) 
+#    file_path = models.FilePathField(
+#        path='',
+#        null=True,
+#        blank=True,
+#        ) 
 
    time_create = models.DateTimeField(
        auto_now_add=True, 

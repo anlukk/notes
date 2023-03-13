@@ -1,7 +1,9 @@
 from msilib.schema import ListView
 from django.contrib.auth.models import User
 from django import forms
-from .models import Profiles 
+from .models import(
+    Profiles, SimpleNote,
+)
 
 class LoginForm(forms.Form):
     username = forms.CharField()
@@ -31,4 +33,8 @@ class ProfileEditForm(forms.ModelForm):
         model = Profiles
         fields = ("date_of_birth",) 
 
+class SimpleNoteForm(forms.ModelForm):
+    class Meta:
+        model = SimpleNote
+        fields = ('name',)
 
