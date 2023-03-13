@@ -3,9 +3,14 @@ from main.models import SimpleNote, Category
 
 
 class SimpleNoteSerializer(serializers.ModelSerializer):
+    
+    user = serializers.HiddenField(default=serializers.CurrentUserDefault())
+
+
     class Meta: 
         model = SimpleNote
         field = "__all__"
+
 
 
 class CategorySerializer(serializers.ModelSerializer):
