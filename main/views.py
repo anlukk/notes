@@ -8,6 +8,7 @@ from .forms import LoginForm
 from django.contrib.auth import login as auth_login
 from django.contrib.auth.decorators import login_required
 from .utils import DataMixin
+from .forms import SimpleNoteForm
 
 
 """ 
@@ -86,4 +87,7 @@ def index(request):
 
 def FAQs(request):
     return render(request, 'main/FAQs.html')
+
+def simple_note(request):
+    SimpleNoteForm()
 

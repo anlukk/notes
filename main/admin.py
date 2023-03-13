@@ -30,6 +30,9 @@ class CategoryAdmin(admin.ModelAdmin):
         'slug'
     ]
 
+
+
 admin.site.register(SimpleNote, SimpleNoteAdmin)
+admin.site.register(Category, CategoryAdmin)
 
 

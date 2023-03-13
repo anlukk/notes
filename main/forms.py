@@ -36,5 +36,5 @@ class ProfileEditForm(forms.ModelForm):
 class SimpleNoteForm(forms.ModelForm):
     class Meta:
         model = SimpleNote
-        fields = ('name',)
+        fields = ('name', 'text', 'file_note')
 
