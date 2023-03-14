@@ -44,7 +44,7 @@ def user_login(request):
     return render(request, 'main/login.html', {'form': form})
 
 
-#not rigister
+
 def register(request):
     if request.method == 'POST':
         user_form = UserRegistrForm(request.POST)
@@ -80,13 +80,13 @@ def search(request):
 
 
 def index(request):
-    requests = Task.objects.all()
-    return render(request, 'main/index.html', {'title' : 'Main page of site', 'requests': requests })
+    return render(request, 'main/index.html', {'title' : 'Main page of site'})
 
 
 def FAQs(request):
     return render(request, 'main/FAQs.html')
 
 def simple_note(request):
-    SimpleNoteForm()
+    return render(request, 'main/simple_note.html')
+
 
