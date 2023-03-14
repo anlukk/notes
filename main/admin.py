@@ -25,10 +25,7 @@ class SimpleNoteAdmin(admin.ModelAdmin):
     list_editable = ()
 
 class CategoryAdmin(admin.ModelAdmin):
-    list_display = [
-        'name',
-        'slug'
-    ]
+    list_display = ['name', 'slug']
 
 
 

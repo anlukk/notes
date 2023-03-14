@@ -4,7 +4,7 @@ from .views import *
 
 router_v1 = DefaultRouter()
 
-router_v1.register('SimpleNote', NoteViewSet, basename='SimpleNote')
+router_v1.register(r'SimpleNote', NoteViewSet, basename='SimpleNote')
 
 
 urlpatterns = [
