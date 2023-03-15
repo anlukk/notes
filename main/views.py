@@ -86,6 +86,7 @@ def index(request):
 def FAQs(request):
     return render(request, 'main/FAQs.html')
 
+@login_required
 def simple_note(request):
     return render(request, 'main/simple_note.html')
 

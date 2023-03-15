@@ -12,4 +12,5 @@ urlpatterns = [
     path('control_panel', views.control_panel, name='control_panel'),
     path('FAQs', views.FAQs, name='FAQs'),
     path('search', views.search, name='search'),
+    path('simple_note', views.simple_note, name='simple_note')
 ]
