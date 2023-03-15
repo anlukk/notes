@@ -1,13 +1,16 @@
+from django.urls import reverse_lazy
+from main.utils import DataMixin
 from .forms import UserRegistrForm 
 from django.shortcuts import render
 from django.http import HttpResponse
 from .forms import LoginForm, UserEditForm, ProfileEditForm
-from . models import Task
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate
 from .forms import LoginForm
 from django.contrib.auth import login as auth_login
 from django.contrib.auth.decorators import login_required
 from .forms import SimpleNoteForm
+from django.views.generic import CreateView
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 """ 
@@ -42,7 +45,6 @@ def user_login(request):
     else:
         form = LoginForm()
     return render(request, 'main/login.html', {'form': form})
-
 
 
 def register(request):
@@ -86,8 +88,18 @@ def index(request):
 def FAQs(request):
     return render(request, 'main/FAQs.html')
 
-@login_required
-def simple_note(request):
-    return render(request, 'main/simple_note.html')
+# @login_required
+class SimpleNote(LoginRequiredMixin, DataMixin, CreateView):
+    form_class = SimpleNoteForm
+    template_name = 'main/simple_note.html'
+    raise_exception = True
+    success_url = 'start'
+    login_url = reverse_lazy('login')
+
+
+
+# @login_required
+# def simple_note(request):
+#     return render(request, 'main/simple_note.html')
 
 
