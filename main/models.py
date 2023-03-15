@@ -90,6 +90,12 @@ class SimpleNote(models.Model):
        verbose_name="URL",
    )
 
+   cat = models.ForeignKey(
+       'Category', 
+       on_delete=models.PROTECT, 
+       null=True,
+       )
+
    is_printing = models.BooleanField(default=True)
 
 
