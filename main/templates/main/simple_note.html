@@ -1,5 +1,35 @@
 {% extends 'main/control_panel.html' %}
 {% block title %}Simple Note{% endblock %}
 {% block content %}
-<center><h3>SIMPLE NOTE</h3></center>
+<h1>{{title}}</h1>
+
+<form action="{% url 'simple_note' %}" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+
+{% for f in form %}
+<p><label class="form-label" for="{{ f.id_for_label }}">{{f.label}}: </label>{{ f }}</p>
+<div class="form-error">{{ f.errors }}</div>
+{% endfor %}
+
+
+    <button class="button" type="submit">Add</button>
+    <style>
+        .button {
+          font-size: 35px;
+          background-color: #faf9f7;
+          color: rgb(255, 255, 255);
+          border: 2px solid #000000;
+          border-radius: 4px;
+          width: 250px;
+          margin: 0 auto;
+          display: block;
+      }
+      .button:hover {
+          background-color: #ffffff; 
+          color: rgb(0, 0, 0);
+          text-decoration: underline;
+      }
+       </style>
+</form>
+
 {% endblock %}

@@ -52,6 +52,6 @@ class SimpleNoteForm(forms.ModelForm):
         widgets = {
             'name': forms.TextInput(attrs={'class': 'form_input'}),
             'text': forms.Textarea(attrs={'cols':100, 'rows': 40}),
-            # 'file_note': forms.FileField(attrs={'class': 'form_input'})
+            'file_note': forms.ClearableFileInput(attrs={'multiple': True})
         }
 

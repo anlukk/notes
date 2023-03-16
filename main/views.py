@@ -96,6 +96,15 @@ class SimpleNote(LoginRequiredMixin, DataMixin, CreateView):
     success_url = 'start'
     login_url = reverse_lazy('login')
 
+@login_required
+def choice_type(request):
+#   if request.method == 'POST':
+#       user_choice 
+#
+#
+    return render(request, 'main/choice_type.html')
+
+
 
 
 # @login_required
