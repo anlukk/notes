@@ -1,16 +1,18 @@
 from django.urls import reverse_lazy
+from main.models import SimpleNote
 from main.utils import DataMixin
-from .forms import UserRegistrForm 
 from django.shortcuts import render
 from django.http import HttpResponse
-from .forms import LoginForm, UserEditForm, ProfileEditForm
-from django.contrib.auth import authenticate
-from .forms import LoginForm
-from django.contrib.auth import login as auth_login
+from .forms import LoginForm, UserEditForm, ProfileEditForm, UserRegistrForm 
+from django.contrib.auth import login as auth_login, authenticate
 from django.contrib.auth.decorators import login_required
 from .forms import SimpleNoteForm
-from django.views.generic import CreateView
+from django.views.generic import CreateView, ListView
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.db.models import Q
+from django.contrib.postgres.search import(SearchVector, 
+                                           SearchQuery, SearchRank, SearchHeadline)
+
 
 
 """ 
@@ -76,9 +78,24 @@ def edit(request):
     return render(request, 'main/editprofile.html', {'user_form': user_form, 'profile_form': profile_form})
 
 
-@login_required
-def search(request):
-    return render(request, 'main/search.html')
+# @login_required
+# def search(request):
+#     return render(request, 'main/search.html')
+
+class SearchResultsList(LoginRequiredMixin, DataMixin, ListView):
+    model = SimpleNote
+    context_object_name = "Search"
+    template_name = "main/search.html"
+
+    def get_queryset(self):
+        query = self.request.GET.get("q")
+        search_vector = SearchVector("name", "text")
+        search_query = SearchQuery(query)
+        search_headline = SearchHeadline("text", search_query)
+        return SimpleNote.objects.annotate(
+            search=search_vector,
+            rank=SearchRank(search_vector, search_query)
+        ).annotate(headline=search_headline).filter(search=search_query).order_by("-rank")
 
 
 def index(request):
@@ -88,13 +105,22 @@ def index(request):
 def FAQs(request):
     return render(request, 'main/FAQs.html')
 
-# @login_required
-class SimpleNote(LoginRequiredMixin, DataMixin, CreateView):
+
+class SimpleNote_View(LoginRequiredMixin, DataMixin, CreateView):
     form_class = SimpleNoteForm
     template_name = 'main/simple_note.html'
     raise_exception = True
     success_url = 'start'
     login_url = reverse_lazy('login')
+    context_object_name = 'Simple Note'
+
+    def get_queryset(self):                                              # SEARCH
+        query = self.request.GET.get("q")
+        object_list = SimpleNote.objects.filter(
+            Q(name__icontains=query) | Q(state__icontains=query)
+        )
+        return object_list
+
 
 @login_required
 def choice_type(request):

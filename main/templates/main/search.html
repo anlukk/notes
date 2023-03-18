@@ -2,4 +2,9 @@
 {% block title %}Log-in{% endblock %}
 {% block content %}
 <center><h3>Search your notes or table</h3></center>
+
+<form action="{% url 'simple_note' %}" method="get">
+  <input type="search" name="q" placeholder="Search " class="form-control"/>
+</form>
+
 {% endblock %}
