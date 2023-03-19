@@ -26,6 +26,8 @@ INSTALLED_APPS = [
     'django.contrib.admin',
     'rest_framework',
     'api',
+    'django_tables2',
+
 ]
 
 MIDDLEWARE = [

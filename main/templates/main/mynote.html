@@ -18,8 +18,8 @@
             <li class="nav-item"><a href="{% url 'login' %}" class="nav-link px-2 text-muted">Re-login</a></li>
           </ul>
       </div>
-
-      <form action="{% url 'simple_note' %}" method="get">
+<body>
+      <form action="{% url 'mynote' %}" method="get">
       <div class="wrap">
         <h4><center> Search my note</center></h4>
         <div class="search">
@@ -30,13 +30,16 @@
         </div>
      </div>
     </form>
-
+</body>
       <div class="sidenav">
         <a href="#about">About</a>
         <a href="#services">Services</a>
-        <a href="#clients">Clients</a>
-        <a href="#contact">Contact</a>
       </div>
+      <div>
+       
+      {% load django_tables2 %}
+      {% render_table table %}
 
+    </div>
 </body>
 </html>

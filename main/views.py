@@ -1,11 +1,12 @@
 from os import path
 from urllib.request import urlopen
 from django.urls import reverse_lazy
+from django_tables2 import SingleTableMixin, SingleTableView
 from main.models import Profiles, SimpleNote
 from main.utils import DataMixin
 from django.shortcuts import redirect, render
 from django.http import HttpResponse
-from .forms import LoginForm, UserEditForm, ProfileEditForm, UserRegistrForm 
+from .forms import LoginForm, My_Note_Form, UserEditForm, ProfileEditForm, UserRegistrForm 
 from django.contrib.auth import login as auth_login, authenticate
 from django.contrib.auth.decorators import login_required
 from .forms import SimpleNoteForm
@@ -106,21 +107,6 @@ def image_upload(request):
         return redirect('any_url')
     return render(request, 'editprofile.html', context=context)  
 
-class SearchResultsList(LoginRequiredMixin, DataMixin, ListView):
-    model = SimpleNote
-    context_object_name = "Search"
-    template_name = "main/search.html"
-
-    def get_queryset(self):
-        query = self.request.GET.get("q")
-        search_vector = SearchVector("name", "text")
-        search_query = SearchQuery(query)
-        search_headline = SearchHeadline("text", search_query)
-        return SimpleNote.objects.annotate(
-            search=search_vector,
-            rank=SearchRank(search_vector, search_query)
-        ).annotate(headline=search_headline).filter(search=search_query).order_by("-rank")
-
 
 def index(request):
     return render(request, 'main/index.html', {'title' : 'Main page of site'})
@@ -138,11 +124,31 @@ class SimpleNote_View(LoginRequiredMixin, DataMixin, CreateView):
     login_url = reverse_lazy('login')
     context_object_name = 'Simple Note'
 
-@login_required
-def my_note(request):
-    return render(request, 'main/mynote.html')
+
+class MyNote_View(LoginRequiredMixin, DataMixin, SingleTableMixin, ListView): #CreateView):
+    table_class = My_Note_Form
+    queryset = SimpleNote.objects.all()
+    template_name = 'main/mynote.html'
+    raise_exception = True
+    success_url = 'start'
+    login_url = reverse_lazy('login')
+    context_object_name = 'My Note'
 
 
+class SearchResultsList(LoginRequiredMixin, DataMixin, ListView):
+    model = SimpleNote
+    context_object_name = "Search"
+    template_name = "main/search.html"
+
+    def get_queryset(self):
+        query = self.request.GET.get("q")
+        search_vector = SearchVector("name", "text")
+        search_query = SearchQuery(query)
+        search_headline = SearchHeadline("text", search_query)
+        return SimpleNote.objects.annotate(
+            search=search_vector,
+            rank=SearchRank(search_vector, search_query)
+        ).annotate(headline=search_headline).filter(search=search_query).order_by("-rank")
 
 
 @login_required

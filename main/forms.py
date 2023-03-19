@@ -1,4 +1,5 @@
 from django.contrib.auth.models import User
+import django_tables2 as tables
 from django import forms
 from .models import(
     Profiles, SimpleNote,
@@ -55,3 +56,7 @@ class SimpleNoteForm(forms.ModelForm):
             'file_note': forms.ClearableFileInput(attrs={'multiple': True})
         }
 
+
+class My_Note_Form(tables.Table):
+    class Meta:
+        model = SimpleNote
