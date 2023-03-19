@@ -1,7 +1,9 @@
+from os import path
+from urllib.request import urlopen
 from django.urls import reverse_lazy
-from main.models import SimpleNote
+from main.models import Profiles, SimpleNote
 from main.utils import DataMixin
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from django.http import HttpResponse
 from .forms import LoginForm, UserEditForm, ProfileEditForm, UserRegistrForm 
 from django.contrib.auth import login as auth_login, authenticate
@@ -12,6 +14,10 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Q
 from django.contrib.postgres.search import(SearchVector, 
                                            SearchQuery, SearchRank, SearchHeadline)
+
+from django.core.files import File
+from django.core.files.base import ContentFile
+from django.core.files.temp import NamedTemporaryFile
 
 
 
@@ -77,10 +83,28 @@ def edit(request):
         profile_form = ProfileEditForm(instance=request.user.profile)
     return render(request, 'main/editprofile.html', {'user_form': user_form, 'profile_form': profile_form})
 
-
-# @login_required
-# def search(request):
-#     return render(request, 'main/search.html')
+@login_required
+def image_upload(request):
+    context = dict()
+    if request.method == 'POST':
+        username = request.POST["username"]
+        image_path = request.POST["src"] 
+        image = NamedTemporaryFile()
+        image.write(urlopen(path).read())
+        image.flush()
+        image = File(image)
+        name = str(image.name).split('\\')[-1]
+        name += '.jpg' 
+        image.name = name
+        if image is not None:
+            obj = Profiles.objects.create(username=username, image=image)  
+            obj.save()
+            context["path"] = obj.image.url  
+            context["username"] = obj.username
+        else :
+            return redirect('/')
+        return redirect('any_url')
+    return render(request, 'editprofile.html', context=context)  
 
 class SearchResultsList(LoginRequiredMixin, DataMixin, ListView):
     model = SimpleNote
@@ -114,27 +138,19 @@ class SimpleNote_View(LoginRequiredMixin, DataMixin, CreateView):
     login_url = reverse_lazy('login')
     context_object_name = 'Simple Note'
 
-    def get_queryset(self):                                              # SEARCH
-        query = self.request.GET.get("q")
-        object_list = SimpleNote.objects.filter(
-            Q(name__icontains=query) | Q(state__icontains=query)
-        )
-        return object_list
+@login_required
+def my_note(request):
+    return render(request, 'main/mynote.html')
+
+
 
 
 @login_required
 def choice_type(request):
-#   if request.method == 'POST':
-#       user_choice 
-#
-#
     return render(request, 'main/choice_type.html')
 
 
 
 
-# @login_required
-# def simple_note(request):
-#     return render(request, 'main/simple_note.html')
 
 

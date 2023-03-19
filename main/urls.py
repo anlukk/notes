@@ -12,6 +12,6 @@ urlpatterns = [
     path('', views.index, name='start'),
     path('control_panel', views.control_panel, name='control_panel'),
     path('FAQs', views.FAQs, name='FAQs'),
-    path('search', SearchResultsList.as_view(), name='search'),
-    path('simple_note', SimpleNote_View.as_view(), name='simple_note')
+    path('simple_note', SimpleNote_View.as_view(), name='simple_note'),
+    path('mynote', views.my_note, name='mynote' )
 ]

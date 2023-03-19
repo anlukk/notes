@@ -7,12 +7,15 @@ class Task(models.Model):
     title = models.CharField('Название', max_length=10000)
     task = models.TextField('Описание')
 
+
     def __str__(self):
         return self.title
+        
         
     class Meta:
         verbose_name = 'person'
         verbose_name_plural = 'personal'
+
 
 class Profiles(models.Model):
     
@@ -52,6 +55,7 @@ class Profiles(models.Model):
     def __str__(self):
         return 'profile for user {}'.format(self.user.username)
     
+
 class SimpleNote(models.Model):
    """Simple Note model """
 
@@ -110,6 +114,7 @@ class SimpleNote(models.Model):
    class Meta:
        verbose_name = 'Simple Note'
        ordering = ['time_create', 'name']
+
 
 class Category(models.Model):   
 

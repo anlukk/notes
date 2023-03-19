@@ -1,6 +1,7 @@
 {% extends 'main/control_panel.html' %}
 {% block title %}Simple Note{% endblock %}
 {% block content %}
+
 <h1>{{title}}</h1>
 <form action="{% url 'simple_note' %}" method="post" enctype="multipart/form-data">
     {% csrf_token %}
