@@ -9,37 +9,39 @@
     <link rel="shortcut icon" href="{% static 'main/images/icons/icon3.png' %}" type="image/png"/>
     <title>My Note</title>
 </head>
-<body>
-    <div class="ui">
-        <div class="ui">
-          <ul class="ui">
-            <li class="nav-item"><a href="{% url 'control_panel' %}" class="nav-link px-2 text-muted">Control Panel</a></li>
-            <li class="nav-item"><a href="{% url 'editprofile' %}" class="nav-link px-2 text-muted">Settings</a></li>
-            <li class="nav-item"><a href="{% url 'login' %}" class="nav-link px-2 text-muted">Re-login</a></li>
-          </ul>
-      </div>
-<body>
+
+
+  <body>
+
+
+  <div class="topnav">
+    <a class="active" href="{% url 'control_panel' %}">Control Panel</a>
+    <a href="{% url 'editprofile' %}">Settings</a>
+    <a href="{% url 'login' %}">Re-Login</a>
+    <div class="search-container">
       <form action="{% url 'mynote' %}" method="get">
-      <div class="wrap">
-        <h4><center> Search my note</center></h4>
-        <div class="search">
-           <input type="text" class="searchTerm" name="q" placeholder="Search">
-           <button type="submit" class="searchButton">
-             <i class="fa fa-search"></i>
-          </button>
-        </div>
-     </div>
-    </form>
-</body>
+        <input type="text" placeholder="Search.." name="q">
+        <button type="submit" class="SerachButton">Submit</button>
+      </form>
+    </div>
+  </div>
       <div class="sidenav">
-        <a href="#about">About</a>
-        <a href="#services">Services</a>
+        <a class="LeftPanelButton" href="#about">About</a>
+        <a class="LeftPanelButton" href="#about">#tool#</a>
+        <a class="LeftPanelButton" href="#about">#tool#</a>
+        <a class="LeftPanelButton" href="#about">#tool#</a>
+        <a class="LeftPanelButton" href="#about">#tool#</a>
+        <a class="LeftPanelButton" href="#about">#tool#</a>
+        <a class="LeftPanelButton" href="#about">#tool#</a>
+        <a class="LeftPanelButton" href="#about">#tool#</a>
+        <a class="LeftPanelButton" href="#about">#tool#</a>
       </div>
+      
       <div>
-       
+        <table class="table">
       {% load django_tables2 %}
       {% render_table table %}
-
-    </div>
+      </table>
+      </div>
 </body>
 </html>

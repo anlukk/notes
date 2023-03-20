@@ -5,21 +5,21 @@ body {
 
 .sidenav {
   height: 100%;
-  width: 160px;
+  width: 135px;
   position: fixed;
   z-index: 1;
   top: 50;
   left: 0;
-  background-color: #faf9f7;
+  background-color: #1e2c42;
   overflow-x: hidden;
   padding-top: 50px;
 }
 
 .sidenav a {
-  padding: 34px 34px 20px 16px;
+  padding: 0px 128px 34px 4px;
   text-decoration: none;
   font-size: 25px;
-  color: #272727;
+  color: #000000;
   display: block;
 }
 
@@ -39,16 +39,125 @@ body {
 }
 
 
+* {box-sizing: border-box;}
+  
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.topnav {
+  overflow: hidden;
+  background-color: #1e2c42;
+}
+
+.topnav a {
+  float: left;
+  display: block;
+  color: rgb(255, 255, 255);
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.topnav a:hover {
+  background-color: #eee;
+  color: rgb(0, 0, 0);
+}
+
+.topnav a.active {
+  background-color: #030303;
+  color: rgb(253, 253, 253);
+}
+
+.topnav .search-container {
+  float: right;
+}
+
+.topnav input[type=text] {
+  padding: 6px;
+  margin-top: 8px;
+  font-size: 17px;
+  border: none;
+}
+
+.topnav .search-container button {
+  float: right;
+  padding: 6px;
+  margin-top: 8px;
+  margin-right: 16px;
+  background: #ddd;
+  font-size: 17px;
+  border: none;
+  cursor: pointer;
+}
+
+.topnav .search-container button:hover {
+  background: #ccc;
+}
+
+@media screen and (max-width: 600px) {
+  .topnav .search-container {
+    float: none;
+  }
+  .topnav a, .topnav input[type=text], .topnav .search-container button {
+    float: none;
+    display: block;
+    text-align: left;
+    width: 100%;
+    margin: 0;
+    padding: 14px;
+  }
+  .topnav input[type=text] {
+    border: 1px solid #000000;  
+  }
+}
+
+
+.SerachButton {
+  font-size: 20px;
+  background-color: #faf9f7;
+  color: rgb(0, 0, 0);
+  border: 2px solid #000000;
+  border-radius: 4px;
+  width: 104px;
+  margin: 0 auto;
+  display: block;
+}
+.SerachButton:hover {
+  background-color: #ffffff; 
+  color: rgb(0, 0, 0);
+  text-decoration: underline;
+}
+
+
+.LeftPanelButton {
+  font-size: 20px;
+  background-color: #faf9f7;
+  color: rgb(0, 0, 0);
+  border: 2px solid #000000;
+  border-radius: 4px;
+  width: 104px;
+  margin: 0 auto;
+  display: block;
+}
+.LeftPanelButton:hover {
+  background-color: #ffffff; 
+  color: rgb(0, 0, 0);
+  text-decoration: underline;
+}
 
 
 
+
+/* 
 @import url(https://fonts.googleapis.com/css?family=Open+Sans);
-
 
 
 .search {
   width: 150%;
-  position: relative;
+  position: fixed;
   display: flex;
 }
 
@@ -79,12 +188,12 @@ body {
   font-size: 20px;
 }
 
-/*Resize the wrap to see the search bar change!*/
-.wrap{
+
+.wrap {
   width: 17%;
   position: absolute;
-  top: 15%;
-  left: 50%;
+  top: 50%;
+  left: 150%;
   transform: translate(-50%, -50%);
 }
 
