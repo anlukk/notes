@@ -11,13 +11,38 @@
     <title>My Note</title>
 </head>
 <body>
+
+
+  <!--h1>List Notes#</h1>
+  <ul class="post-list">
+    {% for post in posts %}
+      <li class="post">
+        <h2 class="post-title">{{ post.name }}</h2>
+
+        <p class="post-content">{{ post.text }}</p>
+        <p class="post-date">Posted on {{ post.time_create|date }}</p>
+      </li>
+    {% empty %}
+      <p>No posts yet.</p>
+    {% endfor %}
+  </ul-->
+
+
   <div class="topnav">
     <a class="active" href="{% url 'control_panel' %}">Control Panel</a>
     <a href="{% url 'editprofile' %}">Settings</a>
     <a href="{% url 'login' %}">Re-Login</a>
+    
+    <button class="button2" onclick="goBack()">←</button>
+    <script>
+    function goBack() {
+        window.history.back();
+    }
+    </script>
+
     <div class="search-container">
-      <form action="{% url 'mynote' %}" method="get">
-        <input type="text" placeholder="Search.." name="q">
+      <form action="{% url 'search_results' %}" method="get">
+        <input type="text" placeholder="Search my note" name="q">
         <button type="submit" class="SerachButton">Find</button>
       </form>
     </div>

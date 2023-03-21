@@ -180,6 +180,7 @@ body {
 	border-right: none;
 }
 
+
 .button {
   font-size: 35px;
   background-color: #faf9f7;
@@ -197,6 +198,15 @@ body {
 }
 
 
+.button2 {
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+}
+
+.button2 {
+  background-color: #4CAF50; /* Green */
+  color: white;
+}
 
 
 

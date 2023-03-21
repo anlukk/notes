@@ -1,0 +1,16 @@
+{% extends 'main/mynote.html' %}
+{% block title %}Simple Note{% endblock %}
+{% block content %}
+
+{% if query %}
+    <center><h2>Search results for "{{ query }}"</h2>
+    <ul>
+        {% for product in results %}
+            <li><a href="{{ product.get_absolute_time_update }}">{{ product.name }}</a></li>
+        {% empty %}
+            <p>No results found.</p>
+        {% endfor %}
+    </ul></center>
+{% endif %}
+
+{% endblock %}

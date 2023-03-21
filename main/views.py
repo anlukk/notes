@@ -4,12 +4,13 @@ from urllib.request import urlopen
 from django.urls import reverse_lazy
 from django_tables2 import SingleTableMixin
 from main.models import Profiles, SimpleNote
+from main.tables import MyNote_Table
 from main.utils import DataMixin
 from django.shortcuts import get_object_or_404, redirect, render
+from django.views.generic import TemplateView
 from django.http import HttpResponse
 
-from .forms import(LoginForm, My_Note_Form, 
-                   UserEditForm, ProfileEditForm, 
+from .forms import(LoginForm,  UserEditForm, ProfileEditForm, 
                      UserRegistrForm, SimpleNoteForm)
 
 from django.contrib.auth import login as auth_login, authenticate
@@ -130,7 +131,9 @@ class Create_SimpleNote_View(LoginRequiredMixin, DataMixin, CreateView):
 
 
 class MyNote_View(LoginRequiredMixin, DataMixin, SingleTableMixin, ListView): 
-    table_class = My_Note_Form
+    # object_list = ['name']
+    notes = SimpleNote.objects.all().order_by('-time_update')
+    table_class = MyNote_Table
     queryset = SimpleNote.objects.all()
     paginator = Paginator(queryset, per_page=2)
     template_name = 'main/mynote.html'
@@ -138,35 +141,52 @@ class MyNote_View(LoginRequiredMixin, DataMixin, SingleTableMixin, ListView):
     success_url = 'start'
     login_url = reverse_lazy('login')
     context_object_name = 'My Note'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        notes = SimpleNote.objects.all()  # Your list of posts here
+        context['notes'] = notes
+        return context
     
 
 @login_required
-def edit_note(request, note_id):
-    note = get_object_or_404(SimpleNote, pk=note_id)
-    form = SimpleNoteForm(instance=note)
-    context = {'form': form, 'note': note}
-    if request.method == 'POST':
+def search(request):
+    query = request.GET.get('q')
+    results = SimpleNote.objects.filter(name__icontains=query) | SimpleNote.objects.filter(text__icontains=query)
+    return render(request, 'main/search_results.html', {'results': results, 'query': query})
+
+
+class MyNote_List_View(LoginRequiredMixin, TemplateView):
+    template_name = 'main/post_list.html'
+    raise_exception = True
+    success_url = 'start'
+    login_url = reverse_lazy('login')
+    context_object_name = 'My Note'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        notes = SimpleNote.objects.all()  # Your list of posts here
+        context['notes'] = notes
+        return context
+    
+
+# @login_required
+# def post_list(request):
+#     posts = SimpleNote.objects.all().order_by('-time_update')
+#     return render(request, 'main/post_list.html', {'posts': posts})
+
+@login_required
+def edit_note(request, pk):
+    note = get_object_or_404(SimpleNote, pk=pk)
+    if request.method == "POST":
         form = SimpleNoteForm(request.POST, instance=note)
         if form.is_valid():
-            form.save()
-            return render(request, 'main/mynote.html', context)
-    return render(request, 'main/edit_note.html', context)
-
-
-class SearchResultsList(LoginRequiredMixin, DataMixin, ListView):
-    model = SimpleNote
-    context_object_name = "Search"
-    template_name = "main/search.html"
-
-    def get_queryset(self):
-        query = self.request.GET.get("q")
-        search_vector = SearchVector("name", "text")
-        search_query = SearchQuery(query)
-        search_headline = SearchHeadline("text", search_query)
-        return SimpleNote.objects.annotate(
-            search=search_vector,
-            rank=SearchRank(search_vector, search_query)
-        ).annotate(headline=search_headline).filter(search=search_query).order_by("-rank")
+            note = form.save(commit=False)
+            note.save()
+            return redirect('note_detail', pk=note.pk)
+    else:
+        form = SimpleNoteForm(instance=note)
+    return render(request, 'main/edit_note.html', {'form': form, 'note': note})
 
 
 @login_required

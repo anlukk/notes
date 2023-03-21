@@ -56,8 +56,3 @@ class SimpleNoteForm(forms.ModelForm):
             'file_note': forms.ClearableFileInput(attrs={'multiple': True})
         }
 
-
-class My_Note_Form(tables.Table):
-    class Meta:
-        model = SimpleNote
-        attrs = {"class": "table"}
