@@ -60,3 +60,4 @@ class SimpleNoteForm(forms.ModelForm):
 class My_Note_Form(tables.Table):
     class Meta:
         model = SimpleNote
+        attrs = {"class": "table"}

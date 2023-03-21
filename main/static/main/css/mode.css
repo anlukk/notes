@@ -12,13 +12,13 @@ body {
   left: 0;
   background-color: #1e2c42;
   overflow-x: hidden;
-  padding-top: 50px;
+  padding-top: 18px;
 }
 
 .sidenav a {
-  padding: 0px 128px 34px 4px;
+  padding: 0px 15px 14px 16px;
   text-decoration: none;
-  font-size: 25px;
+  font-size: 28px;
   color: #000000;
   display: block;
 }
@@ -127,26 +127,79 @@ body {
 }
 .SerachButton:hover {
   background-color: #ffffff; 
-  color: rgb(0, 0, 0);
+  color: rgb(255, 255, 255);
   text-decoration: underline;
 }
 
 
 .LeftPanelButton {
-  font-size: 20px;
+  font-size: 15px;
   background-color: #faf9f7;
   color: rgb(0, 0, 0);
-  border: 2px solid #000000;
-  border-radius: 4px;
-  width: 104px;
+  border: 7px solid #1e2c42;
+  border-radius: 10px;
+  width: 134px;
   margin: 0 auto;
   display: block;
+  font-family:serif;
+  font-style:inherit;
 }
 .LeftPanelButton:hover {
   background-color: #ffffff; 
   color: rgb(0, 0, 0);
   text-decoration: underline;
 }
+
+.text{
+  font-size: xx-large;
+  font-family: fantasy;
+}
+
+
+.table {
+	width: 60%;
+	margin-bottom: 0px;
+	border-collapse: collapse; 
+ 
+  justify-content: right;
+}
+.table th {
+	font-weight: bold;
+	padding: 5px;
+	background: #efefef;
+	border: 1px solid #dddddd;
+}
+.table td {
+	border: 1px solid #dddddd;
+	padding: 5px;
+}
+.table tr td:first-child, .table tr th:first-child {
+	border-left: none;
+}
+.table tr td:last-child, .table tr th:last-child {
+	border-right: none;
+}
+
+.button {
+  font-size: 35px;
+  background-color: #faf9f7;
+  color: rgb(255, 255, 255);
+  border: 2px solid #000000;
+  border-radius: 4px;
+  width: 250px;
+  margin: 0 auto;
+  display: block;
+}
+.button:hover {
+  background-color: #ffffff; 
+  color: rgb(0, 0, 0);
+  text-decoration: underline;
+}
+
+
+
+
+
 
 
 

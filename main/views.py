@@ -1,15 +1,19 @@
+from django.utils import timezone
 from os import path
 from urllib.request import urlopen
 from django.urls import reverse_lazy
-from django_tables2 import SingleTableMixin, SingleTableView
+from django_tables2 import SingleTableMixin
 from main.models import Profiles, SimpleNote
 from main.utils import DataMixin
-from django.shortcuts import redirect, render
+from django.shortcuts import get_object_or_404, redirect, render
 from django.http import HttpResponse
-from .forms import LoginForm, My_Note_Form, UserEditForm, ProfileEditForm, UserRegistrForm 
+
+from .forms import(LoginForm, My_Note_Form, 
+                   UserEditForm, ProfileEditForm, 
+                     UserRegistrForm, SimpleNoteForm)
+
 from django.contrib.auth import login as auth_login, authenticate
 from django.contrib.auth.decorators import login_required
-from .forms import SimpleNoteForm
 from django.views.generic import CreateView, ListView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Q
@@ -17,7 +21,7 @@ from django.contrib.postgres.search import(SearchVector,
                                            SearchQuery, SearchRank, SearchHeadline)
 
 from django.core.files import File
-from django.core.files.base import ContentFile
+from django.core.paginator import Paginator
 from django.core.files.temp import NamedTemporaryFile
 
 
@@ -116,7 +120,7 @@ def FAQs(request):
     return render(request, 'main/FAQs.html')
 
 
-class SimpleNote_View(LoginRequiredMixin, DataMixin, CreateView):
+class Create_SimpleNote_View(LoginRequiredMixin, DataMixin, CreateView):
     form_class = SimpleNoteForm
     template_name = 'main/simple_note.html'
     raise_exception = True
@@ -125,14 +129,28 @@ class SimpleNote_View(LoginRequiredMixin, DataMixin, CreateView):
     context_object_name = 'Simple Note'
 
 
-class MyNote_View(LoginRequiredMixin, DataMixin, SingleTableMixin, ListView): #CreateView):
+class MyNote_View(LoginRequiredMixin, DataMixin, SingleTableMixin, ListView): 
     table_class = My_Note_Form
     queryset = SimpleNote.objects.all()
+    paginator = Paginator(queryset, per_page=2)
     template_name = 'main/mynote.html'
     raise_exception = True
     success_url = 'start'
     login_url = reverse_lazy('login')
     context_object_name = 'My Note'
+    
+
+@login_required
+def edit_note(request, note_id):
+    note = get_object_or_404(SimpleNote, pk=note_id)
+    form = SimpleNoteForm(instance=note)
+    context = {'form': form, 'note': note}
+    if request.method == 'POST':
+        form = SimpleNoteForm(request.POST, instance=note)
+        if form.is_valid():
+            form.save()
+            return render(request, 'main/mynote.html', context)
+    return render(request, 'main/edit_note.html', context)
 
 
 class SearchResultsList(LoginRequiredMixin, DataMixin, ListView):
@@ -149,6 +167,12 @@ class SearchResultsList(LoginRequiredMixin, DataMixin, ListView):
             search=search_vector,
             rank=SearchRank(search_vector, search_query)
         ).annotate(headline=search_headline).filter(search=search_query).order_by("-rank")
+
+
+@login_required
+def archive(request):
+    posts = SimpleNote.objects.filter(time_create=timezone.now()).order_by('-time_create')
+    return render(request, 'main/archive.html', {'posts': posts})
 
 
 @login_required

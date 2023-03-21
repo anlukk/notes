@@ -7,13 +7,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'main/css/mode.css' %}" type="text/css"/>
     <link rel="shortcut icon" href="{% static 'main/images/icons/icon3.png' %}" type="image/png"/>
+    <link href="{% static 'django_tables2/themes/paleblue/css/screen.css' %}" rel="stylesheet">
     <title>My Note</title>
 </head>
-
-
-  <body>
-
-
+<body>
   <div class="topnav">
     <a class="active" href="{% url 'control_panel' %}">Control Panel</a>
     <a href="{% url 'editprofile' %}">Settings</a>
@@ -21,27 +18,28 @@
     <div class="search-container">
       <form action="{% url 'mynote' %}" method="get">
         <input type="text" placeholder="Search.." name="q">
-        <button type="submit" class="SerachButton">Submit</button>
+        <button type="submit" class="SerachButton">Find</button>
       </form>
     </div>
   </div>
+  {% block content %}
       <div class="sidenav">
-        <a class="LeftPanelButton" href="#about">About</a>
-        <a class="LeftPanelButton" href="#about">#tool#</a>
-        <a class="LeftPanelButton" href="#about">#tool#</a>
-        <a class="LeftPanelButton" href="#about">#tool#</a>
-        <a class="LeftPanelButton" href="#about">#tool#</a>
-        <a class="LeftPanelButton" href="#about">#tool#</a>
-        <a class="LeftPanelButton" href="#about">#tool#</a>
-        <a class="LeftPanelButton" href="#about">#tool#</a>
-        <a class="LeftPanelButton" href="#about">#tool#</a>
-      </div>
-      
+        <a class="LeftPanelButton" href="{% url 'simple_note' %}">Create New</a>
+        <a class="LeftPanelButton" href="{% url 'edit_note' %}">Change</a>
+        <a class="LeftPanelButton" href="#about">Basket</a>
+        <a class="LeftPanelButton" href="{% url 'archive' %}">Archive</a>
+        <a class="LeftPanelButton" href="#about"></a>
+        <a class="LeftPanelButton" href="#about"></a>
+      </div>   
       <div>
-        <table class="table">
+        <center><h2 class="text">My Notes</h2></center>
+       <center> <table class="table">
+          <thead>
       {% load django_tables2 %}
       {% render_table table %}
-      </table>
+          </thead>
+      </table></center>
       </div>
+      {% endblock %}
 </body>
 </html>
