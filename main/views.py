@@ -1,14 +1,14 @@
-from django.utils import timezone
 from os import path
 from urllib.request import urlopen
 from django.urls import reverse_lazy
 from django_tables2 import SingleTableMixin
 from main.models import Profiles, SimpleNote
 from main.tables import MyNote_Table
-from main.utils import DataMixin
+from main.utils import DataMixin, archive_unnecessary_records
 from django.shortcuts import get_object_or_404, redirect, render
 from django.views.generic import TemplateView
-from django.http import HttpResponse
+from django.http import Http404, HttpResponse
+from django.db.models.functions import TruncMonth
 
 from .forms import(LoginForm,  UserEditForm, ProfileEditForm, 
                      UserRegistrForm, SimpleNoteForm)
@@ -18,12 +18,10 @@ from django.contrib.auth.decorators import login_required
 from django.views.generic import CreateView, ListView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Q
-from django.contrib.postgres.search import(SearchVector, 
-                                           SearchQuery, SearchRank, SearchHeadline)
-
 from django.core.files import File
 from django.core.paginator import Paginator
 from django.core.files.temp import NamedTemporaryFile
+from django.apps import apps
 
 
 
@@ -130,13 +128,13 @@ class Create_SimpleNote_View(LoginRequiredMixin, DataMixin, CreateView):
     context_object_name = 'Simple Note'
 
 
-class MyNote_View(LoginRequiredMixin, DataMixin, SingleTableMixin, ListView): 
+class MyNoteTable_View(LoginRequiredMixin, DataMixin, SingleTableMixin, ListView): 
     # object_list = ['name']
     notes = SimpleNote.objects.all().order_by('-time_update')
     table_class = MyNote_Table
     queryset = SimpleNote.objects.all()
     paginator = Paginator(queryset, per_page=2)
-    template_name = 'main/mynote.html'
+    template_name = 'main/mynote_table.html'
     raise_exception = True
     success_url = 'start'
     login_url = reverse_lazy('login')
@@ -156,24 +154,25 @@ def search(request):
     return render(request, 'main/search_results.html', {'results': results, 'query': query})
 
 
-class MyNote_List_View(LoginRequiredMixin, TemplateView):
-    template_name = 'main/post_list.html'
-    raise_exception = True
-    success_url = 'start'
-    login_url = reverse_lazy('login')
-    context_object_name = 'My Note'
+# class MyNote_List_View(LoginRequiredMixin, TemplateView):
+#     template_name = 'main/post_list.html'
+#     raise_exception = True
+#     success_url = 'start'
+#     login_url = reverse_lazy('login')
+#     context_object_name = 'My Note'
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        notes = SimpleNote.objects.all()  # Your list of posts here
-        context['notes'] = notes
-        return context
+#     def get_context_data(self, **kwargs):
+#         context = super().get_context_data(**kwargs)
+#         notes = SimpleNote.objects.all()  # Your list of posts here
+#         context['notes'] = notes
+#         return context
     
 
-# @login_required
-# def post_list(request):
-#     posts = SimpleNote.objects.all().order_by('-time_update')
-#     return render(request, 'main/post_list.html', {'posts': posts})
+@login_required
+def post_list(request):
+    posts = SimpleNote.objects.all().order_by('-time_update')
+    return render(request, 'main/mynote.html', {'posts': posts})
+
 
 @login_required
 def edit_note(request, pk):
@@ -189,10 +188,29 @@ def edit_note(request, pk):
     return render(request, 'main/edit_note.html', {'form': form, 'note': note})
 
 
-@login_required
-def archive(request):
-    posts = SimpleNote.objects.filter(time_create=timezone.now()).order_by('-time_create')
-    return render(request, 'main/archive.html', {'posts': posts})
+def archive_view(request, model_slug):
+
+    try:
+        model = apps.get_model(app_label='main', model_name=model_slug)
+    except LookupError:
+        raise Http404("Model does not exist")
+    
+    note = get_object_or_404(SimpleNote, pk=model_slug)
+
+    context = {
+        'note': note,
+        'name': note.name,
+        'text': note.text,
+        'cat_selected': note.cat_id,
+    }
+    
+    queryset = archive_unnecessary_records(model)
+    return render(request, 'main/archive.html', {'records': queryset}, context=context)
+
+# @login_required
+# def archive(request):
+#     posts = SimpleNote.objects.filter(time_update__lte=timezone.now()).order_by('-time_update')
+#     return render(request, 'main/archive.html', {'posts': posts})
 
 
 @login_required

@@ -2,19 +2,13 @@
 {% block title %}Simple Note{% endblock %}
 {% block content %}
 
-<!--center><h1>Archive</h1></center>
-    <ul>
-    {% for post in posts %}
-        <li><a href="{{ post.get_absolute_url }}">{{ post.time_create}}</a></li>
-    {% endfor %}
-    </ul-->
-
-    {% for post in posts %}
-    <div class="post">
-        <h2><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h2>
-        <p class="date">{{ post.pub_date|date }}</p>
-        <p>{{ post.content|truncatewords:30 }}</p>
-    </div>
+<h1>Archive for {{ model_name }}</h1>
+<ul>
+{% for record in records %}
+    <li>{{ record }}</li>
+{% empty %}
+    <li>No records to display.</li>
 {% endfor %}
+</ul>
 
 {% endblock %}

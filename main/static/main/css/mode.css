@@ -116,8 +116,10 @@ body {
 
 
 .SerachButton {
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
   font-size: 20px;
-  background-color: #faf9f7;
+  background-color: #000000;
   color: rgb(0, 0, 0);
   border: 2px solid #000000;
   border-radius: 4px;
@@ -126,8 +128,8 @@ body {
   display: block;
 }
 .SerachButton:hover {
-  background-color: #ffffff; 
-  color: rgb(255, 255, 255);
+  background-color: #000000; 
+  color: rgb(0, 0, 0);
   text-decoration: underline;
 }
 
@@ -198,17 +200,24 @@ body {
 }
 
 
-.button2 {
-  -webkit-transition-duration: 0.4s; /* Safari */
-  transition-duration: 0.4s;
+.buttonbatton {
+  -webkit-transition-duration: 0.05s; /* Safari */
+  transition-duration: 0.05s;
+  border-radius: 4px;
+  font-size: 25px;
+  background-color: #ddd;
+  float: right;
+  padding: -1px;
+  margin-top:  8px;
+  margin-right: 18px;
+  border: none;
+  cursor: pointer;
 }
 
-.button2 {
-  background-color: #4CAF50; /* Green */
-  color: white;
+.buttonbatton:hover {
+  background-color: #1e2c42; /* Green */
+  color: rgb(0, 0, 0);
 }
-
-
 
 
 

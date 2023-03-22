@@ -1,0 +1,13 @@
+{% extends 'main/mynote.html' %}
+{% block title %}My Note Table{% endblock %}
+    {% block content %}
+  <div>
+    <center><h2 class="text">My Notes</h2></center>
+   <center> <table class="table">
+      <thead>
+  {% load django_tables2 %}
+  {% render_table table %}
+      </thead>
+  </table></center>
+  </div>
+{% endblock %}

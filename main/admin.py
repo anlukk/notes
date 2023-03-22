@@ -21,11 +21,12 @@ class SimpleNoteAdmin(admin.ModelAdmin):
     ]
 
     list_display_links = ('name', 'slug')
-
     list_editable = ()
+    prepopulated_fields = {'slug': ('name',)}
 
 class CategoryAdmin(admin.ModelAdmin):
     list_display = ['name', 'slug']
+    prepopulated_fields = {'slug': ('name',)}
 
 
 
