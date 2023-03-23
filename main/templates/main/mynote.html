@@ -7,7 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'main/css/mode.css' %}" type="text/css"/>
     <link rel="shortcut icon" href="{% static 'main/images/icons/icon3.png' %}" type="image/png"/>
-    <link href="{% static 'django_tables2/themes/paleblue/css/screen.css' %}" rel="stylesheet">
     <title>My Note</title>
 </head>
 <body>
@@ -38,7 +37,30 @@
         <a class="LeftPanelButton" href="#tool"></a>
         <a class="LeftPanelButton" href="#tool"></a>
       </div>   
-      <h1>My Notes</h1>
+      
+      {% for post in posts %}
+      <div class="row">
+        <div class="column">
+            <div class="card">
+        <div class="card-content">
+          
+          <li class="post">
+            <h2 class="post-title">{{ post.name }}</h2>
+    
+            <p class="post-content">{{ post.text }}</p>
+            <p class="post-date">Posted on {{ post.time_create|date }}</p>
+          </li>
+        
+        <a class="buttonB" href="#">Читать дальше</a>
+            </div>
+        </div>
+        </div>
+        {% empty %}
+          <p>No notes yet.</p>
+          {% endfor %}
+
+
+      <!--center><h1>My Notes</h1>
       <ul class="post-list">
         {% for post in posts %}
           <li class="post">
@@ -50,7 +72,7 @@
         {% empty %}
           <p>No notes yet.</p>
         {% endfor %}
-      </ul>
+      </ul></center-->
       {% endblock %}
 </body>
 </html>

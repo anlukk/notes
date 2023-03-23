@@ -1,8 +1,10 @@
 {% extends "main/index.html"%}
 {% block title %}Log-in{% endblock %}
 {% block content %}
-<body style="background-image: url(static/main/images/backgound-white.jpg)">
-  </body>
+{% block css %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'main/css/mode.css' %}" type="text/css"/>
+{% endblock %}
   <center><span class="login100-form-title p-b-70">Welcome</span></center>
   <span class="login100-form-avatar">
     <img src="" alt="">

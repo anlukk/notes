@@ -121,6 +121,7 @@ def archive_view(request, model_slug):
 
 @login_required
 def choice_type(request):
+    #
     return render(request, 'main/choice_type.html')
 
 

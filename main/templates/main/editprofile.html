@@ -1,5 +1,9 @@
 {% extends "main/control_panel.html"%}
 {% block title %}Log-in{% endblock %}
+{% block css %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'main/css/mode.css' %}" type="text/css"/>
+{% endblock %}
 {% block content %}
     <h1>Settings</h1>
     <p>You can edit your account using the following form:</p>

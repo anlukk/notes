@@ -63,30 +63,3 @@ def register_view(request):
         form = UserCreationForm()
     return render(request, 'registration/register.html', {'form': form})
 
-# class ProfileView(View):
-
-#     def get_queryset(self, request, author):
-
-#         tags = request.GET.getlist("filters")
-#         if not tags:
-#             recipes = Profiles.objects.filter(author=author).exclude(
-#                 tags__slug__in=tags)
-#         else:
-#             recipes = Profiles.objects.filter(author=author).filter(
-#                 tags__slug__in=tags)
-#         return recipes
-
-#     # def get(self, request, user_id):
-
-#     #     author = get_object_or_404(User, id=user_id)
-#     #     recipes = self.get_queryset(request, author)
-#     #     paginator = Paginator(recipes.filter(author=author), PER_PAGE)
-#     #     page_number = request.GET.get("page")
-#     #     page = paginator.get_page(page_number)
-#     #     tags = Tag.objects.all()
-#     #     context = {"author": author,
-#     #                "page": page,
-#     #                "paginator": paginator,
-#     #                "tags": tags,
-#     #                }
-#     #     return render(request, "recipes/profile.html", context)

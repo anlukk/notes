@@ -186,7 +186,7 @@ body {
 .button {
   font-size: 35px;
   background-color: #faf9f7;
-  color: rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
   border: 2px solid #000000;
   border-radius: 4px;
   width: 250px;
@@ -218,6 +218,110 @@ body {
   background-color: #1e2c42; /* Green */
   color: rgb(0, 0, 0);
 }
+
+
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  
+  line-height: 1.6;
+  font-size: 90%;
+}
+
+.row {
+  display: flex; /* включение технологии flexbox */
+  flex-direction: row; /* колонки в ряду */
+  justify-content: center; /* колонки в центре контейнера */
+  flex-wrap: nowrap; /* держать колонки в ряду */
+  margin: 20px;
+}
+
+.column {
+  display: flex;  /* одинаковая высота колонок */ 
+  width: 33.33%; /* ширина одной колонки */
+  padding: 5px;
+}
+
+.card {
+  border: 1px solid #efefef;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1);
+  transition: all .3s ease;
+  padding-bottom: 20px;
+}
+
+.card:hover {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+img {
+  width: 100%;
+}
+
+.card-content {
+  padding: 0 20px;
+}
+
+a {
+  color: #444444;
+  text-decoration: none;
+  transition: all .3s ease; 
+}
+
+.card-content .fa, span {
+    font-size: 80%;
+}
+
+.card h2 {
+  padding-top: 10px;
+  color: #f76270;
+  font-size: 130%;
+  line-height: 1.2;
+}
+
+.card p {
+  margin: 20px 0 30px;
+  color: #666666;
+    
+}
+
+.buttonB {
+  display: block;
+  background: #a7c1cf;
+  padding: 10px 15px;
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: 700;
+  text-align: center;
+ }
+ 
+ .buttonB:hover, .button:focus {
+    background: #f76270;
+}
+
+@media screen and (max-width: 640px) {
+  .row {
+  flex-direction: column; /* в ряду останется одна колонка */ 
+    flex-wrap: wrap; /* разрешен перенос колонок */
+}
+  .column {
+    width: 100%; /* новая ширина колонки */
+    margin-bottom: 20px;
+  }
+}
+
+
+
+
+
+
+
+
 
 
 
