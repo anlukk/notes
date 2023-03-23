@@ -1,37 +1,28 @@
 from os import path
 from urllib.request import urlopen
-from django.urls import reverse_lazy
 from django_tables2 import SingleTableMixin
 from main.models import Profiles, SimpleNote
 from main.tables import MyNote_Table
 from main.utils import DataMixin, archive_unnecessary_records
 from django.shortcuts import get_object_or_404, redirect, render
-from django.views.generic import TemplateView
 from django.http import Http404, HttpResponse
-from django.db.models.functions import TruncMonth
+from django.utils.decorators import method_decorator
+from django.contrib.auth.forms import UserCreationForm
 
-from .forms import(LoginForm,  UserEditForm, ProfileEditForm, 
-                     UserRegistrForm, SimpleNoteForm)
+from .forms import(LoginForm,  UserEditForm, 
+                   ProfileEditForm, SimpleNoteForm)
 
 from django.contrib.auth import login as auth_login, authenticate
 from django.contrib.auth.decorators import login_required
 from django.views.generic import CreateView, ListView
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.db.models import Q
 from django.core.files import File
-from django.core.paginator import Paginator
 from django.core.files.temp import NamedTemporaryFile
 from django.apps import apps
+from django.contrib.auth import get_user_model
 
+User = get_user_model()
 
-
-""" 
-Comment: this module uses the authorization form @login_forms (1 module)
-For this version, the registration form is not taken into account
-
-The form for adding an account contradicts the registration form. 
-add form is not active due to the fact that it creates an already created account in an authorized
-"""
 
 @login_required
 def control_panel(request):
@@ -59,22 +50,19 @@ def user_login(request):
     return render(request, 'main/login.html', {'form': form})
 
 
-def register(request):
+def register_view(request):
     if request.method == 'POST':
-        user_form = UserRegistrForm(request.POST)
-        if user_form.is_valid():
-            #create new users
-            new_user = user_form.save(commit=False)
-            new_user.set_password(user_form.cleaned_data['password'])
-            new_user.save()
-            return render(request, 'main/login.html', {'new_user': new_user})
-    else: 
-        user_form = UserRegistrForm()
-        return render(request, 'main/login.html', {'user_form': user_form})
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('login')
+    else:
+        form = UserCreationForm()
+    return render(request, 'registration/register.html', {'form': form})
     
 
 @login_required
-def edit(request):
+def edit_profile_view(request):
     if request.method == 'POST':
         user_form = UserEditForm(instance=request.user, data=request.POST)
         profile_form = ProfileEditForm(instance=request.user.profile, data=request.POST, files=request.FILES)
@@ -86,6 +74,7 @@ def edit(request):
         user_form = UserEditForm(instance=request.user)
         profile_form = ProfileEditForm(instance=request.user.profile)
     return render(request, 'main/editprofile.html', {'user_form': user_form, 'profile_form': profile_form})
+
 
 @login_required
 def image_upload(request):
@@ -108,44 +97,16 @@ def image_upload(request):
         else :
             return redirect('/')
         return redirect('any_url')
-    return render(request, 'editprofile.html', context=context)  
+    return render(request, 'main/editprofile.html', context=context)  
 
 
 def index(request):
     return render(request, 'main/index.html', {'title' : 'Main page of site'})
 
 
-def FAQs(request):
+def faqs(request):
     return render(request, 'main/FAQs.html')
 
-
-class Create_SimpleNote_View(LoginRequiredMixin, DataMixin, CreateView):
-    form_class = SimpleNoteForm
-    template_name = 'main/simple_note.html'
-    raise_exception = True
-    success_url = 'start'
-    login_url = reverse_lazy('login')
-    context_object_name = 'Simple Note'
-
-
-class MyNoteTable_View(LoginRequiredMixin, DataMixin, SingleTableMixin, ListView): 
-    # object_list = ['name']
-    notes = SimpleNote.objects.all().order_by('-time_update')
-    table_class = MyNote_Table
-    queryset = SimpleNote.objects.all()
-    paginator = Paginator(queryset, per_page=2)
-    template_name = 'main/mynote_table.html'
-    raise_exception = True
-    success_url = 'start'
-    login_url = reverse_lazy('login')
-    context_object_name = 'My Note'
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        notes = SimpleNote.objects.all()  # Your list of posts here
-        context['notes'] = notes
-        return context
-    
 
 @login_required
 def search(request):
@@ -169,7 +130,7 @@ def search(request):
     
 
 @login_required
-def post_list(request):
+def note_list(request):
     posts = SimpleNote.objects.all().order_by('-time_update')
     return render(request, 'main/mynote.html', {'posts': posts})
 
@@ -188,6 +149,7 @@ def edit_note(request, pk):
     return render(request, 'main/edit_note.html', {'form': form, 'note': note})
 
 
+@login_required
 def archive_view(request, model_slug):
 
     try:
@@ -207,15 +169,33 @@ def archive_view(request, model_slug):
     queryset = archive_unnecessary_records(model)
     return render(request, 'main/archive.html', {'records': queryset}, context=context)
 
-# @login_required
-# def archive(request):
-#     posts = SimpleNote.objects.filter(time_update__lte=timezone.now()).order_by('-time_update')
-#     return render(request, 'main/archive.html', {'posts': posts})
-
-
 @login_required
 def choice_type(request):
     return render(request, 'main/choice_type.html')
+
+
+@method_decorator(login_required, name="dispatch")
+class Create_SimpleNote_View(LoginRequiredMixin, DataMixin, CreateView):
+    form_class = SimpleNoteForm
+    template_name = 'main/simple_note.html'
+    context_object_name = 'Simple Note'
+
+
+@method_decorator(login_required, name="dispatch")
+class MyNoteTable_View(LoginRequiredMixin, DataMixin, SingleTableMixin, ListView): 
+    notes = SimpleNote.objects.all().order_by('-time_update')
+    table_class = MyNote_Table
+    queryset = SimpleNote.objects.all()
+    template_name = 'main/mynote_table.html'
+    context_object_name = 'My Note'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        notes = SimpleNote.objects.all()  # Your list of posts here
+        context['notes'] = notes
+        return context
+    
+
 
 
 

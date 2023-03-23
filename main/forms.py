@@ -1,9 +1,11 @@
 from django.contrib.auth.models import User
-import django_tables2 as tables
+from django.contrib.auth import get_user_model
 from django import forms
 from .models import(
     Profiles, SimpleNote,
 )
+
+User = get_user_model()
 
 class LoginForm(forms.Form):
     username = forms.CharField()

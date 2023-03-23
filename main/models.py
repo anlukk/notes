@@ -1,6 +1,9 @@
 from django.db import models
 from django.conf import settings
 from django.urls import reverse
+from django.contrib.auth import get_user_model
+
+User = get_user_model()
 
 
 class Task(models.Model):
