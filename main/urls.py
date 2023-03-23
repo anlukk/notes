@@ -9,12 +9,8 @@ from main.views import (
 
 
 urlpatterns = [
-    path('editprofile', views.edit_profile_view, name='editprofile'),  
-
-    path('login', auth_views.LoginView.as_view(), name='login'),
-    path('logout', auth_views.LogoutView.as_view(), name='logout'),
     path('', views.index, name='start'),
-
+    
     path('control_panel', views.control_panel, name='control_panel'),
 
     path('FAQs', views.faqs, name='FAQs'),
@@ -31,6 +27,5 @@ urlpatterns = [
 
     path('mynote/search/', views.search, name='search_results'),
 
-    path('register/', views.register_view, name='register'),
 
 ]

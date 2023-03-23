@@ -5,14 +5,11 @@ from main.models import Profiles, SimpleNote
 from main.tables import MyNote_Table
 from main.utils import DataMixin, archive_unnecessary_records
 from django.shortcuts import get_object_or_404, redirect, render
-from django.http import Http404, HttpResponse
+from django.http import Http404
 from django.utils.decorators import method_decorator
-from django.contrib.auth.forms import UserCreationForm
 
-from .forms import(LoginForm,  UserEditForm, 
-                   ProfileEditForm, SimpleNoteForm)
+from .forms import( SimpleNoteForm)
 
-from django.contrib.auth import login as auth_login, authenticate
 from django.contrib.auth.decorators import login_required
 from django.views.generic import CreateView, ListView
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -27,53 +24,6 @@ User = get_user_model()
 @login_required
 def control_panel(request):
     return render(request,'main/control_panel.html', {'section': 'main page'})
-
-
-def user_login(request):
-    if request.method == 'POST':
-        form = LoginForm(request.POST)
-        if form.is_valid():
-            cd = form.cleaned_data
-            user = authenticate(request,
-                                username=cd['username'],
-                                password=cd['password'])
-        if user is not None:
-            if user.is_active:
-                auth_login(request, user)
-                return HttpResponse('Authenticated successfully')
-            else:
-                return HttpResponse('Disabled account')
-        else:
-            return HttpResponse('Invalid login')
-    else:
-        form = LoginForm()
-    return render(request, 'main/login.html', {'form': form})
-
-
-def register_view(request):
-    if request.method == 'POST':
-        form = UserCreationForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('login')
-    else:
-        form = UserCreationForm()
-    return render(request, 'registration/register.html', {'form': form})
-    
-
-@login_required
-def edit_profile_view(request):
-    if request.method == 'POST':
-        user_form = UserEditForm(instance=request.user, data=request.POST)
-        profile_form = ProfileEditForm(instance=request.user.profile, data=request.POST, files=request.FILES)
-
-        if user_form.is_valid() and profile_form.is_valid():
-            user_form.save()
-            profile_form.save()        
-    else:
-        user_form = UserEditForm(instance=request.user)
-        profile_form = ProfileEditForm(instance=request.user.profile)
-    return render(request, 'main/editprofile.html', {'user_form': user_form, 'profile_form': profile_form})
 
 
 @login_required
