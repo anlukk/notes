@@ -21,7 +21,6 @@
         window.history.back();
     }
     </script>
-
     <div class="search-container">
       <form action="{% url 'search_results' %}" method="get">
         <input type="text" placeholder="Search my note" name="q">
@@ -30,49 +29,32 @@
     </div>
   </div>
   {% block content %}
-      <div class="sidenav">
+      <!--div class="sidenav">
         <a class="LeftPanelButton" href="{% url 'simple_note' %}">Create New</a>
         <a class="LeftPanelButton" href="#tool">Basket</a>
         <a class="LeftPanelButton" href="">Archive</a>
         <a class="LeftPanelButton" href="#tool"></a>
         <a class="LeftPanelButton" href="#tool"></a>
-      </div>   
-      
-      {% for post in posts %}
+      </div-->   
+      <center><h2 class="text">My Notes</h2></center>
+      <a class="linkontable" href="{% url 'mynote_table' %}">All note</a>
       <div class="row">
+        {% for post in posts %}
         <div class="column">
             <div class="card">
         <div class="card-content">
-          
           <li class="post">
             <h2 class="post-title">{{ post.name }}</h2>
-    
             <p class="post-content">{{ post.text }}</p>
-            <p class="post-date">Posted on {{ post.time_create|date }}</p>
+            <p class="post-date">Save on {{ post.time_create|date }}</p>
           </li>
-        
-        <a class="buttonB" href="#">Читать дальше</a>
+        <a class="buttonB" href="#">Open</a>
             </div>
         </div>
         </div>
         {% empty %}
           <p>No notes yet.</p>
           {% endfor %}
-
-
-      <!--center><h1>My Notes</h1>
-      <ul class="post-list">
-        {% for post in posts %}
-          <li class="post">
-            <h2 class="post-title">{{ post.name }}</h2>
-    
-            <p class="post-content">{{ post.text }}</p>
-            <p class="post-date">Posted on {{ post.time_create|date }}</p>
-          </li>
-        {% empty %}
-          <p>No notes yet.</p>
-        {% endfor %}
-      </ul></center-->
       {% endblock %}
 </body>
 </html>

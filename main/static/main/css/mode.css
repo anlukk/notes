@@ -201,21 +201,21 @@ body {
 
 
 .buttonbatton {
-  -webkit-transition-duration: 0.05s; /* Safari */
+  -webkit-transition-duration: 0.05s; 
   transition-duration: 0.05s;
   border-radius: 4px;
   font-size: 25px;
   background-color: #ddd;
   float: right;
   padding: -1px;
-  margin-top:  8px;
+  margin-top:  9px;
   margin-right: 18px;
   border: none;
   cursor: pointer;
 }
 
 .buttonbatton:hover {
-  background-color: #1e2c42; /* Green */
+  background-color: #1e2c42; 
   color: rgb(0, 0, 0);
 }
 
@@ -229,23 +229,27 @@ body {
 }
 
 body {
-  
   line-height: 1.6;
-  font-size: 90%;
+  font-size: 95%;
 }
 
 .row {
-  display: flex; /* включение технологии flexbox */
-  flex-direction: row; /* колонки в ряду */
-  justify-content: center; /* колонки в центре контейнера */
-  flex-wrap: nowrap; /* держать колонки в ряду */
-  margin: 20px;
+
+  display:flex; /* включение технологии flexbox */
+  /* flex-direction:row;колонки в ряду */
+ /* justify-content:end;колонки в центре контейнера */
+ /* flex-wrap:wrap-reverse; держать колонки в ряду */
+  flex-wrap: wrap;
+  margin-left: -15px;
+  margin-right: -15px;
+
+  margin: 0px;
 }
 
 .column {
-  display: flex;  /* одинаковая высота колонок */ 
-  width: 33.33%; /* ширина одной колонки */
-  padding: 5px;
+  display: flex;  /* display: flex; одинаковая высота колонок */ 
+  /*width: 30%; /* ширина одной колонки */
+  padding: 4px;
 }
 
 .card {
@@ -278,9 +282,9 @@ a {
 }
 
 .card h2 {
-  padding-top: 10px;
-  color: #f76270;
-  font-size: 130%;
+  padding-top: 80px;
+  color: #1e2c42;
+  font-size: 160%;
   line-height: 1.2;
 }
 
@@ -301,107 +305,35 @@ a {
  }
  
  .buttonB:hover, .button:focus {
-    background: #f76270;
+    background: #1e2c42;
 }
 
 @media screen and (max-width: 640px) {
   .row {
-  flex-direction: column; /* в ряду останется одна колонка */ 
-    flex-wrap: wrap; /* разрешен перенос колонок */
+  flex-direction: column; 
+    flex-wrap: wrap; 
 }
   .column {
-    width: 100%; /* новая ширина колонки */
+    width: 100%; 
     margin-bottom: 20px;
   }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-/* 
-@import url(https://fonts.googleapis.com/css?family=Open+Sans);
-
-
-.search {
-  width: 150%;
-  position: fixed;
-  display: flex;
-}
-
-.searchTerm {
-  width: 70%;
-  border: 3px solid #1e2c42;
-  border-right: none;
-  padding: 5px;
-  height: 20px;
-  border-radius: 5px 0 0 5px;
-  outline: none;
-  color: #9DBFAF;
-}
-
-.searchTerm:focus{
-  color: #161616;
-}
-
-.searchButton {
-  width: 40px;
-  height: 36px;
-  border: 1px solid #1e2c42;
-  background: #1e2c42;
-  text-align: center;
-  color: #fff;
-  border-radius: 0 5px 5px 0;
-  cursor: pointer;
-  font-size: 20px;
-}
-
-
-.wrap {
-  width: 17%;
-  position: absolute;
-  top: 50%;
-  left: 150%;
-  transform: translate(-50%, -50%);
-}
-
-
-
-
-ul {
-  list-style-type: none;
-  margin: 0%;
-  padding: 0;
-  overflow: hidden;
-  background-color: #1e2c42;
-}
-
-li {
-  float: right;
-}
-
-li a {
-  display: block;
+.linkontable{
+  display: right;
+  background: #a7c1cf;
+  padding: 10px 15px;
   color: #ffffff;
-  text-align: right;
-  padding: 15px 30px;
   text-decoration: none;
+  font-weight: 700;
+  text-align: center;
 }
 
-li a:hover:not(.active) {
-  background-color: #000000;
-}
 
-.active {
-  background-color: #999999;
-}
+
+
+
+
+
 
 

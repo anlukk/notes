@@ -5,7 +5,12 @@
     <link rel="stylesheet" href="{% static 'main/css/mode.css' %}" type="text/css"/>
 {% endblock %}
 {% block content %}
-    <h1>Settings</h1>
+<h1>User Profile</h1>
+  <p>Username: {{ user.username }}</p>
+  <p>First Name: {{ user.first_name }}</p>
+  <p>Last Name: {{ user.last_name }}</p>
+  <p>Email: {{ user.email }}</p>
+    <!--h1>Settings</h1>
     <p>You can edit your account using the following form:</p>
 <form  method="post" enctype="multipart/form-data">
     {{ form.as_p }}
@@ -13,6 +18,6 @@
 {{ user_form.as_p }}
 {{ profile_form.as_p }}
 {% csrf_token %}
-<p><input type="submit" value="Save changes"></p>
+<p><input type="submit" value="Save changes"></p-->
 {% endblock %}
 

@@ -1,6 +1,7 @@
 from django.contrib.auth.models import User
 from django.contrib.auth import get_user_model
 from django import forms
+from django_ckeditor_5.widgets import CKEditor5Widget
 from .models import(
     Profiles, SimpleNote,
 )
@@ -21,7 +22,10 @@ class SimpleNoteForm(forms.ModelForm):
 
         widgets = {
             'name': forms.TextInput(attrs={'class': 'form_input'}),
-            'text': forms.Textarea(attrs={'cols':100, 'rows': 40}),
+            # 'text': forms.Textarea(attrs={'cols':100, 'rows': 40}),
+            "text": CKEditor5Widget(
+                  attrs={"class": "django_ckeditor_5"}, config_name="comment"
+              ),
             'file_note': forms.ClearableFileInput(attrs={'multiple': True})
         }
 
