@@ -2,6 +2,7 @@ from django.db import models
 from django.conf import settings
 from django.urls import reverse
 from django.contrib.auth import get_user_model
+from django_ckeditor_5.fields import CKEditor5Field
 
 User = get_user_model()
 
@@ -60,17 +61,21 @@ class Profiles(models.Model):
     
 
 class SimpleNote(models.Model):
-   """Simple Note model """
+   """Simple Note models """
+
+   user = models.ForeignKey(
+       User,
+       related_name="users",
+       on_delete=models.CASCADE,
+       verbose_name="user",
+       )
 
    name = models.CharField(
        max_length=50, 
        verbose_name='Note name',
    )
    
-   text = models.CharField(
-       max_length=10000, 
-       verbose_name='Note',
-       )
+   text=CKEditor5Field('Text', config_name='extends')
    
    file_note = models.FileField(
        verbose_name='Upload file',
@@ -100,11 +105,7 @@ class SimpleNote(models.Model):
    cat = models.ForeignKey(
        'Category', 
        on_delete=models.PROTECT, 
-       null=True,
        )
-
-   is_printing = models.BooleanField(default=True)
-
 
    def get_absolute_url(self):
        return reverse('simple_note', kwargs={'simple_note_slug': self.slug})
@@ -117,6 +118,7 @@ class SimpleNote(models.Model):
    class Meta:
        verbose_name = 'Simple Note'
        ordering = ['time_create', 'name']
+
 
 
 class Category(models.Model):   

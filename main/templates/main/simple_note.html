@@ -1,19 +1,17 @@
-{% extends 'main/mynote.html' %}
+{% extends 'main/note_list.html' %}
 {% block title %}Simple Note{% endblock %}
 {% block content %}
-
-<h1>{{title}}</h1>
-<form action="{% url 'simple_note' %}" method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-
-{% for f in form %}
-<p><label class="form-label" for="{{ f.id_for_label }}">{{f.label}}: </label>{{ f }}</p>
-<div class="form-error">{{ f.errors }}</div>
-{% endfor %}
-
-
-    <button class="button" type="submit" >Add</button>
-
-</form>
-
+<div class="container mt-5">
+    <form method="post" enctype="multipart/form-data" novalidate> 
+        {% csrf_token %} 
+        {{ form.media}}
+        {% for field in form %}
+        <div class="form-group">
+            <div><label for="{{ field.id_for_label }}" class="text-dark">{{ field.label }}: </label></div>
+            {{ field }}
+        </div>
+        {% endfor %}
+            <input type="submit" name="create_button" class="button" value="Create" />
+    </form>
+</div>
 {% endblock %}

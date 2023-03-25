@@ -14,7 +14,6 @@ class SimpleNoteAdmin(admin.ModelAdmin):
         'file_note',
         'time_create',
         'time_update',
-        'is_printing',
         'name', 
         'text', 
         'slug',

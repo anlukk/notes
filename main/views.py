@@ -81,8 +81,11 @@ def search(request):
 
 @login_required
 def note_list(request):
+
     posts = SimpleNote.objects.all().order_by('-time_update')
-    return render(request, 'main/mynote.html', {'posts': posts})
+
+    return render(request, 'main/note_list.html', {'posts': posts})
+
 
 
 @login_required
@@ -125,11 +128,26 @@ def choice_type(request):
     return render(request, 'main/choice_type.html')
 
 
-@method_decorator(login_required, name="dispatch")
-class Create_SimpleNote_View(LoginRequiredMixin, DataMixin, CreateView):
-    form_class = SimpleNoteForm
-    template_name = 'main/simple_note.html'
-    context_object_name = 'Simple Note'
+@login_required
+def create_simple_note(request):
+    if request.method == 'POST':
+        form = SimpleNoteForm(request.POST, request.FILES)
+        if form.is_valid():
+            simple_note = form.save(commit=False)
+            simple_note.user = request.user
+            simple_note.save()
+            from django.contrib import messages
+            messages.success(request, 'Note created successfully!')
+            return redirect('note_list', model_slug=simple_note.slug)
+    else:
+        form = SimpleNoteForm()
+    return render(request, 'main/simple_note.html', {'form': form})
+
+# @method_decorator(login_required, name="dispatch")
+# class Create_SimpleNote_View(LoginRequiredMixin, DataMixin, CreateView):
+#     form_class = SimpleNoteForm
+#     template_name = 'main/simple_note.html'
+#     context_object_name = 'Simple Note'
 
 
 @method_decorator(login_required, name="dispatch")

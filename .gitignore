@@ -7,10 +7,12 @@ idea
 *.egg
 
 dist
+
 db.sqlite3
 
 venv
 
+static/
 
 prod_settings.py
 local_settings.py

@@ -3,7 +3,7 @@ from django.urls import path
 from . import views 
 from django.contrib.auth import views as auth_views
 from main.views import (
-    Create_SimpleNote_View, MyNoteTable_View, 
+     MyNoteTable_View, 
     archive_view, edit_note
     )
 
@@ -15,7 +15,7 @@ urlpatterns = [
 
     path('FAQs', views.faqs, name='FAQs'),
 
-    path('simple_note', Create_SimpleNote_View.as_view(), name='simple_note'),
+    path('simple_note', views.create_simple_note, name='simple_note'),
 
     path('archive/<int:model_slug>/', archive_view, name='archive'),
 
@@ -23,7 +23,7 @@ urlpatterns = [
 
     path('mynote_table', MyNoteTable_View.as_view(), name='mynote_table' ),
 
-    path('mynote', views.note_list, name='mynote' ),
+    path('mynote/', views.note_list, name='note_list' ),
 
     path('mynote/search/', views.search, name='search_results'),
 

@@ -29,7 +29,6 @@ INSTALLED_APPS = [
     'api',
     'django_tables2',
     'django_ckeditor_5',
-
 ]
 
 MIDDLEWARE = [
@@ -117,7 +116,9 @@ STATIC_URL = 'static/'
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
-STATICFILES_DIRS = []
+STATICFILES_DIRS = [
+    BASE_DIR / 'main/static'
+]
 
 # STATICFILES_DIRS = (
  
