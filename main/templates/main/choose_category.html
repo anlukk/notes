@@ -1,0 +1,21 @@
+{% extends 'main/note_list.html' %}
+{% block title %}Choice Type Note{% endblock %}
+{% block content %}
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="hidden" name="next" value="{{ next }}" />
+    <input type="submit" value="Choose">
+   
+       
+  </form>
+  
+  {% if categories %}
+    <h2>Categories</h2>
+    <ul>
+    {% for category in categories %}
+      <li>{{ category.name }}</li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endblock %}

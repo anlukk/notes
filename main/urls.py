@@ -1,7 +1,5 @@
 from . import views
-from django.urls import path
-from . import views 
-from django.contrib.auth import views as auth_views
+from django.urls import path 
 from main.views import (
      MyNoteTable_View, 
     archive_view, edit_note
@@ -27,5 +25,6 @@ urlpatterns = [
 
     path('mynote/search/', views.search, name='search_results'),
 
+    path('choose_category/', views.choose_category, name='choose_category')
 
 ]

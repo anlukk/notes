@@ -20,5 +20,5 @@ class CategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = Category
         exclude = ('name', 'slug')
-        depth = 2
-        field = "all"
+        
+

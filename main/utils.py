@@ -23,11 +23,7 @@ def archive_unnecessary_records(model):
     :param model: The model class to archive records from.
     """
     archive_criteria = Q(archived=False) & Q(date__lt=datetime.date.today() - datetime.timedelta(days=30))
-    
     records_to_archive = model.objects.filter(archive_criteria)
-    
     records_to_archive.update(archived=True)
-    
     queryset = model.objects.exclude(archived=True)
-    
     return queryset

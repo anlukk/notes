@@ -1,10 +1,9 @@
-from django.contrib.auth.models import User
 from django.contrib.auth import get_user_model
 from django import forms
 from django_ckeditor_5.widgets import CKEditor5Widget
-from .models import(
-    Profiles, SimpleNote,
-)
+from .models import SimpleNote
+from .models import Category
+
 
 User = get_user_model()
 
@@ -30,3 +29,6 @@ class SimpleNoteForm(forms.ModelForm):
         #     'file_note': forms.ClearableFileInput(attrs={'multiple': True})
         # }
 
+class CategoryForm(forms.Form):
+
+    category = forms.ModelChoiceField(queryset=Category.objects.all(), widget=forms.RadioSelect)

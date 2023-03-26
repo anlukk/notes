@@ -16,6 +16,6 @@ def upload_note(request):
         
     else:
         form = FileUploadForm()
-    return render(request, 'upload.html', {'form': form})
+    return render(request)
  
 

@@ -45,7 +45,7 @@ def register_view(request):
             return redirect('login')
     else:
         form = UserCreationForm()
-    return render(request, 'registration/register.html', {'form': form})
+    return render(request, 'registration/registration_form.html', {'form': form})
 
 
 @method_decorator(login_required, name="dispatch")
@@ -58,7 +58,7 @@ class UserProfileView(View):
         context = {'user': user,
                    'username': username,
                    }
-        return render(request, self.template_name, context)
+        return render(request, self.template_name, context=context)
 
 # @login_required
 # def edit_profile_view(request):
