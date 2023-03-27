@@ -1,0 +1,11 @@
+{% extends 'main/note_list.html' %}
+{% block title %}Note View{% endblock %}
+    {% block content %}
+    <h1>{{note.name}}</h1>
+
+    {% if post.photo %}
+    <p><img class="img-article-left" src="{{post.photo.url}}"></p>
+    {% endif %}
+    
+    {{post.content|linebreaks}}
+{% endblock %}

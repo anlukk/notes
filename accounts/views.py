@@ -55,9 +55,10 @@ class UserProfileView(View):
 
     def get(self, request, username):
         user = get_object_or_404(User, username=username)
-        context = {'user': user,
-                   'username': username,
-                   }
+        context = {
+            'user': user,
+            'username': username,
+            }
         return render(request, self.template_name, context=context)
 
 # @login_required

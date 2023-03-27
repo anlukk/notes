@@ -1,5 +1,9 @@
 {% extends "main/index.html"%}
 {% block title %}Log-in{% endblock %}
+{% block css %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'main/css/mode.css' %}">
+{% endblock %}
 {% block content %}
   <center><span class="login100-form-title p-b-70">Welcome</span></center>
   <span class="login100-form-avatar">

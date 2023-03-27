@@ -1,7 +1,7 @@
 {% extends 'main/note_list.html' %}
 {% block title %}Simple Note{% endblock %}
 {% block content %}
-
+{% csrf_token %} 
 <h1>Archive for {{ model_name }}</h1>
 <ul>
 {% for record in records %}
@@ -10,5 +10,4 @@
     <li>No records to display.</li>
 {% endfor %}
 </ul>
-
 {% endblock %}

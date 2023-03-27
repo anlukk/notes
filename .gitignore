@@ -12,6 +12,8 @@ db.sqlite3
 
 venv
 
+/media
+
 static/
 
 prod_settings.py

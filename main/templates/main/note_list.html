@@ -21,6 +21,7 @@
         window.history.back();
     }
     </script>
+     {% csrf_token %} 
     <div class="search-container">
       <form action="{% url 'search_results' %}" method="get">
         <input type="text" placeholder="Search my note" name="q">
@@ -28,16 +29,8 @@
       </form>
     </div>
   </div>
-  {% block content %}
-      <!--div class="sidenav">
-        <a class="LeftPanelButton" href="{% url 'simple_note' %}">Create New</a>
-        <a class="LeftPanelButton" href="#tool">Basket</a>
-        <a class="LeftPanelButton" href="">Archive</a>
-        <a class="LeftPanelButton" href="#tool"></a>
-        <a class="LeftPanelButton" href="#tool"></a>
-      </div-->   
+  {% block content %} 
       <center><h2 class="text">My Notes</h2></center>
-      <a class="linkontable" href="{% url 'mynote_table' %}">All note</a>
       <div class="row">
         {% for post in posts %}
         <div class="column">
@@ -48,13 +41,32 @@
             <p class="post-content">{{ post.text }}</p>
             <p class="post-date">Save on {{ post.time_create|date }}</p>
           </li>
-        <a class="buttonB" href="#">Open</a>
+        <a class="buttonB" href="{% url 'view_note' %}">Open</a>
             </div>
         </div>
         </div>
         {% empty %}
           <p>No notes yet.</p>
           {% endfor %}
+          <!--td valign="top" class="left-chapters">
+            <ul id="leftchapters">
+          {% if cat_selected == 0 %}
+              <li class="selected">All categories</li>
+          {% else %}
+              <li><a href="#"</a>All categories</li>
+          {% endif %}
+          
+          {% for c in cats %}
+          {% if c.women__count > 0 %}
+            {% if c.pk == cat_selected %}
+              <li class="selected">{{c.name}}</li>
+            {% else %}
+              <li><a href="{{ c.get_absolute_url }}">{{c.name}}</a></li>
+            {% endif %}
+          {% endif %}
+          {% endfor %}
+            </ul>
+          </td-->
       {% endblock %}
 </body>
 </html>

@@ -1,10 +1,8 @@
 from django.db import models
 from django.conf import settings
 from django.urls import reverse
-from django.contrib.auth import get_user_model
+from django.contrib.auth.models import User
 from django_ckeditor_5.fields import CKEditor5Field
-
-User = get_user_model()
 
 
 class Task(models.Model):
@@ -65,9 +63,7 @@ class SimpleNote(models.Model):
 
    user = models.ForeignKey(
        User,
-       related_name="users",
        on_delete=models.CASCADE,
-       verbose_name="user",
        )
 
    name = models.CharField(
@@ -117,7 +113,7 @@ class SimpleNote(models.Model):
 
    class Meta:
        verbose_name = 'Simple Note'
-       ordering = ['time_create', 'name']
+       ordering = ['id']
 
 
 

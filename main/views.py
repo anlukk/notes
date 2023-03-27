@@ -1,5 +1,6 @@
 from os import path
 from urllib.request import urlopen
+from django.views import View
 from django_tables2 import SingleTableMixin
 from main.models import Profiles, SimpleNote, Category
 from main.tables import MyNote_Table
@@ -8,7 +9,7 @@ from django.shortcuts import get_object_or_404, redirect, render
 from django.http import Http404
 from django.utils.decorators import method_decorator
 from django.views.decorators.http import require_http_methods
-from .forms import( CategoryForm, SimpleNoteForm)
+from .forms import CategoryForm, SimpleNoteForm
 from django.conf import settings
 from django.core.paginator import Paginator
 from django.contrib.auth.decorators import login_required
@@ -18,6 +19,7 @@ from django.core.files import File
 from django.core.files.temp import NamedTemporaryFile
 from django.apps import apps
 from django.contrib.auth import get_user_model
+from django.contrib import messages
 
 
 PER_PAGE = getattr(settings, "PAGINATOR_PER_PAGE", None)
@@ -28,13 +30,40 @@ User = get_user_model()
 def control_panel(request):
     return render(request,'main/control_panel.html', {'section': 'main page'})
 
+
 @require_http_methods(["GET"])
 def index(request):
     return render(request, 'main/index.html', {'title' : 'Main page of site'})
 
 
+@login_required
+def note_list(request):
+
+    owner = SimpleNote.objects.filter(user=request.user)
+    return render(request, 'main/note_list.html', {'owner': owner})
+
+
 def faqs(request):
-    return render(request, 'main/FAQs.html')
+
+    contact_list = SimpleNote.objects.all()
+    paginator = Paginator(contact_list, 3)
+
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    return render(request, 'main/FAQs.html', {'page_obj': page_obj, 'title': 'FAQs'})
+
+
+@login_required
+@require_http_methods(["GET", "POST"])
+def search(request):
+
+    query = request.GET.get('q')
+    results = SimpleNote.objects.filter(
+        name__icontains=query
+        ) | SimpleNote.objects.filter(
+        text__icontains=query
+        )
+    return render(request, 'main/search_results.html', {'results': results, 'query': query})
 
 
 @login_required
@@ -60,22 +89,6 @@ def image_upload(request):
             return redirect('/')
         return redirect('any_url')
     return render(request, 'main/editprofile.html', context=context)  
-
-
-@login_required
-@require_http_methods(["GET"])
-def search(request):
-
-    query = request.GET.get('q')
-    results = SimpleNote.objects.filter(name__icontains=query) | SimpleNote.objects.filter(text__icontains=query)
-    return render(request, 'main/search_results.html', {'results': results, 'query': query})
-
-
-@login_required
-def note_list(request):
-
-    posts = SimpleNote.objects.all().order_by('-time_update')
-    return render(request, 'main/note_list.html', {'posts': posts})
 
 
 @login_required
@@ -129,20 +142,30 @@ def choose_category(request):
             
 
 @login_required
+@require_http_methods(["GET", "POST"])
 def create_simple_note(request):
 
+    owner = SimpleNote.objects.filter(user=request.user)
     if request.method == 'POST':
         form = SimpleNoteForm(request.POST, request.FILES)
         if form.is_valid():
             simple_note = form.save(commit=False)
-            simple_note.user = request.user
+            simple_note.user_id = request.user.id
             simple_note.save()
-            from django.contrib import messages
-            messages.success(request, 'Note created successfully!')
-            return redirect('note_list', model_slug=simple_note.slug)
+            form.save()
+            return redirect('note_list')
     else:
         form = SimpleNoteForm()
-    return render(request, 'main/simple_note.html', {'form': form})
+    # context = {
+    #     'simple_note': simple_note,
+    #     'name': simple_note.name,
+    #     'cat_selected': simple_note.cat_id
+    # }
+    return render(
+        request, 
+        'main/simple_note.html', 
+        {'form': form, 'owner': owner}
+        )
 
 
 @method_decorator(login_required, name="dispatch")
@@ -155,23 +178,46 @@ class MyNoteTable_View(LoginRequiredMixin, DataMixin, SingleTableMixin, ListView
     def get_context_data(self, **kwargs):
 
         context = super().get_context_data(**kwargs)
-        notes = SimpleNote.objects.all()  # Your list of posts here
+        notes = SimpleNote.objects.all()  
         context['notes'] = notes
         return context
     
-# class MyNote_List_View(LoginRequiredMixin, TemplateView):
-#     template_name = 'main/post_list.html'
-#     raise_exception = True
-#     success_url = 'start'
-#     login_url = reverse_lazy('login')
-#     context_object_name = 'My Note'
 
-#     def get_context_data(self, **kwargs):
-#         context = super().get_context_data(**kwargs)
-#         notes = SimpleNote.objects.all()  # Your list of posts here
-#         context['notes'] = notes
-#         return context
+@method_decorator(login_required, name="dispatch")
+class NoteView(View):
+
+    def get(self, request, simple_note_slug):
+
+        owner = SimpleNote.objects.filter(user=request.user)
+        note = get_object_or_404(SimpleNote, slug=simple_note_slug)
+        context = {
+            'note': note,
+            'name': note.name,
+            'cat_selected': note.cat_id,
+        }
+        return render(request, 'main/view_note.html', context=context)
+
+
+@method_decorator(login_required, name="dispatch")
+class NoteCategory(View):
+    model = SimpleNote
+    allow_empty = False
+
+    def get(self, request):
+        
+        return render(request, 'main/note_list.html')
     
+    def get_queryset(self):
+        return SimpleNote.objects.filter(cat__slug=self.kwargs['cat_slug'], is_published=True)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        c_def = self.get_user_context(
+            name='Category - ' + str(context['notes'][0].cat),
+            cat_selected=context['notes'][0].cat_id)
+        return dict(list(context.items()) + list(c_def.items()))
+
+
 
 
 

@@ -5,6 +5,7 @@
     <link rel="stylesheet" href="{% static 'main/css/mode.css' %}" type="text/css"/>
 {% endblock %}
 {% block content %}
+{% csrf_token %} 
 <h1>user profile settings</h1>
   <p>Username: {{ user.username }}</p>
   <p>First Name: {{ user.first_name }}</p>
