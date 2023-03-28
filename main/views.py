@@ -147,20 +147,23 @@ def create_simple_note(request):
 
     owner = SimpleNote.objects.filter(user=request.user)
     if request.method == 'POST':
-        form = SimpleNoteForm(request.POST, request.FILES)
+        form = SimpleNoteForm(request.POST,
+                               request.FILES)
         if form.is_valid():
             simple_note = form.save(commit=False)
             simple_note.user_id = request.user.id
-            simple_note.save()
-            form.save()
-            return redirect('note_list')
+            if not SimpleNote.objects.filter(
+                slug=simple_note.slug).exists():
+                simple_note.save()
+                form.save()
+                return redirect('note_list')
+            else:
+                form.add_error('slug', 'This slug already exists.')
+            # simple_note.save()
+            # form.save()
+            # return redirect('note_list')
     else:
         form = SimpleNoteForm()
-    # context = {
-    #     'simple_note': simple_note,
-    #     'name': simple_note.name,
-    #     'cat_selected': simple_note.cat_id
-    # }
     return render(
         request, 
         'main/simple_note.html', 
@@ -193,29 +196,10 @@ class NoteView(View):
         context = {
             'note': note,
             'name': note.name,
-            'cat_selected': note.cat_id,
         }
         return render(request, 'main/view_note.html', context=context)
 
 
-@method_decorator(login_required, name="dispatch")
-class NoteCategory(View):
-    model = SimpleNote
-    allow_empty = False
-
-    def get(self, request):
-        
-        return render(request, 'main/note_list.html')
-    
-    def get_queryset(self):
-        return SimpleNote.objects.filter(cat__slug=self.kwargs['cat_slug'], is_published=True)
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        c_def = self.get_user_context(
-            name='Category - ' + str(context['notes'][0].cat),
-            cat_selected=context['notes'][0].cat_id)
-        return dict(list(context.items()) + list(c_def.items()))
 
 
 

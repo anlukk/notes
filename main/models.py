@@ -3,6 +3,7 @@ from django.conf import settings
 from django.urls import reverse
 from django.contrib.auth.models import User
 from django_ckeditor_5.fields import CKEditor5Field
+from django.utils.text import slugify
 
 
 class Task(models.Model):
@@ -27,7 +28,7 @@ class Profiles(models.Model):
         ('ACC', 'Narration_Accepted'),
     )
 
-    user = models.OneToOneField(
+    nickname = models.OneToOneField(
         settings.AUTH_USER_MODEL, 
         on_delete=models.CASCADE, 
         related_name='profile', 
@@ -96,26 +97,24 @@ class SimpleNote(models.Model):
        unique=True,
        db_index=True,
        verbose_name="URL",
+       null=True,
+       blank=True,
    )
-
-   cat = models.ForeignKey(
-       'Category', 
-       on_delete=models.PROTECT, 
-       )
 
    def get_absolute_url(self):
        return reverse('simple_note', kwargs={'simple_note_slug': self.slug})
           
-        
    def __str__(self):
-       return f'{self.name}, {self.text}'
+       return self.name
    
-
+   def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.name)
+        super(SimpleNote, self).save(*args, **kwargs)
+   
    class Meta:
        verbose_name = 'Simple Note'
-       ordering = ['id']
-
-
+       
 
 class Category(models.Model):   
 

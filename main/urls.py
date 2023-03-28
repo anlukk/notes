@@ -19,8 +19,6 @@ urlpatterns = [
 
     path('post/<slug:simple_note_slug>/', views.NoteView.as_view(), name='view_note'),
 
-    path('category/<slug:cat_slug>/', views.NoteCategory.as_view(), name='category'),
-
     path('mynote/edit_note', edit_note, name='edit_note'),
 
     path('mynote_table', MyNoteTable_View.as_view(), name='mynote_table' ),

@@ -16,7 +16,7 @@ class SimpleNoteForm(forms.ModelForm):
 
     class Meta:
         model = SimpleNote
-        fields = ['name', 'text', 'file_note', 'cat']
+        fields = ['name', 'text', 'file_note']
         text = forms.CharField(widget = CKEditor5Widget())
 
         widgets = {
