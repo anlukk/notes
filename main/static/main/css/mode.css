@@ -250,6 +250,7 @@ body {
   display: flex;  /* display: flex; одинаковая высота колонок */ 
   /*width: 30%; /* ширина одной колонки */
   padding: 4px;
+  border-radius: 12px;
 }
 
 .card {

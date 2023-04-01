@@ -1,4 +1,13 @@
-{% extends "main/index.html"%}
+{% extends "main/control_panel.html"%}
 {% block title %}FAQs{% endblock %}
 {% block content %}
+  <h1>FAQ</h1>
+  <ul>
+    {% for faq in faqs %}
+      <li>
+        <strong>{{ faq.question }}</strong>
+        <p>{{ faq.answer }}</p>
+      </li>
+    {% endfor %}
+  </ul>
 {% endblock %}

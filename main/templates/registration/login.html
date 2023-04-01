@@ -1,11 +1,31 @@
-{% extends "main/index.html"%}
-{% block title %}Log-in{% endblock %}
-{% block css %}
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'main/css/mode.css' %}">
-{% endblock %}
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Initial</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css">
+    <link rel="shortcut icon" href="{% static 'main/images/icons/icon3.png' %}" type="image/png"/>
+    <link rel="stylesheet" href="{% static 'main/css/style.css' %}" type="text/css"/>
+</head>
+<span class "d" style="position: absolute; left: -2001px; width: 2001px;">author's bug</span>
+<div class="container">
+  <div class="container">
+  <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+    <p class="col-md-4 mb-0 text-muted">© 2022 Solien </p>
+    <ul class="nav col-md-4 justify-content-end">
+      <li class="nav-item"><a href="{% url 'login' %}" class="nav-link px-2 text-muted">Log-in</a></li>
+      <li class="nav-item"><a href="{% url 'registration_form' %}" class="nav-link px-2 text-muted">Sign-up</a></li>
+    </ul>
+  </footer>
+</div>
+<div><a name="GENERAL-BOOKMARK"></a></div>
 {% block content %}
-  <center><span class="login100-form-title p-b-70">Welcome</span></center>
+<footer class="py-5">
+</footer>
+  <center><span class="txt2">Welcome</span></center>
   <span class="login100-form-avatar">
     <img src="" alt="">
     </span>
@@ -13,51 +33,15 @@
     <div class="login-form"></div>
       <form action="/accounts/login" method="post">
         <p>
-        <label for="id_username">Login:</label>
-        <input type="text" name="username" autofocus="" autocapitalize="none" autocomplete="username" maxlength="150" required="" id="id_username">
+        <input class="type-2" type="text" placeholder="Login" name="username" autofocus="" autocapitalize="none" autocomplete="username" maxlength="150" required="" id="id_username">
       </p>
       <p>
-        <label for="id_password">Password:</label>
-        <input type="password" name="password" autocomplete="current-password" required="" id="id_password">     
+        <input class="type-2" type="password" placeholder="Password" name="password" autocomplete="current-password" required="" id="id_password">     
       </p>
       {% csrf_token %}
       <input type="hidden" name="next" value="{{ next }}" />
-        <p><input class="button" type="submit" value="Join"></p>  
+        <p><input class="button1" type="submit" value="Join"></p>  
       </form></center>
-  <style>
-  .button {
-    font-size: 20px;
-    background-color: #faf9f7;
-    color: rgb(0, 0, 0);
-    border: 2px solid #000000;
-    border-radius: 4px;
-    width: 150px;
-    margin: 0 auto;
-    display: block;
-}
-.button:hover {
-    background-color: #ffffff; 
-    color: rgb(0, 0, 0);
-    text-decoration: underline;
-}
-    label{
-        cursor: pointer;
-        display: inline-block;
-        padding: 3px 6px;
-        text-align: right;
-        width: 100px;
-        vertical-align: top;
-    }
-    input{
-        font-size: inherit;
-    }
-a{
-color: rgb(136, 136, 136);
-}
-a:hover{
-text-decoration: none;
-}
-</style>
 </footer>
 </div>
 </main>
@@ -65,3 +49,5 @@ text-decoration: none;
 </body>
 </html> 
 {% endblock %}
+</body>
+</html>

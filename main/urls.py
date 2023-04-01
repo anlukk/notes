@@ -23,10 +23,10 @@ urlpatterns = [
 
     path('mynote_table', MyNoteTable_View.as_view(), name='mynote_table' ),
 
-    path('mynote/', views.note_list, name='note_list' ),
+    path('mynote/', views.NoteListView.as_view(), name='note_list' ),
 
     path('mynote/search/', views.search, name='search_results'),
 
-    path('choose_category/', views.choose_category, name='choose_category')
+    path('choose_category/', views.choose_category, name='choose_category'),
 
 ]

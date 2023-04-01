@@ -32,22 +32,31 @@
   {% block content %} 
       <center><h2 class="text">My Notes</h2></center>
       <div class="row">
-        {% for post in posts %}
+        {% for note in notes %}
         <div class="column">
             <div class="card">
-        <div class="card-content">
-          <li class="post">
-            <h2 class="post-title">{{ post.name }}</h2>
-            <p class="post-content">{{ post.text }}</p>
-            <p class="post-date">Save on {{ post.time_create|date }}</p>
-          </li>
-        <a class="buttonB" href="{% url 'view_note' %}">Open</a>
+              <div class="card-content">
+                <li class="post">
+                    <h2 class="post-title">{{ note.name }}</h2>
+                    <!--p class="post-content">{{ post.text }}</p-->
+                    <p class="post-date">Save on {{ note.time_update }}</p>
+                  </li>
+                  <a class="buttonB" href="{% url 'view_note' slug=note.slug %}">Open</a>
             </div>
+          </div>
         </div>
-        </div>
-        {% empty %}
-          <p>No notes yet.</p>
-          {% endfor %}
-      {% endblock %}
+  {% empty %}
+      <p>No notes yet.</p>
+        {% endfor %}
+  {% endblock %}
+  <div class="pagination">
+  {% if page_obj.has_previous %}
+      <a href="?page={{ page_obj.previous_page_number }}">Предыдущая</a>
+      {% endif %}
+      <span class="current-page">{{ page_obj.number }}</span>
+      {% if page_obj.has_next %}
+      <a href="?page={{ page_obj.next_page_number }}">Следующая</a>
+      {% endif %}
+    </div>
 </body>
 </html>

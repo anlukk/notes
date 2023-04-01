@@ -1,11 +1,3 @@
-.container{
-    width: 450px;
-    height: 500px;
-    background-color: #fff;
-    margin: 250px auto 0 auto;
-    text-align: center;
-}
-
 .button {
     font-size: 35px;
     background-color: #faf9f7;
@@ -22,8 +14,150 @@
     text-decoration: underline;
 }
 
+.button1 {
+    font-size: 20px;
+    background-color: #faf9f7;
+    color: rgb(0, 0, 0);
+    border: 0;
+    border-radius: 4px;
+    width: 25%;
+    height: 40px;
+    margin: 0 auto;
+    display: block;
+    margin-top:55px;
+    box-shadow: 0 0 4px rgba(0,0,0,0.3);
+}
+.button1:hover {
+    background-color: #ffffff; 
+    color: rgb(0, 0, 0);
+    text-decoration: underline;
+    box-shadow: 0 0 4px rgba(0,0,0,0.3);
+}
+
+label{
+    cursor: pointer;
+    display: inline-block;
+    padding: 3px 6px;
+    text-align: right;
+    width: -5px;
+    vertical-align: top;
+}
+input{
+    font-size: inherit;
+}
+a{
+color: rgb(136, 136, 136);
+}
+a:hover{
+text-decoration: none;
+}
+
 body {
     font-family: "Lato", sans-serif;
     background-color: #faf9f7
   }
-  
+
+
+  * {
+    box-sizing: border-box;
+  }
+
+
+.type-2 {
+    background-color: #fafafa;
+    border:0;
+    box-shadow:0 0 4px rgba(0,0,0,0.3);
+    transition: .3s box-shadow;
+    display:block;
+    width:25%;
+    margin:-1px 0;
+    padding:10px;
+    border-radius:6px;
+  }
+.type-2:hover {
+    box-shadow:0 0 4px rgba(0,0,0,0.5);
+  }
+
+.txt1 {
+    font-family: Montserrat-SemiBold;
+    font-size: 16px;
+    color: #555;
+    line-height: 1.5;
+}
+
+.txt2 {
+    font-family: Montserrat-SemiBold;
+    font-size: 30px;
+    color: #555;
+    line-height: 1.5;
+}
+
+.p-b-9 {
+    padding-bottom: 0px;
+}
+.p-t-31 {
+    padding-top: 0px;
+}
+
+.label-input100 {
+    font-family: Poppins-Regular;
+    font-size: 15px;
+    color: gray;
+    line-height: 1.2;
+    text-align: right;
+    position: absolute;
+    top: 14px;
+    left: -105px;
+    width: 80px;
+}
+
+
+
+
+
+
+
+
+
+
+
+* {box-sizing: border-box}
+
+/* Add padding to containers */
+.container {
+  padding: 16px;
+}
+
+
+/* Overwrite default styles of hr */
+hr {
+  border: 1px solid #f1f1f1;
+  margin-bottom: 25px;
+}
+
+/* Set a style for the submit/register button */
+.registerbtn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 16px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.9;
+}
+
+.registerbtn:hover {
+  opacity:1;
+}
+
+/* Add a blue text color to links */
+a {
+  color: dodgerblue;
+}
+
+/* Set a grey background color and center the text of the "sign in" section */
+.signin {
+  background-color: #f1f1f1;
+  text-align: center;
+}

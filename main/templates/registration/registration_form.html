@@ -1,4 +1,4 @@
-{% extends "registration/registration.html" %}
+{% extends "registration/login.html" %}
 {% load static %}
 {% block css %}
     {% load static %}
@@ -7,29 +7,29 @@
 {% block content %}
 <center> <main class="main container">
     <div class="main__header">
-        <h1 class="main__title">Registration</h1>
+        <h1 class="txt2">Registration</h1>
     </div>
     <div class="form-container">
 		<form class="form" method="post" >
 			{% csrf_token %}
 				{% for field in form %}
-					<div class="form__group">
-						<label for="id_{{ field.name }}" class="form__label">
-							{{ field.label_tag }}
-						</label>
 						<div class="form__field-group">
-						<input type="{{ field.field.widget.input_type }}" name="{{ field.name }}" id="id_{{ field.name }}" class="form__input">
-						<span class="form__error">
+							<div class="p-t-31 p-b-9">
+								<label for="id_{{ field.name }}" class="txt1">
+									{{ field.label_tag }}
+								</label>
+						<input type="{{ field.field.widget.input_type }}" name="{{ field.name }}" id="id_{{ field.name }}" class="type-2">
+						<!--span class="form__error">
 							{% for error in field.errors %}
 								<div class="required error" role="alert">
 									{{ error|escape }}
 								</div>
 							{% endfor %}
-						</span>
+						</span-->
 						</div>
 					</div>
 				{% endfor %}
-				<button type="submit" class="buttonbutton">Create account</button>
+				<button type="submit" class="button1">Create account</button>
 		</form>
     </div>
   </main>

@@ -36,21 +36,25 @@ def index(request):
     return render(request, 'main/index.html', {'title' : 'Main page of site'})
 
 
-@login_required
-def note_list(request):
+# @login_required
+# def note_list(request):
 
-    owner = SimpleNote.objects.filter(user=request.user)
-    return render(request, 'main/note_list.html', {'owner': owner})
+#     owner = SimpleNote.objects.filter(user=request.user)
+#     return render(request, 'main/note_list.html', {'owner': owner})
 
 
 def faqs(request):
-
+    faqs = [
+        {'question': 'How to create a new note?', 'answer': 'Go to the note creation page and fill out the form.'},
+        {'question': 'How to delete a note?', 'answer': 'Go to the page with detailed information about the note and click the "Delete" button.'},
+        {'question': 'Can I edit notes?', 'answer': 'Yes, on the page with detailed information about the note there is an "Edit" button.'},
+    ]
     contact_list = SimpleNote.objects.all()
     paginator = Paginator(contact_list, 3)
 
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
-    return render(request, 'main/FAQs.html', {'page_obj': page_obj, 'title': 'FAQs'})
+    return render(request, 'main/FAQs.html', {'page_obj': page_obj, 'title': 'FAQs', 'faqs': faqs})
 
 
 @login_required
@@ -92,6 +96,7 @@ def image_upload(request):
 
 
 @login_required
+@require_http_methods(["GET", "POST"])
 def edit_note(request, pk):
 
     note = get_object_or_404(SimpleNote, pk=pk)
@@ -187,17 +192,45 @@ class MyNoteTable_View(LoginRequiredMixin, DataMixin, SingleTableMixin, ListView
     
 
 @method_decorator(login_required, name="dispatch")
+class NoteListView(View):
+
+    def get(self, request):
+
+        notes = SimpleNote.objects.filter(user=request.user)
+        paginator = Paginator(notes, 10)  # каждая страница будет содержать до 10 заметок
+        page_number = request.GET.get('page')
+        page_obj = paginator.get_page(page_number)
+        context = {
+            'notes': notes,
+            'page_obj': page_obj
+        }
+        return render(request, 'main/note_list.html', context=context)  #'notes': notes,
+    
+    def get_context_data(self):
+        ...
+
+
+@method_decorator(login_required, name="dispatch")
 class NoteView(View):
+    slug_url_kwarg = 'simple_note_slug'
+    context_object_name = 'simple_note'
 
     def get(self, request, simple_note_slug):
 
         owner = SimpleNote.objects.filter(user=request.user)
         note = get_object_or_404(SimpleNote, slug=simple_note_slug)
         context = {
+            'owner': owner,
             'note': note,
             'name': note.name,
         }
         return render(request, 'main/view_note.html', context=context)
+    
+    def get_context_data(self, *, object_list=None, **kwargs): 
+
+        context = super().get_context_data(**kwargs)
+        c_def = self.get_user_context(title=context['simple_note'])
+        return dict(list(context.items()) + list(c_def.items()))
 
 
 
