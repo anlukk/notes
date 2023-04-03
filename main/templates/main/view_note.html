@@ -1,5 +1,12 @@
 {% extends 'main/note_list.html' %}
 {% block title %}Note View{% endblock %}
 {% block content %}
+<h1>{{simple_note.name}}</h1>
 
+{% if simple_note.photo %}
+<p><img class="img-article-left" src="{{simple_note.photo.url}}"></p>
+{% endif %}
+
+{{simple_note.content|linebreaks}}
+<a href="{% url 'download_text_file' %}">Download note</a>
 {% endblock %}

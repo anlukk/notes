@@ -48,7 +48,10 @@ body {
 
 .topnav {
   overflow: hidden;
-  background-color: #1e2c42;
+  background-color: #1e2c42; 
+/* 1f262e */
+/* 181b1e */ 
+/* 1d232c */
 }
 
 .topnav a {
@@ -79,17 +82,18 @@ body {
   padding: 6px;
   margin-top: 8px;
   font-size: 17px;
-  border: none;
+  border: 1 rgb(0, 0, 0)
+  /* border: none; */
 }
 
 .topnav .search-container button {
   float: right;
   padding: 6px;
   margin-top: 8px;
-  margin-right: 16px;
-  background: #ddd;
+  margin-right: 30px;
+  background: #1e2c42;
   font-size: 17px;
-  border: none;
+  border: 1 black;
   cursor: pointer;
 }
 
@@ -119,18 +123,19 @@ body {
   -webkit-transition-duration: 0.4s; /* Safari */
   transition-duration: 0.4s;
   font-size: 20px;
-  background-color: #000000;
-  color: rgb(0, 0, 0);
-  border: 2px solid #000000;
-  border-radius: 4px;
-  width: 104px;
+  color: rgb(118, 118, 118);
+  border: 2px solid #767676;
+  background-image: url(main/static/main/images/free-icon-magnifier-2319177.png);
+  border-radius: 5px;
+  width: 56px;
   margin: 0 auto;
   display: block;
+  background-repeat : no-repeat;
 }
 .SerachButton:hover {
   background-color: #000000; 
   color: rgb(0, 0, 0);
-  text-decoration: underline;
+  text-decoration: none;
 }
 
 
@@ -152,9 +157,16 @@ body {
   text-decoration: underline;
 }
 
-.text{
+/* .text{
   font-size: xx-large;
   font-family: fantasy;
+} */
+
+.text {
+  font-family: Montserrat-SemiBold;
+  font-size: 30px;
+  color: #555;
+  line-height: 1.5;
 }
 
 
@@ -204,22 +216,20 @@ body {
   -webkit-transition-duration: 0.05s; 
   transition-duration: 0.05s;
   border-radius: 4px;
-  font-size: 26px;
-  background-color: #ddd;
+  font-size: 22px;
+  background-color: #1e2c42;
   float: right;
-  padding: -1px;
   margin-top:  9px;
   margin-right: 18px;
-  border: none;
+  border: 1px #ccc;
   cursor: pointer;
+  padding: 4px;
 }
 
 .buttonbatton:hover {
-  background-color: #1e2c42; 
+  background-color: #ccc; 
   color: rgb(0, 0, 0);
 }
-
-
 
 
 * {
@@ -347,7 +357,6 @@ a {
 
 
 
-
 .left-chapters {
 	margin: 0;
 	background: #eee;
@@ -391,4 +400,44 @@ a {
 	background: url('../images/share_yt.png') no-repeat 0 -30px
 }
 
+
+.inputSearch{
+  border-radius: 5px;
+  background: #1e2c42;
+}
+
+.button12 {
+  font-size: 35px;
+  background-color: #faf9f7;
+  color: rgb(0, 0, 0);
+  border: 0;
+  border-radius: 4px;
+  width: 250px;
+  margin: 0 auto;
+  display: block;
+  margin-top:55px;
+  box-shadow: 0 0 4px rgba(0,0,0,0.3);
+}
+.button12:hover {
+  background-color: #ffffff; 
+  color: rgb(0, 0, 0);
+  text-decoration: underline;
+  box-shadow: 0 0 4px rgba(0,0,0,0.3);
+  text-decoration: none;
+}
+
+.type-2 {
+  background-color: #fafafa;
+  border:0;
+  box-shadow:0 0 4px rgba(0,0,0,0.3);
+  transition: .3s box-shadow;
+  display:block;
+  width:25%;
+  margin: 37px 0;
+  padding:10px;
+  border-radius:6px;
+}
+.type-2:hover {
+  box-shadow:0 0 4px rgba(0,0,0,0.5);
+}
 

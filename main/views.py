@@ -1,4 +1,5 @@
 from os import path
+import os
 from urllib.request import urlopen
 from django.views import View
 from django_tables2 import SingleTableMixin
@@ -6,7 +7,7 @@ from main.models import Profiles, SimpleNote, Category
 from main.tables import MyNote_Table
 from main.utils import DataMixin, archive_unnecessary_records
 from django.shortcuts import get_object_or_404, redirect, render
-from django.http import Http404
+from django.http import Http404, HttpResponse
 from django.utils.decorators import method_decorator
 from django.views.decorators.http import require_http_methods
 from .forms import CategoryForm, SimpleNoteForm
@@ -20,6 +21,7 @@ from django.core.files.temp import NamedTemporaryFile
 from django.apps import apps
 from django.contrib.auth import get_user_model
 from django.contrib import messages
+from django.db.models import Q
 
 
 PER_PAGE = getattr(settings, "PAGINATOR_PER_PAGE", None)
@@ -54,7 +56,11 @@ def faqs(request):
 
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
-    return render(request, 'main/FAQs.html', {'page_obj': page_obj, 'title': 'FAQs', 'faqs': faqs})
+    return render(request, 'main/FAQs.html', {
+         'page_obj': page_obj, 
+         'title': 'FAQs', 
+         'faqs': faqs,
+         })
 
 
 @login_required
@@ -62,12 +68,28 @@ def faqs(request):
 def search(request):
 
     query = request.GET.get('q')
-    results = SimpleNote.objects.filter(
-        name__icontains=query
-        ) | SimpleNote.objects.filter(
-        text__icontains=query
+    results = None
+    if query:
+        results = SimpleNote.objects.filter(
+            Q(name__icontains=query) |
+            Q(text__icontains=query)
         )
-    return render(request, 'main/search_results.html', {'results': results, 'query': query})
+    context = {
+        'query': query,
+        'results': results
+    }
+    return render(request, 'main/search_results.html', context)
+
+    # query = request.GET.get('q')
+    # results = SimpleNote.objects.filter(
+    #     name__icontains=query
+    #     ) | SimpleNote.objects.filter(
+    #     text__icontains=query
+    #     )
+    # return render(request, 'main/search_results.html', {
+    #     'results': results, 
+    #     'query': query
+    #     })
 
 
 @login_required
@@ -108,14 +130,20 @@ def edit_note(request, pk):
             return redirect('note_detail', pk=note.pk)
     else:
         form = SimpleNoteForm(instance=note)
-    return render(request, 'main/edit_note.html', {'form': form, 'note': note})
+    return render(request, 'main/edit_note.html', {
+        'form': form, 
+        'note': note
+        })
 
 
 @login_required
 def archive_view(request, model_slug):
 
     try:
-        model = apps.get_model(app_label='main', model_name=model_slug)
+        model = apps.get_model(
+            app_label='main', 
+            model_name=model_slug
+            )
     except LookupError:
         raise Http404("Model does not exist")
     
@@ -127,7 +155,27 @@ def archive_view(request, model_slug):
         'cat_selected': note.cat_id,
     }
     queryset = archive_unnecessary_records(model)
-    return render(request, 'main/archive.html', {'records': queryset}, context=context)
+    return render(request, 'main/archive.html', {
+        'records': queryset,
+        }, context=context)
+
+
+@login_required
+def download_text_file(request, filename):
+
+    file_path = os.path.join(settings.BASE_DIR, 'note.txt')
+    if not os.path.exists(file_path):
+        return HttpResponse(
+            f"File {filename} not found", status=404
+            )
+    
+    with open(file_path, 'r') as f:
+        file_data = f.read()
+
+    response = HttpResponse(file_data, content_type='text/plain')
+    response['Content-Disposition'] = 'attachment; filename="note.txt"'
+
+    return response
 
 
 @login_required
@@ -143,7 +191,10 @@ def choose_category(request):
     else:
         form = CategoryForm()
 
-    return render(request, 'main/choose_category.html', {'form': form, 'cats': Category.objects.all()})
+    return render(request, 'main/choose_category.html', {
+        'form': form, 
+        'cats': Category.objects.all()
+        })
             
 
 @login_required
@@ -169,26 +220,23 @@ def create_simple_note(request):
             # return redirect('note_list')
     else:
         form = SimpleNoteForm()
-    return render(
-        request, 
-        'main/simple_note.html', 
-        {'form': form, 'owner': owner}
-        )
+    return render(request, 'main/simple_note.html', {
+        'form': form, 
+        'owner': owner,
+        })
 
 
 @method_decorator(login_required, name="dispatch")
-class MyNoteTable_View(LoginRequiredMixin, DataMixin, SingleTableMixin, ListView): 
-    notes = SimpleNote.objects.all().order_by('-time_update')
+class MyNoteTable_View(LoginRequiredMixin, SingleTableMixin, ListView): 
     table_class = MyNote_Table
     queryset = SimpleNote.objects.all()
     template_name = 'main/mynote_table.html'
-
-    def get_context_data(self, **kwargs):
-
-        context = super().get_context_data(**kwargs)
-        notes = SimpleNote.objects.all()  
-        context['notes'] = notes
-        return context
+    
+    # def get(self, request):
+         
+    #     table_class = MyNote_Table
+    #     queryset = SimpleNote.objects.filter(user=request.user)
+    #     return render(request, 'main/mynote_table.html')
     
 
 @method_decorator(login_required, name="dispatch")
@@ -197,9 +245,10 @@ class NoteListView(View):
     def get(self, request):
 
         notes = SimpleNote.objects.filter(user=request.user)
-        paginator = Paginator(notes, 10)  # каждая страница будет содержать до 10 заметок
+        paginator = Paginator(notes, 10)  
         page_number = request.GET.get('page')
         page_obj = paginator.get_page(page_number)
+
         context = {
             'notes': notes,
             'page_obj': page_obj
@@ -218,19 +267,23 @@ class NoteView(View):
     def get(self, request, simple_note_slug):
 
         owner = SimpleNote.objects.filter(user=request.user)
-        note = get_object_or_404(SimpleNote, slug=simple_note_slug)
+        notes = get_object_or_404(SimpleNote, 
+                                  slug=simple_note_slug
+                                  )
         context = {
             'owner': owner,
-            'note': note,
-            'name': note.name,
+            'notes': notes,
         }
         return render(request, 'main/view_note.html', context=context)
     
     def get_context_data(self, *, object_list=None, **kwargs): 
 
         context = super().get_context_data(**kwargs)
-        c_def = self.get_user_context(title=context['simple_note'])
-        return dict(list(context.items()) + list(c_def.items()))
+        c_def = self.get_user_context(
+            title=context['simple_note'])
+        
+        return dict(list(context.items())
+                    + list(c_def.items()))
 
 
 

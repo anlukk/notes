@@ -51,26 +51,12 @@ def register_view(request):
 @method_decorator(login_required, name="dispatch")
 class UserProfileView(View):
 
-    template_name = 'main/editprofile.html'
+    def get(self, request):
 
-    def get(self, request, username):
-        user = get_object_or_404(User, username=username)
+        # user = get_object_or_404(User)
+        user = User.objects.get(username=request.user.username)
         context = {
             'user': user,
-            'username': username,
+            # 'username': username,
             }
-        return render(request, self.template_name, context=context)
-
-# @login_required
-# def edit_profile_view(request):
-#     if request.method == 'POST':
-#         user_form = UserEditForm(instance=request.user, data=request.POST)
-#         profile_form = ProfileEditForm(instance=request.user.profile, data=request.POST, files=request.FILES)
-
-#         if user_form.is_valid() and profile_form.is_valid():
-#             user_form.save()
-#             profile_form.save()        
-#     else:
-#         user_form = UserEditForm(instance=request.user)
-#         profile_form = ProfileEditForm(instance=request.user.profile)
-#     return render(request, 'main/editprofile.html', {'user_form': user_form, 'profile_form': profile_form})
+        return render(request, 'main/editprofile.html', context=context)

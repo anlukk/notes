@@ -113,14 +113,6 @@ body {
 
 
 
-
-
-
-
-
-
-
-
 * {box-sizing: border-box}
 
 /* Add padding to containers */
@@ -161,3 +153,23 @@ a {
   background-color: #f1f1f1;
   text-align: center;
 }
+
+.button12 {
+  font-size: 35px;
+  background-color: #faf9f7;
+  color: rgb(0, 0, 0);
+  border: 0;
+  border-radius: 4px;
+  width: 250px;
+  margin: 0 auto;
+  display: block;
+  margin-top:55px;
+  box-shadow: 0 0 4px rgba(0,0,0,0.3);
+}
+.button12:hover {
+  background-color: #ffffff; 
+  color: rgb(0, 0, 0);
+  text-decoration: underline;
+  box-shadow: 0 0 4px rgba(0,0,0,0.3);
+}
+

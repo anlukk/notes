@@ -12,9 +12,10 @@
 <body>
   <div class="topnav">
     <a class="active" href="{% url 'control_panel' %}">Control Panel</a>
-    <a href="{% url 'editprofile' %}">Settings</a>
-    <a href="{% url 'login' %}">Re-Login</a>
-    
+    <a href="{% url 'simple_note' %}">Create Note</a>
+    <a href="{% url 'note_list' %}">My Notes</a>
+    <a href="#">Archive</a>
+    <a href="{% url 'FAQs' %}">FAQs</a>
     <button class="buttonbatton" onclick="goBack()">←</button>
     <script>
     function goBack() {
@@ -24,13 +25,13 @@
      {% csrf_token %} 
     <div class="search-container">
       <form action="{% url 'search_results' %}" method="get">
-        <input type="text" placeholder="Search my note" name="q">
+        <input type="text" class="inputSearch"placeholder="Search my note" name="q">
         <button type="submit" class="SerachButton">Find</button>
       </form>
     </div>
   </div>
   {% block content %} 
-      <center><h2 class="text">My Notes</h2></center>
+      <center><h2 class="text">My Notes</h2>
       <div class="row">
         {% for note in notes %}
         <div class="column">
@@ -40,15 +41,15 @@
                     <h2 class="post-title">{{ note.name }}</h2>
                     <!--p class="post-content">{{ post.text }}</p-->
                     <p class="post-date">Save on {{ note.time_update }}</p>
-                  </li>
-                  <a class="buttonB" href="{% url 'view_note' slug=note.slug %}">Open</a>
+                  </li>  {% for p in simple_note %}
+                  <a class="buttonB" href="{{ notes.get_absolute_url }}">Open</a>
+                  {% endfor %}
             </div>
           </div>
         </div>
   {% empty %}
       <p>No notes yet.</p>
         {% endfor %}
-  {% endblock %}
   <div class="pagination">
   {% if page_obj.has_previous %}
       <a href="?page={{ page_obj.previous_page_number }}">Предыдущая</a>
@@ -57,6 +58,6 @@
       {% if page_obj.has_next %}
       <a href="?page={{ page_obj.next_page_number }}">Следующая</a>
       {% endif %}
-    </div>
+    </div>{% endblock %}</center>
 </body>
 </html>

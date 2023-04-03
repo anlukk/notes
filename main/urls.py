@@ -5,11 +5,12 @@ from main.views import (
     archive_view, edit_note
     )
 
-
 urlpatterns = [
     path('', views.index, name='start'),
 
     path('control_panel', views.control_panel, name='control_panel'),
+
+    path('mynote/search_results/', views.search, name='search_results'), #mynote/search/
 
     path('FAQs', views.faqs, name='FAQs'),
 
@@ -17,15 +18,13 @@ urlpatterns = [
 
     path('archive/<int:model_slug>/', archive_view, name='archive'),
 
-    path('post/<slug:simple_note_slug>/', views.NoteView.as_view(), name='view_note'),
+    path('mynote/<slug:simple_note_slug>/', views.NoteView.as_view(), name='view_note'),
 
     path('mynote/edit_note', edit_note, name='edit_note'),
 
     path('mynote_table', MyNoteTable_View.as_view(), name='mynote_table' ),
 
     path('mynote/', views.NoteListView.as_view(), name='note_list' ),
-
-    path('mynote/search/', views.search, name='search_results'),
 
     path('choose_category/', views.choose_category, name='choose_category'),
 

@@ -1,7 +1,16 @@
 {% extends 'main/note_list.html' %}
 {% block title %}Simple Note{% endblock %}
 {% block content %}
-
+<!-- {% if query %}
+    <h2>Search Results for "{{ query }}"</h2>
+    <ul>
+    {% for result in results %}
+        <li>{{ result }}</li>
+    {% empty %}
+        <li>No results found.</li>
+    {% endfor %}
+    </ul>
+{% endif %} -->
 {% if query %}
     <center><h2>Search results for "{{ query }}"</h2>
     <ul>
@@ -13,5 +22,4 @@
         {% endfor %}
     </ul></center>
 {% endif %}
-
 {% endblock %}

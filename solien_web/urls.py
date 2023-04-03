@@ -3,6 +3,9 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 
+handler403 = "solien_web.views.permission_denied"  
+handler404 = "solien_web.views.page_not_found"  
+handler500 = "solien_web.views.server_error"  
 
 urlpatterns = [
     path('admin/', admin.site.urls),
