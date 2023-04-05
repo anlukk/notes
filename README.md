@@ -12,8 +12,6 @@ ___
 
 :black_square_button: Archive 
 
-:black_square_button: Notes basket
-
 :white_check_mark: Attaching files
 
 :white_check_mark: Note categories
