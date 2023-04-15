@@ -1,4 +1,5 @@
-# Backend app on dj
+# Solien 
+This is a Notes application written with django and API on django rest framework
 ___
-## Solien
-Solien is a service for managing your personal notes. Create a simple or complex note based on your needs.
+
+
