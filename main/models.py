@@ -141,3 +141,19 @@ class Category(models.Model):
         verbose_name = 'Category'
         verbose_name_plural = 'Categorys'
         ordering = ['id']
+
+
+# class Complex_Note(models.Model):
+
+#     user = models.ForeignKey(
+#        User,
+#        on_delete=models.CASCADE,
+#        )
+    
+
+
+
+#     def save(self, *args, **kwargs):
+#         if not self.slug:
+#             self.slug = slugify(self.name)
+#         super(SimpleNote, self).save(*args, **kwargs)

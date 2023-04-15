@@ -20,7 +20,6 @@ from django.core.files import File
 from django.core.files.temp import NamedTemporaryFile
 from django.apps import apps
 from django.contrib.auth import get_user_model
-from django.contrib import messages
 from django.db.models import Q
 
 
@@ -79,17 +78,6 @@ def search(request):
         'results': results
     }
     return render(request, 'main/search_results.html', context)
-
-    # query = request.GET.get('q')
-    # results = SimpleNote.objects.filter(
-    #     name__icontains=query
-    #     ) | SimpleNote.objects.filter(
-    #     text__icontains=query
-    #     )
-    # return render(request, 'main/search_results.html', {
-    #     'results': results, 
-    #     'query': query
-    #     })
 
 
 @login_required
@@ -245,10 +233,16 @@ class NoteListView(View):
     def get(self, request):
 
         notes = SimpleNote.objects.filter(user=request.user)
+
         paginator = Paginator(notes, 10)  
         page_number = request.GET.get('page')
         page_obj = paginator.get_page(page_number)
 
+        for note in notes:
+            try:
+                out_data = note.objects.get(user_id=User)
+            except note.MultipleObjectsReturned:
+                print('')
         context = {
             'notes': notes,
             'page_obj': page_obj

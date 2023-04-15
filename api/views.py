@@ -1,11 +1,10 @@
-from main.models import * 
+from main.models import SimpleNote, Category
 from .serializers import SimpleNoteSerializer, CategorySerializer
 from rest_framework.viewsets import GenericViewSet 
 from .permissions import IsOwnerOrReadOnly
 from rest_framework.mixins import ListModelMixin
 from django.contrib.auth import get_user_model
 from rest_framework.response import Response
-
 
 User = get_user_model()
     
