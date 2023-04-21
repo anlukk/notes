@@ -1,0 +1,28 @@
+version: '3.9'
+
+volumes:
+  static_volume:
+  media_volume:
+  .env:
+
+services:
+  db:
+    build:
+      context: .
+      dockerfile: ./dockerfiles/sqlite/Dockerfile
+    restart: always
+    container_name: sqlite
+    env_file:
+      - ./.env
+
+  web:
+    container_name: solien_web
+    restart: always
+    volumes:
+      - ./static_volume:/code/files/static/
+      - ./media_volume:/code/files/media/
+      - ./.env:/code/solien_web/settings/.env
+    depends_on:
+      - db
+    env_file:
+      - ./.env
