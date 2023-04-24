@@ -7,6 +7,11 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.views import View
 from django.utils.decorators import method_decorator
+from registration.backends.default.views import RegistrationView
+
+
+from .forms import RegistrationExtraForm
+from solien_web.settings import PAGINATOR_PER_PAGE
 
 from .forms import LoginForm
 
@@ -37,16 +42,20 @@ def user_login(request):
     return render(request, 'main/login.html', {'form': form})
 
 
-def register_view(request):
-    if request.method == 'POST':
-        form = UserCreationForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('login')
-    else:
-        form = UserCreationForm()
-    return render(request, 'registration/registration_form.html', {'form': form})
+# def register_view(request):
+#     if request.method == 'POST':
+#         form = UserCreationForm(request.POST)
+#         if form.is_valid():
+#             form.save()
+#             return redirect('login')
+#     else:
+#         form = UserCreationForm()
+#     return render(request, 'rgeistration/registration_form.html', {'form': form})
 
+class RegistrationExtraView(RegistrationView):
+
+    form_class = RegistrationExtraForm
+    template_name = 'registration/registration_form.html'
 
 @method_decorator(login_required, name="dispatch")
 class UserProfileView(View):
@@ -60,3 +69,5 @@ class UserProfileView(View):
             # 'username': username,
             }
         return render(request, 'main/editprofile.html', context=context)
+
+

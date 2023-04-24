@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% load static %}
+{% block css %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static "pages/form.css" %}">
+{% endblock %}
+{% block content %}
+    <main class="main container">
+        <div class="main__header">
+            <h1 class="main__title">Войти на сайт</h1>
+        </div>
+        <div class="form-container">
+            <form class="form" method="post">
+                {% csrf_token %}
+                {% if msg %}
+                    <div class="form__group">
+                        <div class="form__info-text">
+                            {{ msg }}
+                        </div>
+                    </div>
+                {% else %}
+                    <div class="form__group">
+                        <label for="{{ form.username.id_for_label }}" class="form__label">Имя пользователя</label>
+                        <div class="form__field-group">
+                            <input type="text" name="username" id="id_username" class="form__input">
+                            <span class="form__error">
+                                {% if form.username.errors %}
+                                    {{ form.error_messages.invalid_login }}
+                                {% endif %}
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form__group">
+                        <label for="{{ form.password.id_for_label }}" class="form__label">Пароль</label>
+                        <div class="form__field-group">
+                            <input type="password" name="password" id="id_password" class="form__input">
+                            <span class="form__error">{{ form.password.errors }}</span>
+                        </div>
+                    </div>
+                    <span class="form__error">
+                        {% for error in form.non_field_errors %}
+                            {{ error }}
+                        {% endfor %}
+                    </span>
+                    <div class="form__footer">
+                        <button class="button button_style_blue">Войти</button>
+                        <a class="form__forgot-link" href="{% url "auth_password_reset" %}">Забыли пароль?</a>
+                    </div>
+                {% endif %}
+            </form>
+        </div>
+    </main>
+
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends "registration/registration_base.html" %}
+{% block content %}
+    {% block css %}
+        {% load static %}
+        <link rel="stylesheet" href="{% static "pages/form.css" %}">
+    {% endblock %}
+    <main class="main container">
+        <div class="form-container">
+            <form class="form" method="post" >
+                {% csrf_token %}
+                <div class="form__info-text">
+                    <p>
+                        {% block extra %}
+                        {% endblock extra %}
+                    </p>
+                </div>
+            <form>
+        </div>
+    </main>
+{% endblock content %}

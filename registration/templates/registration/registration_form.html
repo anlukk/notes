@@ -1,0 +1,37 @@
+{% extends "registration/registration_base.html" %}
+{% load static %}
+{% block css %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static "pages/form.css" %}">
+{% endblock %}
+{% block content %}
+  <main class="main container">
+    <div class="main__header">
+        <h1 class="main__title">Регистрация</h1>
+    </div>
+    <div class="form-container">
+		<form class="form" method="post" >
+			{% csrf_token %}
+				{% for field in form %}
+					<div class="form__group">
+						<label for="id_{{ field.name }}" class="form__label">
+							{{ field.label_tag }}
+						</label>
+						<div class="form__field-group">
+						<input type="{{ field.field.widget.input_type }}" name="{{ field.name }}" id="id_{{ field.name }}" class="form__input">
+						<span class="form__error">
+							{% for error in field.errors %}
+								<div class="required error" role="alert">
+									{{ error|escape }}
+								</div>
+							{% endfor %}
+						</span>
+						</div>
+					</div>
+				{% endfor %}
+				<button type="submit" class="button button_style_blue">Создать аккаунт</button>
+		</form>
+    </div>
+  </main>
+
+{% endblock %}

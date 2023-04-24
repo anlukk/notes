@@ -238,11 +238,11 @@ class NoteListView(View):
         page_number = request.GET.get('page')
         page_obj = paginator.get_page(page_number)
 
-        for note in notes:
-            try:
-                out_data = note.objects.get(user_id=User)
-            except note.MultipleObjectsReturned:
-                print('')
+        # for note in notes:
+        #     try:
+        #         out_data = note.objects.get(user_id=User)
+        #     except note.MultipleObjectsReturned:
+        #         print('')
         context = {
             'notes': notes,
             'page_obj': page_obj

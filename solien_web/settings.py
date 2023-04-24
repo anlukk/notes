@@ -17,6 +17,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'django.contrib.auth',
+    'registration',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
@@ -43,10 +44,12 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'solien_web.urls'
 
+TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [TEMPLATES_DIR, "registration/templates"],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -87,6 +90,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.IsAuthenticated',
@@ -102,6 +106,7 @@ REST_FRAMEWORK = {
 }
 
 
+
 LANGUAGE_CODE = 'ru'
 
 TIME_ZONE = 'UTC'
@@ -111,6 +116,10 @@ USE_I18N = True
 USE_TZ = True
 
 
+
+MEDIA_URL = '/media/'
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
 STATIC_URL = 'static/'
 
@@ -134,21 +143,33 @@ STATICFILES_DIRS = [
  
 # )
 
-
-
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_REDIRECT_URL = 'control_panel'
 
-LOGIN_URL = 'login'
+LOGOUT_REDIRECT_URL = 'logout'
 
-LOGOUT_URL = 'logout'
+LOGIN_URL = '/accounts/login/'
 
-MEDIA_URL = '/media/'
+# LOGIN_URL = 'login'
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+# LOGOUT_URL = 'logout'
 
 PAGINATOR_PER_PAGE = 6
+
+
+
+REGISTRATION_OPEN = True
+
+ACCOUNT_ACTIVATION_DAYS = 4
+
+REGISTRATION_USE_SITE_EMAIL = False
+
+REGISTRATION_EMAIL_HTML = False
+
+SITE_ID = 1
+
+
 
 customColorPalette = [
         {

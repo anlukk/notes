@@ -1,0 +1,25 @@
+<ul class="nav__items list">
+    {% if user.is_authenticated %}
+        {% comment %} <li class="nav__item">
+    		{% include "includes/iconUser.html" with user_id=request.user.id %}
+        </li> {% endcomment %}
+        <li class="nav__item">
+        <li class="nav__item {% if request.resolver_match.url_name == "change"  %}nav__item_active{% endif %}">
+            <a href="{% url "auth_password_change" %}" class="nav__link link">
+                Изменить пароль
+            </a>
+        </li>
+        <li class="nav__item"><a href="{% url "auth_logout" %}" class="nav__link link">Выход</a></li>
+    {% else %}
+        <li class="nav__item {% if request.resolver_match.url_name == "auth_login"  %}nav__item_active{% endif %}">
+            <a href="{% url "auth_login" %}" class="nav__link link">
+                Войти
+            </a>
+        </li>
+        <li class="nav__item">
+            <a href="{% url "registration_register" %}" class="button button_style_blue">
+                Создать аккаунт
+            </a>
+        </li>
+    {% endif %}
+</ul>
