@@ -147,13 +147,13 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_REDIRECT_URL = 'control_panel'
 
-LOGOUT_REDIRECT_URL = 'logout'
+# LOGOUT_REDIRECT_URL = 'logout'
 
 LOGIN_URL = '/accounts/login/'
 
 # LOGIN_URL = 'login'
 
-# LOGOUT_URL = 'logout'
+# LOGOUT_URL = 'accounts/logout'
 
 PAGINATOR_PER_PAGE = 6
 

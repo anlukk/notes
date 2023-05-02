@@ -19,13 +19,6 @@
 									{{ field.label_tag }}
 								</label>
 						<input type="{{ field.field.widget.input_type }}" name="{{ field.name }}" id="id_{{ field.name }}" class="type-2">
-						<!--span class="form__error">
-							{% for error in field.errors %}
-								<div class="required error" role="alert">
-									{{ error|escape }}
-								</div>
-							{% endfor %}
-						</span-->
 						</div>
 					</div>
 				{% endfor %}

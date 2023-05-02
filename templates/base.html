@@ -13,14 +13,18 @@
         <link rel="stylesheet" href="{% static 'main/css/style.css' %}" type="text/css"/>
 		{% endblock %}
 	</head>
+	<span class "d" style="position: absolute; left: -2001px; width: 2001px;">author's bug</span>
+<div class="container">
+  <div class="container">
+  <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+    <p class="col-md-4 mb-0 text-muted">© 2022 Solien </p>
+    <ul class="nav col-md-4 justify-content-end">
+      <li class="nav-item"><a href="{% url 'auth_login' %}" class="nav-link px-2 text-muted">Log-in</a></li>
+      <li class="nav-item"><a href="{% url 'registration_register' %}" class="nav-link px-2 text-muted">Sign-up</a></li>
+    </ul>
+  </footer>
+</div>
 	<body class="body">
-		<header class="header">
-			<nav class="nav">
-				<div class="nav__container container">
-					{% include "registration/includes/nav.html" %}
-				</div>
-			</nav>
-		</header>
 		{% block content %}
 		{% endblock content %}
 		{% block javascript %}{% endblock %}

@@ -17,9 +17,9 @@
   <span class="user">
   {% if request.user.is_authenticated %}
   Hello {{ request.user.first_name }},
-  <!-- <a href="'logout'">Logout</a> -->
+  <a href="{% url 'auth_logout' %}">Logout</a>
   {% else %}
-  <!-- <a href="'login'">Log-in</a> -->
+  <a href="{% url 'auth_login' %}">Log-in</a>
   {% endif %}
   {% csrf_token %}
   </span>
@@ -33,7 +33,7 @@
       <li class="nav-item"><a href="{% url 'control_panel' %}" class="nav-link px-2 text-muted">Control Panel</a></li>
       <li class="nav-item"><a href="{% url 'editprofile' %}" class="nav-link px-2 text-muted">Settings</a></li>
       <li class="nav-item"><a href="{% url 'FAQs' %}" class="nav-link px-2 text-muted">FAQs</a></li>
-      <!-- <li class="nav-item"><a href="login" class="nav-link px-2 text-muted">Re-login</a></li> -->
+      <li class="nav-item"><a href="{% url 'auth_login' %}" class="nav-link px-2 text-muted">Re-login</a></li>
     </ul>
   </footer>
 </div>

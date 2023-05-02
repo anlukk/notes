@@ -6,19 +6,19 @@
         <li class="nav__item">
         <li class="nav__item {% if request.resolver_match.url_name == "change"  %}nav__item_active{% endif %}">
             <a href="{% url "auth_password_change" %}" class="nav__link link">
-                Изменить пароль
+                Change password
             </a>
         </li>
-        <li class="nav__item"><a href="{% url "auth_logout" %}" class="nav__link link">Выход</a></li>
+        <li class="nav__item"><a href="{% url "auth_logout" %}" class="nav__link link">Logout</a></li>
     {% else %}
         <li class="nav__item {% if request.resolver_match.url_name == "auth_login"  %}nav__item_active{% endif %}">
             <a href="{% url "auth_login" %}" class="nav__link link">
-                Войти
+                Sign-in
             </a>
         </li>
         <li class="nav__item">
             <a href="{% url "registration_register" %}" class="button button_style_blue">
-                Создать аккаунт
+                Sign-up
             </a>
         </li>
     {% endif %}
