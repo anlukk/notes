@@ -27,10 +27,11 @@
     margin-top:55px;
     box-shadow: 0 0 4px rgba(0,0,0,0.3);
 }
+
 .button1:hover {
     background-color: #ffffff; 
     color: rgb(0, 0, 0);
-    text-decoration: underline;
+    text-decoration: none;
     box-shadow: 0 0 4px rgba(0,0,0,0.3);
 }
 
@@ -170,7 +171,6 @@ a {
 .button12:hover {
   background-color: #ffffff; 
   color: rgb(0, 0, 0);
-  text-decoration: underline;
   box-shadow: 0 0 4px rgba(0,0,0,0.3);
   text-decoration: none;
 }

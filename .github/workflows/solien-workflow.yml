@@ -1,4 +1,9 @@
-on: [push]
+# on: [push]
+
+on:
+  push:
+    branches:
+      - master
 
 jobs:
   build_and_push_to_docker_hub:
