@@ -1,5 +1,5 @@
 # Solien 
-This is a Notes application written with django and API on django rest framework
+📝 This is a notes application written with django and with an API based on the django rest framework.
 ___
 
 

@@ -1,0 +1,8 @@
+env/
+docs/
+.env.dist
+.gitignore
+__pycache__/
+LICENSE
+README.md
+setup.cfg
