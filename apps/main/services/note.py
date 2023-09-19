@@ -4,12 +4,11 @@ from django.views.decorators.http import require_http_methods
 from main.forms import SimpleNoteForm
 from django.contrib.auth.decorators import login_required
 
+
 @login_required
 @require_http_methods(["GET", "POST"])
 def create_simple_note(request):
-    owner = SimpleNote.objects.filter(
-        user=request.user
-        )
+    owner = SimpleNote.objects.filter(user=request.user)
     if request.method == 'POST':
         form = SimpleNoteForm(request.POST,
                                request.FILES)
@@ -22,18 +21,13 @@ def create_simple_note(request):
                 form.save()
                 return redirect('note_list')
             else:
-                form.add_error('slug', 
-                    'This slug already exists.')
+                form.add_error('slug', 'This slug already exists.')
     else:
         form = SimpleNoteForm()
-        form.add_error('slug', 'This slug already exists.')
-
-    context = {
-        'form': form,
+    return render(request, 'main/simple_note.html', {
+        'form': form, 
         'owner': owner,
-    }
-
-    return render(request, 'main/simple_note.html', context)
+        })
 
 @login_required
 @require_http_methods(["GET", "POST"])
@@ -49,9 +43,7 @@ def edit_note(request, pk):
     else:
         form = SimpleNoteForm(instance=note)
 
-    context = {
+    return render(request, 'main/edit_note.html', {
         'note': note, 
         'form': form,
-        }
-    
-    return render(request, 'main/edit_note.html', context)
+        })

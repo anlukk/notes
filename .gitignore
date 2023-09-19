@@ -26,6 +26,7 @@ venv
 prod_settings.py
 local_settings.py
 
+#prod 
 **/migrations/**
 !**/migrations
 !**/migrations/__init__.py
