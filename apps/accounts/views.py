@@ -63,10 +63,7 @@ class UserProfileView(View):
 
         # user = get_object_or_404(User)
         user = User.objects.get(username=request.user.username)
-        context = {
-            'user': user,
-            # 'username': username,
-            }
+        context = {'user': user}
         return render(request, 'main/editprofile.html', context=context)
 
 
