@@ -21,7 +21,7 @@ venv
 
 /media
 
-static/
+/static
 
 prod_settings.py
 local_settings.py

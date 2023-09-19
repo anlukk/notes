@@ -37,13 +37,6 @@ def index(request):
     return render(request, 'main/index.html', {'title' : 'Main page of site'})
 
 
-# @login_required
-# def note_list(request):
-
-#     owner = SimpleNote.objects.filter(user=request.user)
-#     return render(request, 'main/note_list.html', {'owner': owner})
-
-
 def faqs(request):
     faqs = [
         {'question': 'How to create a new note?', 'answer': 'Go to the note creation page and fill out the form.'},
@@ -203,9 +196,6 @@ def create_simple_note(request):
                 return redirect('note_list')
             else:
                 form.add_error('slug', 'This slug already exists.')
-            # simple_note.save()
-            # form.save()
-            # return redirect('note_list')
     else:
         form = SimpleNoteForm()
     return render(request, 'main/simple_note.html', {
@@ -238,11 +228,6 @@ class NoteListView(View):
         page_number = request.GET.get('page')
         page_obj = paginator.get_page(page_number)
 
-        # for note in notes:
-        #     try:
-        #         out_data = note.objects.get(user_id=User)
-        #     except note.MultipleObjectsReturned:
-        #         print('')
         context = {
             'notes': notes,
             'page_obj': page_obj
@@ -261,9 +246,11 @@ class NoteView(View):
     def get(self, request, simple_note_slug):
 
         owner = SimpleNote.objects.filter(user=request.user)
-        notes = get_object_or_404(SimpleNote, 
-                                  slug=simple_note_slug
-                                  )
+        notes = get_object_or_404(
+            SimpleNote, 
+            slug=simple_note_slug
+            )
+        
         context = {
             'owner': owner,
             'notes': notes,
@@ -276,15 +263,4 @@ class NoteView(View):
         c_def = self.get_user_context(
             title=context['simple_note'])
         
-        return dict(list(context.items())
-                    + list(c_def.items()))
-
-
-
-
-
-
-
-
-
-
+        return dict(list(context.items()) + list(c_def.items()))
