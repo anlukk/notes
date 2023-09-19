@@ -4,9 +4,8 @@ from django.db.models import Q
 
 
 class DataMixin:
-
+    
     def get_user_context(self, **kwargs):
-
         context = kwargs
         cats = category.objects.all()
         context['cats'] = cats
@@ -17,7 +16,6 @@ class DataMixin:
     
 
 def archive_unnecessary_records(model):
-
     archive_criteria = Q(archived=False) & Q(
         date__lt=datetime.date.today() - datetime.timedelta(days=30)
         )

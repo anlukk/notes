@@ -28,7 +28,9 @@ class SimpleNoteForm(forms.ModelForm):
 
 class CategoryForm(forms.Form):
 
-    category = forms.ModelChoiceField(queryset=Category.objects.all(), widget=forms.RadioSelect)
+    category = forms.ModelChoiceField(
+        queryset=Category.objects.all(), 
+        widget=forms.RadioSelect)
 
     class Meta:
         model = Category
