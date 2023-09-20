@@ -41,12 +41,12 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'solien_web.urls'
 
-TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
+TEMPLATES_DIR = os.path.join(BASE_DIR, '../templates')
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [TEMPLATES_DIR, "registration/templates"],
+        'DIRS': [TEMPLATES_DIR, "main/registration/templates"],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
