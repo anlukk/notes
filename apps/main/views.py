@@ -16,6 +16,7 @@ from main.services.search import search_view
 from main.services.note import edit_note, create_simple_note
 from main.services.categories import choose_category
 from main.services.archive import archive_view
+from django.shortcuts import get_object_or_404, redirect, render
 
 
 PER_PAGE = getattr(settings, "PAGINATOR_PER_PAGE", None)
@@ -25,7 +26,6 @@ User = get_user_model()
 @login_required
 def control_panel(request):
     return render(request,'main/control_panel.html', {'section': 'main page'})
-
 
 @require_http_methods(["GET"])
 def index(request):
@@ -65,7 +65,7 @@ def archive(request):
 @require_http_methods(["GET", "POST"])
 def text_file_upload_view(request, filename):
     return text_file_upload(request, filename)
- 
+
 def faqs(request):
     faqs = [
         {'question': 'How to create a new note?', 'answer': 'Go to the note creation page and fill out the form.'},
@@ -97,9 +97,7 @@ class MyNoteTable_View(LoginRequiredMixin, SingleTableMixin, ListView):
 class NoteListView(View):
 
     def get(self, request):
-
         notes = SimpleNote.objects.filter(user=request.user)
-
         paginator = Paginator(notes, 10)  
         page_number = request.GET.get('page')
         page_obj = paginator.get_page(page_number)
@@ -108,11 +106,18 @@ class NoteListView(View):
             'notes': notes,
             'page_obj': page_obj
         }
-        return render(request, 'main/note_list.html', context=context)  #'notes': notes,
+        return render(request, 'main/note_list.html', context=context)  
     
-    def get_context_data(self):
-        ...
-
+    def post(self, request):
+        note_id = request.POST.get('note_id')
+        if note_id:
+            note = get_object_or_404(SimpleNote, id=note_id)
+            note.delete()
+            return redirect("note_list")
+        else:
+            print("Note ID not provided in POST request")
+        return redirect("note_list") 
+    
 
 @method_decorator(login_required, name="dispatch")
 class NoteView(View):
@@ -120,7 +125,6 @@ class NoteView(View):
     context_object_name = 'simple_note'
 
     def get(self, request, simple_note_slug):
-
         owner = SimpleNote.objects.filter(user=request.user)
         notes = get_object_or_404(
             SimpleNote, 
@@ -131,10 +135,10 @@ class NoteView(View):
             'owner': owner,
             'notes': notes,
         }
+
         return render(request, 'main/view_note.html', context=context)
     
     def get_context_data(self, *, object_list=None, **kwargs): 
-
         context = super().get_context_data(**kwargs)
         c_def = self.get_user_context(
             title=context['simple_note'])

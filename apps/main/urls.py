@@ -27,5 +27,4 @@ urlpatterns = [
     path('mynote/', views.NoteListView.as_view(), name='note_list' ),
 
     path('choose_category/', views.choose_category, name='choose_category'),
-
 ]

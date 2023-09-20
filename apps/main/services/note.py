@@ -26,7 +26,7 @@ def create_simple_note(request):
 
 
 @login_required
-@require_http_methods(["GET", "POST"])
+@require_http_methods(["POST"])
 def edit_note(request, pk):
     note = get_object_or_404(SimpleNote, pk=pk)
     if request.method == "POST":
@@ -40,3 +40,5 @@ def edit_note(request, pk):
 
     return render(request, 'main/edit_note.html', {
         'note': note, 'form': form})
+
+

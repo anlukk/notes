@@ -293,7 +293,7 @@ a {
 }
 
 .card h2 {
-  padding-top: 80px;
+  padding-top: 40px;
   color: #1e2c42;
   font-size: 160%;
   line-height: 1.2;
@@ -422,6 +422,25 @@ a {
   background-color: #ffffff; 
   color: rgb(0, 0, 0);
   text-decoration: underline;
+  box-shadow: 0 0 4px rgba(0,0,0,0.3);
+  text-decoration: none;
+}
+
+.buttonOpen1 {
+  font-size: 20px;
+  background-color: #faf9f7;
+  color: rgb(0, 0, 0);
+  border: 0;
+
+  width: 250px;
+  margin: 0 auto;
+  display: block;
+  margin-top:55px;
+  box-shadow: 0 0 4px rgba(0,0,0,0.3);
+}
+.buttonOpen1:hover {
+  background-color: #ffffff; 
+  color: rgb(0, 0, 0);
   box-shadow: 0 0 4px rgba(0,0,0,0.3);
   text-decoration: none;
 }

@@ -195,11 +195,16 @@ customColorPalette = [
         },
     ]
 
+ENTER_P    = 1 # default
+ENTER_BR   = 2
+ENTER_DIV  = 3
+
 CKEDITOR_5_CONFIGS = {
     'default': {
         'toolbar': ['heading', '|', 'bold', 'italic', 'link',
                     'bulletedList', 'numberedList', 'blockQuote', 'imageUpload', ],
-
+        'autoParagraph': False,
+        'enterMode': ENTER_DIV,
     },
     'extends': {
         'blockToolbar': [
