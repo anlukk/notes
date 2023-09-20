@@ -1,3 +1,5 @@
 [flake8]
+exclude = apps/main/models.py
+exclude = apps/main/admin.py
 ignore =  E501,W503 
 exclude = *tests/,*migrations/

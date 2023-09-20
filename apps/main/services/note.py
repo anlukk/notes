@@ -10,13 +10,11 @@ from django.contrib.auth.decorators import login_required
 def create_simple_note(request):
     owner = SimpleNote.objects.filter(user=request.user)
     if request.method == 'POST':
-        form = SimpleNoteForm(request.POST,
-                               request.FILES)
+        form = SimpleNoteForm(request.POST, request.FILES)
         if form.is_valid():
             simple_note = form.save(commit=False)
             simple_note.user_id = request.user.id
-            if not SimpleNote.objects.filter(
-                slug=simple_note.slug).exists():
+            if not SimpleNote.objects.filter(slug=simple_note.slug).exists():
                 simple_note.save()
                 form.save()
                 return redirect('note_list')
@@ -24,15 +22,12 @@ def create_simple_note(request):
                 form.add_error('slug', 'This slug already exists.')
     else:
         form = SimpleNoteForm()
-    return render(request, 'main/simple_note.html', {
-        'form': form, 
-        'owner': owner,
-        })
+    return render(request, 'main/simple_note.html', {'form': form, 'owner': owner})
+
 
 @login_required
 @require_http_methods(["GET", "POST"])
 def edit_note(request, pk):
-
     note = get_object_or_404(SimpleNote, pk=pk)
     if request.method == "POST":
         form = SimpleNoteForm(request.POST, instance=note)
@@ -44,6 +39,4 @@ def edit_note(request, pk):
         form = SimpleNoteForm(instance=note)
 
     return render(request, 'main/edit_note.html', {
-        'note': note, 
-        'form': form,
-        })
+        'note': note, 'form': form})

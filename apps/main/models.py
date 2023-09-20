@@ -10,18 +10,15 @@ class Task(models.Model):
     title = models.CharField('Название', max_length=10000)
     task = models.TextField('Описание')
 
-
     def __str__(self):
         return self.title
-        
-        
+
     class Meta:
         verbose_name = 'person'
         verbose_name_plural = 'personal'
 
 
 class Profiles(models.Model):
-    
     NARRATESTATUS = (
         ('PAS', 'Passed'),
         ('REV', 'For_Review'),
@@ -29,9 +26,9 @@ class Profiles(models.Model):
     )
 
     nickname = models.OneToOneField(
-        settings.AUTH_USER_MODEL, 
-        on_delete=models.CASCADE, 
-        related_name='profile', 
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        related_name='profile',
         )
     
     narrate = models.TextField(
@@ -60,21 +57,24 @@ class Profiles(models.Model):
     
 
 class SimpleNote(models.Model):
-   """Simple Note models """
+    """
+    Simple Note model.
+    """
 
-   user = models.ForeignKey(
+    # The following line should end with a period.
+    user = models.ForeignKey(
        User,
        on_delete=models.CASCADE,
        )
 
-   name = models.CharField(
+    name = models.CharField(
        max_length=50, 
        verbose_name='Note name',
    )
    
-   text=CKEditor5Field('Text', config_name='extends')
+    text=CKEditor5Field('Text', config_name='extends')
    
-   file_note = models.FileField(
+    file_note = models.FileField(
        verbose_name='Upload file',
        upload_to='uploads/%Y/%m/%d/',
        max_length=254,
@@ -82,17 +82,17 @@ class SimpleNote(models.Model):
        blank=True,
        )
    
-   time_create = models.DateTimeField(
+    time_create = models.DateTimeField(
        auto_now_add=True, 
        verbose_name='Time add in time_create',
        )
    
-   time_update = models.DateTimeField(
+    time_update = models.DateTimeField(
        auto_now=True, 
        verbose_name='Time update in time_create',
        )
    
-   slug = models.SlugField(
+    slug = models.SlugField(
        max_length=255,
        unique=True,
        db_index=True,
@@ -101,18 +101,18 @@ class SimpleNote(models.Model):
        blank=True,
    )
 
-   def get_absolute_url(self):
+    def get_absolute_url(self):
        return reverse('simple_note', kwargs={'simple_note_slug': self.slug})
           
-   def __str__(self):
+    def __str__(self):
        return self.name
    
-   def save(self, *args, **kwargs):
+    def save(self, *args, **kwargs):
         if not self.slug:
             self.slug = slugify(self.name)
         super(SimpleNote, self).save(*args, **kwargs)
    
-   class Meta:
+    class Meta:
        verbose_name = 'Simple Note'
        
 

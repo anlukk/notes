@@ -3,6 +3,7 @@ from django.shortcuts import redirect, render
 from django.contrib.auth.decorators import login_required
 from main.forms import CategoryForm
 
+
 @login_required
 def choose_category(request):
     if request.method == 'POST':
@@ -15,6 +16,4 @@ def choose_category(request):
         form = CategoryForm()
 
     return render(request, 'main/choose_category.html', {
-        'form': form, 
-        'cats': Category.objects.all()
-        })
+        'form': form, 'cats': Category.objects.all()})

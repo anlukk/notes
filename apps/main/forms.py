@@ -17,23 +17,19 @@ class SimpleNoteForm(forms.ModelForm):
     class Meta:
         model = SimpleNote
         fields = ['name', 'text', 'file_note']
-        text = forms.CharField(widget = CKEditor5Widget())
+        text = forms.CharField(widget=CKEditor5Widget())
 
         widgets = {
             'name': forms.TextInput(attrs={'class': 'form_input'}),
             'file_note': forms.ClearableFileInput(attrs={'multiple': True})
         }
 
-        
 
 class CategoryForm(forms.Form):
 
     category = forms.ModelChoiceField(
-        queryset=Category.objects.all(), 
-        widget=forms.RadioSelect)
+        queryset=Category.objects.all(), widget=forms.RadioSelect)
 
     class Meta:
         model = Category
         fields = ['name', 'slug']
-
-    

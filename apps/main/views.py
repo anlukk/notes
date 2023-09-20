@@ -1,11 +1,8 @@
-import os
 from django.views import View
 from django_tables2 import SingleTableMixin
 from main.models import SimpleNote
 from main.tables import MyNote_Table
-from main.utils import archive_unnecessary_records
 from django.shortcuts import get_object_or_404, render
-from django.http import Http404, HttpResponse
 from django.utils.decorators import method_decorator
 from django.views.decorators.http import require_http_methods
 from django.conf import settings
@@ -13,13 +10,12 @@ from django.core.paginator import Paginator
 from django.contrib.auth.decorators import login_required
 from django.views.generic import ListView
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.apps import apps
 from django.contrib.auth import get_user_model
-from main.services.files import *
-from main.services.search import *
-from main.services.note import *
-from main.services.categories import *
-from main.services.archive import *
+from main.services.files import image_upload, text_file_upload
+from main.services.search import search_view
+from main.services.note import edit_note, create_simple_note
+from main.services.categories import choose_category
+from main.services.archive import archive_view
 
 
 PER_PAGE = getattr(settings, "PAGINATOR_PER_PAGE", None)
@@ -52,7 +48,7 @@ def create_note(request):
 
 @login_required
 @require_http_methods(["POST"])
-def edit_note(request, pk):
+def edit_note_view(request, pk):
     return edit_note(request, pk)
 
 @login_required
@@ -67,7 +63,7 @@ def archive(request):
 
 @login_required
 @require_http_methods(["GET", "POST"])
-def text_file_upload(request, filename):
+def text_file_upload_view(request, filename):
     return text_file_upload(request, filename)
  
 def faqs(request):
