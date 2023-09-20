@@ -17,6 +17,7 @@ from main.services.note import edit_note, create_simple_note
 from main.services.categories import choose_category
 from main.services.archive import archive_view
 from django.shortcuts import get_object_or_404, redirect, render
+from main.forms import SimpleNoteForm
 
 
 PER_PAGE = getattr(settings, "PAGINATOR_PER_PAGE", None)
@@ -130,8 +131,18 @@ class NoteView(View):
         return render(request, 'main/view_note.html', {
             'owner': owner, 'simple_note': note})
     
-    def post(self, request):
-        return ""
+    def post(self, request, pk):
+        note = get_object_or_404(SimpleNote, pk=pk)
+        if request.method == "POST":
+            form = SimpleNoteForm(request.POST, instance=note)
+            if form.is_valid():
+                note = form.save(commit=False)
+                note.save()
+                return redirect('note_detail', pk=note.pk)
+        else:
+            form = SimpleNoteForm(instance=note)
+
+        return redirect("view_note") 
     
     def get_context_data(self, *, object_list=None, **kwargs): 
         context = super().get_context_data(**kwargs)

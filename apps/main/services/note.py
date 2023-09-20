@@ -23,22 +23,3 @@ def create_simple_note(request):
     else:
         form = SimpleNoteForm()
     return render(request, 'main/simple_note.html', {'form': form, 'owner': owner})
-
-
-@login_required
-@require_http_methods(["POST"])
-def edit_note(request, pk):
-    note = get_object_or_404(SimpleNote, pk=pk)
-    if request.method == "POST":
-        form = SimpleNoteForm(request.POST, instance=note)
-        if form.is_valid():
-            note = form.save(commit=False)
-            note.save()
-            return redirect('note_detail', pk=note.pk)
-    else:
-        form = SimpleNoteForm(instance=note)
-
-    return render(request, 'main/edit_note.html', {
-        'note': note, 'form': form})
-
-
