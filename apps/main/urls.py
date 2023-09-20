@@ -10,7 +10,7 @@ urlpatterns = [
 
     path('control_panel', views.control_panel, name='control_panel'),
 
-    path('mynote/search_results/', views.search, name='search_results'), #mynote/search/
+    path('mynote/search_results/', views.search, name='search_results'), 
 
     path('FAQs', views.faqs, name='FAQs'),
 
@@ -19,8 +19,6 @@ urlpatterns = [
     path('archive/<int:model_slug>/', archive_view, name='archive'),
 
     path('mynote/<slug:simple_note_slug>/', views.NoteView.as_view(), name='view_note'),
-
-    path('mynote/edit_note', edit_note, name='edit_note'),
 
     path('mynote_table', MyNoteTable_View.as_view(), name='mynote_table' ),
 

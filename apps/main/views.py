@@ -46,10 +46,6 @@ def upload_image(request):
 def create_note(request):
     return create_simple_note(request)
 
-@login_required
-@require_http_methods(["POST"])
-def edit_note_view(request, pk):
-    return edit_note(request, pk)
 
 @login_required
 @require_http_methods(["GET"])
@@ -126,17 +122,16 @@ class NoteView(View):
 
     def get(self, request, simple_note_slug):
         owner = SimpleNote.objects.filter(user=request.user)
-        notes = get_object_or_404(
+        note = get_object_or_404(
             SimpleNote, 
-            slug=simple_note_slug
+            slug=simple_note_slug,
             )
         
-        context = {
-            'owner': owner,
-            'notes': notes,
-        }
-
-        return render(request, 'main/view_note.html', context=context)
+        return render(request, 'main/view_note.html', {
+            'owner': owner, 'simple_note': note})
+    
+    def post(self, request):
+        return ""
     
     def get_context_data(self, *, object_list=None, **kwargs): 
         context = super().get_context_data(**kwargs)

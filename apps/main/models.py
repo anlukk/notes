@@ -72,7 +72,11 @@ class SimpleNote(models.Model):
        verbose_name='Note name',
    )
    
-    text=CKEditor5Field('Text', config_name='extends')
+   #TODO: add null=True, blank=True
+    text=CKEditor5Field(
+        'Text', 
+        config_name='extends'
+        )
    
     file_note = models.FileField(
        verbose_name='Upload file',

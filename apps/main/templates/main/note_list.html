@@ -12,7 +12,6 @@
 <body>
   <div class="topnav">
     <a class="active" href="{% url 'simple_note' %}">Create New</a>
-    <!-- <a href="{% url 'simple_note' %}">Create New</a> -->
     <a href="{% url 'note_list' %}">Notes</a>
     <a href="#">Syncronizer</a>
     <a href="#">Archive</a>
@@ -47,7 +46,7 @@
                     <h2 class="post-title">{{ note.name|slice:"18" }}
                       {% if note.text|length > 18 %}&hellip;{% endif %}
                     </h2>
-                    <form method="GET" action="{% url 'view_note' note.id %}">
+                    <form method="GET" action="{% url 'view_note' simple_note_slug=note.slug %}">
                       <button type="submit" class="buttonOpen1">Open</button>
                   </form>
                     <p class="post-date">Save on {{ note.time_update }}</p>
@@ -70,59 +69,10 @@
 </html>
 
 <style>
-body {
-  font-family: 'Andale Mono', monospace;
-}
-.text {
-  font-family: 'Andale Mono', monospace;
-}
-
-.buttonOpen1 {
-  font-size: 20px;
-  background-color: #faf9f7;
-  color: rgb(0, 0, 0);
-  border: 0;
-  width: 250px;
-  margin: 0 auto;
-  display: block;
-  margin-top:55px;
-  box-shadow: 0 0 4px rgba(0,0,0,0.3);
-}
-.buttonOpen1:hover {
-  background-color: #ffffff; 
-  color: rgb(0, 0, 0);
-  box-shadow: 0 0 4px rgba(0,0,0,0.3);
-  text-decoration: none;
-}
-
-.buttonDelete {
-  font-size: 20px;
-  background-color: #faf9f7;
-  color: rgb(0, 0, 0);
-  border: 0;
-  width: 35px; 
-  height: 35px; 
-  border-radius: 50%; 
-  margin: 0 auto;
-  margin-right: 10px; 
-  display: block;
-  margin-top: 15px;
-  box-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
-  text-align: center; 
-  line-height: 35px; 
-}
-
-.buttonDelete:hover {
-  background-color: #ffffff; 
-  color: rgb(0, 0, 0);
-  box-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
-  text-decoration: none;
-}
-
-.card h2 {
-  padding-top: 40px;
-  color: #1e2c42;
-  font-size: 160%;
-  line-height: 1.2;
-}
+  body {
+    font-family: 'Andale Mono', monospace;
+  }
+  .text {
+    font-family: 'Andale Mono', monospace;
+  }
 </style>
