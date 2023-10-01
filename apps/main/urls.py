@@ -2,7 +2,7 @@ from . import views
 from django.urls import path 
 from main.views import (
      MyNoteTable_View,
-    archive_view, edit_note
+    archive_view,
     )
 
 urlpatterns = [

@@ -26,7 +26,7 @@
     {% csrf_token %} 
     <div class="search-container">
       <form action="{% url 'search_results' %}" method="get">
-        <input type="text" class="inputSearch"placeholder="Search my note" name="q">
+        <input type="text" class="inputSearch"placeholder="Search" name="q">
         <button type="submit" class="SerachButton">Find</button>
       </form>
     </div>
@@ -46,9 +46,12 @@
                     <h2 class="post-title">{{ note.name|slice:"18" }}
                       {% if note.text|length > 18 %}&hellip;{% endif %}
                     </h2>
+                    {% if note.slug %}
                     <form method="GET" action="{% url 'view_note' simple_note_slug=note.slug %}">
                       <button type="submit" class="buttonOpen1">Open</button>
                   </form>
+                  {% endif %}
+                  <button type="submit" class="buttonOpen1">In Archive</button>
                     <p class="post-date">Save on {{ note.time_update }}</p>
             </div>
           </div>

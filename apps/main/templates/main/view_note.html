@@ -1,21 +1,85 @@
 {% extends 'main/note_list.html' %}
 {% block title %}Note View{% endblock %}
 {% block content %}
-{% csrf_token %} 
+{% csrf_token %}
+<center>
 <div class="row_in">
-        <div class="card_in">
-          <div class="card-content_in">
+    <div class="card_in">
+        <div class="card-content_in">
             <li class="post">
-                <h2 class="post-title">{{ simple_note.name }}</h2>
-                <div class="post-date">{{ simple_note.text }}</div>
-                <form method="post">
+                <div id="noteContainer">
+                    {% if not editing %}
+                        <h2 class="post-title" id="type-2">{{ simple_note.name }}</h2>
+                        <button class="buttonSave" onclick="editNote()">Edit</button>
+                    {% endif %}
+                </div>
+                <form method="post" style="display: none;" id="editForm">
                     {% csrf_token %}
-                    {{ form.as_p }}
-                    <button type="submit" class="buttonSave">Save</button>
-                  </form>
-                  <p class="post-date">Save on {{ simple_note.time_update }}</p>
+                    <input type="text" name="name" id="editName" class="type-2" value="{{ simple_note.name }}">
+                    {{ form.text }}
+                    <button type="submit" class="buttonSave" onclick="saveNote()">Save</button>
+                </form>
+                <p class="post-date">Save on {{ simple_note.time_update }}</p>
             </li>
         </div>
     </div>
 </div>
+</center>
+<style>
+  #editableTitle[contenteditable="true"] {
+      border: 1px solid #ccc;
+      padding: 5px;
+      cursor: text;
+  }
+
+  #type-2[contenteditable="true"] {
+    background-color: #fafafa;
+    border:0;
+    box-shadow:0 0 4px rgba(0,0,0,0.3);
+    transition: .3s box-shadow;
+    display:block;
+    width:25%;
+    margin: 37px 0;
+    padding:10px;
+    border-radius:6px;
+    cursor: text;
+  }
+  .type-2:hover {
+    box-shadow:0 0 4px rgba(0,0,0,0.5);
+  }
+</style>
+<script>
+    var editing = false;
+
+    function editNote() {
+        var noteTitle = document.getElementById('type-2');
+        var editName = document.getElementById('editName');
+        var editForm = document.getElementById('editForm');
+        var editButton = document.getElementsByClassName('buttonSave')[0];
+
+        editing = !editing;
+
+        editButton.style.display = 'none';
+
+        if (editing) {
+            noteTitle.style.display = 'none';
+            editName.style.display = 'block';
+            editButton.innerText = 'Cancel';
+            editForm.style.display = 'block';
+        } else {
+            noteTitle.style.display = 'block';
+            editName.style.display = 'none';
+            editButton.innerText = 'Edit';
+            editForm.style.display = 'none';
+        }
+    }
+
+    function saveNote() {
+        var editName = document.getElementById('editName');
+        var noteTitle = document.getElementById('noteTitle');
+        var editForm = document.getElementById('editForm');
+        noteTitle.innerText = editName.value;
+        editNote();
+    }
+</script>
 {% endblock %}

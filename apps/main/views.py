@@ -13,11 +13,12 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth import get_user_model
 from main.services.files import image_upload, text_file_upload
 from main.services.search import search_view
-from main.services.note import edit_note, create_simple_note
+from main.services.note import create_simple_note
 from main.services.categories import choose_category
 from main.services.archive import archive_view
 from django.shortcuts import get_object_or_404, redirect, render
 from main.forms import SimpleNoteForm
+from slugify import slugify
 
 
 PER_PAGE = getattr(settings, "PAGINATOR_PER_PAGE", None)
@@ -46,7 +47,6 @@ def upload_image(request):
 @require_http_methods(["POST"])
 def create_note(request):
     return create_simple_note(request)
-
 
 @login_required
 @require_http_methods(["GET"])
@@ -131,18 +131,20 @@ class NoteView(View):
         return render(request, 'main/view_note.html', {
             'owner': owner, 'simple_note': note})
     
-    def post(self, request, pk):
-        note = get_object_or_404(SimpleNote, pk=pk)
+    def post(self, request, simple_note_slug):
+        note = get_object_or_404(SimpleNote, slug=simple_note_slug)
         if request.method == "POST":
             form = SimpleNoteForm(request.POST, instance=note)
             if form.is_valid():
                 note = form.save(commit=False)
+                new_slug = slugify(form.cleaned_data['name'])
+                note.slug = new_slug
                 note.save()
-                return redirect('note_detail', pk=note.pk)
+                return redirect('view_note', simple_note_slug=new_slug)
         else:
             form = SimpleNoteForm(instance=note)
 
-        return redirect("view_note") 
+        return redirect("view_note", simple_note_slug=note.slug) 
     
     def get_context_data(self, *, object_list=None, **kwargs): 
         context = super().get_context_data(**kwargs)

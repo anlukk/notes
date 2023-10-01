@@ -1,5 +1,5 @@
 from main.models import SimpleNote
-from django.shortcuts import get_object_or_404, redirect, render
+from django.shortcuts import redirect, render
 from django.views.decorators.http import require_http_methods
 from main.forms import SimpleNoteForm
 from django.contrib.auth.decorators import login_required
