@@ -37,10 +37,15 @@
         {% for note in notes %}
         <div class="column">
             <div class="card">
+              <div class="card-image">
               <form method="POST">
                 {% csrf_token %}
+                <div class="button-container">
                 <button type="submit" class="buttonDelete" name="note_id" value="{{ note.id }}"></button>
+                <button type="submit" class="buttonArchive"></button>
+                </div>
               </form>
+            </div>
               <div class="card-content">
                 <li class="post">
                     <h2 class="post-title">{{ note.name|slice:"18" }}
@@ -51,7 +56,6 @@
                       <button type="submit" class="buttonOpen1">Open</button>
                   </form>
                   {% endif %}
-                  <button type="submit" class="buttonOpen1">In Archive</button>
                     <p class="post-date">Save on {{ note.time_update }}</p>
             </div>
           </div>
@@ -78,4 +82,5 @@
   .text {
     font-family: 'Andale Mono', monospace;
   }
+
 </style>

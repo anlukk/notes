@@ -500,6 +500,30 @@ a {
   text-decoration: none;
 }
 
+.buttonArchive {
+  font-size: 20px;
+  background-color: #faf9f7;
+  color: rgb(0, 0, 0);
+  border: 0;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  margin: 0 auto;
+  margin-right: 55px;
+  display: block;
+  margin-top: -35px;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  line-height: 35px;
+}
+
+.buttonArchive:hover {
+  background-color: #ffffff;
+  color: rgb(0, 0, 0);
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
+  text-decoration: none;
+}
+
 .card h2 {
   padding-top: 40px;
   color: #1e2c42;

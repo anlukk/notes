@@ -2,7 +2,7 @@ from django.views import View
 from django_tables2 import SingleTableMixin
 from main.models import SimpleNote
 from main.tables import MyNote_Table
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404, render, redirect
 from django.utils.decorators import method_decorator
 from django.views.decorators.http import require_http_methods
 from django.conf import settings
@@ -16,10 +16,8 @@ from main.services.search import search_view
 from main.services.note import create_simple_note
 from main.services.categories import choose_category
 from main.services.archive import archive_view
-from django.shortcuts import get_object_or_404, redirect, render
 from main.forms import SimpleNoteForm
 from slugify import slugify
-
 
 PER_PAGE = getattr(settings, "PAGINATOR_PER_PAGE", None)
 User = get_user_model()
@@ -144,7 +142,7 @@ class NoteView(View):
         else:
             form = SimpleNoteForm(instance=note)
 
-        return redirect("view_note", simple_note_slug=note.slug) 
+        return redirect("view_note", simple_note_slug=note.slug)
     
     def get_context_data(self, *, object_list=None, **kwargs): 
         context = super().get_context_data(**kwargs)

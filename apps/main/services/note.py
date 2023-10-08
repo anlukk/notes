@@ -3,6 +3,8 @@ from django.shortcuts import redirect, render
 from django.views.decorators.http import require_http_methods
 from main.forms import SimpleNoteForm
 from django.contrib.auth.decorators import login_required
+from unidecode import unidecode
+from slugify import slugify
 
 
 @login_required
@@ -14,7 +16,13 @@ def create_simple_note(request):
         if form.is_valid():
             simple_note = form.save(commit=False)
             simple_note.user_id = request.user.id
-            if not SimpleNote.objects.filter(slug=simple_note.slug).exists():
+
+            loting = unidecode(simple_note.name)
+
+            simple_note.slug = slugify(loting)
+
+            if not SimpleNote.objects.filter(
+                slug=simple_note.slug).exists():
                 simple_note.save()
                 form.save()
                 return redirect('note_list')
@@ -22,4 +30,5 @@ def create_simple_note(request):
                 form.add_error('slug', 'This slug already exists.')
     else:
         form = SimpleNoteForm()
-    return render(request, 'main/simple_note.html', {'form': form, 'owner': owner})
+    return render(
+        request, 'main/simple_note.html', {'form': form, 'owner': owner})
