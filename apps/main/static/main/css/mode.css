@@ -48,10 +48,7 @@ body {
 
 .topnav {
   overflow: hidden;
-  background-color: #1e2c42; 
-/* 1f262e */
-/* 181b1e */ 
-/* 1d232c */
+  background-color: #2d343e; 
 }
 
 .topnav a {
@@ -70,7 +67,7 @@ body {
 }
 
 .topnav a.active {
-  background-color: #030303;
+  background-color: #232930;
   color: rgb(253, 253, 253);
 }
 
@@ -91,7 +88,7 @@ body {
   padding: 6px;
   margin-top: 8px;
   margin-right: 30px;
-  background: #1e2c42;
+  background: #232930;
   font-size: 17px;
   border: 1 black;
   cursor: pointer;
@@ -399,7 +396,7 @@ a {
 
 .inputSearch{
   border-radius: 5px;
-  background: #1e2c42;
+  background: #232930;
 }
 
 .button12 {
@@ -456,6 +453,24 @@ a {
   box-shadow:0 0 4px rgba(0,0,0,0.5);
 }
 
+#editableTitle[contenteditable="true"] {
+  border: 1px solid #ccc;
+  padding: 5px;
+  cursor: text;
+}
+
+#type-2[contenteditable="true"] {
+background-color: #fafafa;
+border:0;
+box-shadow:0 0 4px rgba(0,0,0,0.3);
+transition: .3s box-shadow;
+display:block;
+width:25%;
+margin: 37px 0;
+padding:10px;
+border-radius:6px;
+cursor: text;
+}
 
 .buttonOpen1 {
   font-size: 20px;

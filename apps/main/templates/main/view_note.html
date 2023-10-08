@@ -1,7 +1,11 @@
 {% extends 'main/note_list.html' %}
+{% load static %}
 {% block title %}Note View{% endblock %}
 {% block content %}
 {% csrf_token %}
+{% block js %}
+<script>src="{% static 'main/js/note_edit.js' %}"></script>
+{% endblock %}
 <center>
 <div class="row_in">
     <div class="card_in">
@@ -25,61 +29,4 @@
     </div>
 </div>
 </center>
-<style>
-  #editableTitle[contenteditable="true"] {
-      border: 1px solid #ccc;
-      padding: 5px;
-      cursor: text;
-  }
-
-  #type-2[contenteditable="true"] {
-    background-color: #fafafa;
-    border:0;
-    box-shadow:0 0 4px rgba(0,0,0,0.3);
-    transition: .3s box-shadow;
-    display:block;
-    width:25%;
-    margin: 37px 0;
-    padding:10px;
-    border-radius:6px;
-    cursor: text;
-  }
-  .type-2:hover {
-    box-shadow:0 0 4px rgba(0,0,0,0.5);
-  }
-</style>
-<script>
-    var editing = false;
-
-    function editNote() {
-        var noteTitle = document.getElementById('type-2');
-        var editName = document.getElementById('editName');
-        var editForm = document.getElementById('editForm');
-        var editButton = document.getElementsByClassName('buttonSave')[0];
-
-        editing = !editing;
-
-        editButton.style.display = 'none';
-
-        if (editing) {
-            noteTitle.style.display = 'none';
-            editName.style.display = 'block';
-            editButton.innerText = 'Cancel';
-            editForm.style.display = 'block';
-        } else {
-            noteTitle.style.display = 'block';
-            editName.style.display = 'none';
-            editButton.innerText = 'Edit';
-            editForm.style.display = 'none';
-        }
-    }
-
-    function saveNote() {
-        var editName = document.getElementById('editName');
-        var noteTitle = document.getElementById('noteTitle');
-        var editForm = document.getElementById('editForm');
-        noteTitle.innerText = editName.value;
-        editNote();
-    }
-</script>
 {% endblock %}

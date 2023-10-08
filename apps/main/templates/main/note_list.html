@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'main/css/mode.css' %}" type="text/css"/>
     <link rel="shortcut icon" href="{% static 'main/images/icons/icon3.png' %}" type="image/png"/>
+    <script src="{% static 'main/js/note_edit.js' %}"></script>
     <title>Notes</title>
 </head>
 <body>
@@ -17,12 +18,6 @@
     <a href="#">Archive</a>
     <a href="{% url 'FAQs' %}">FAQs</a>
     <a href="{% url 'editprofile' %}">Settings</a>
-    <button class="buttonbatton" onclick="goBack()">←</button>
-    <script>
-    function goBack() {
-        window.history.back();
-    }
-    </script>
     {% csrf_token %} 
     <div class="search-container">
       <form action="{% url 'search_results' %}" method="get">
@@ -32,7 +27,7 @@
     </div>
   </div>
   {% block content %} 
-      <center><h2 class="text">Notes</h2>
+      <center><h2 class="text">My Saved Notes</h2>
       <div class="row">
         {% for note in notes %}
         <div class="column">
@@ -76,11 +71,8 @@
 </html>
 
 <style>
-  body {
-    font-family: 'Andale Mono', monospace;
-  }
-  .text {
-    font-family: 'Andale Mono', monospace;
-  }
-
+.text {
+  font-family: 'Andale Mono', monospace;
+  color: #232930;
+}
 </style>
